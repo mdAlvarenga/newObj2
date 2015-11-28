@@ -4,9 +4,8 @@
   <artifactId>TPObjetos2</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>OfertaHotelera</name>
-</project>
 
-<dependencies>
+	<dependencies>
 		<dependency>
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
@@ -24,5 +23,6 @@
 			<artifactId>mockito-all</artifactId>
 			<version>1.10.19</version>
 		</dependency>
-</dependencies>		
+	</dependencies>
+</project>		
 		
