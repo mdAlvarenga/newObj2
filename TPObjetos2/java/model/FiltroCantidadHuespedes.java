@@ -25,7 +25,7 @@ public class FiltroCantidadHuespedes extends FiltroBusqueda {
 	private boolean tieneHabitacionQueCumpleCapacidad(Hotel h) {
 		boolean ret = false;
 		for (Habitacion hab : h.getHabitaciones()) {
-			ret = ret || hab.getCapacidadMaxima() >= this.getCantDePasajeros(); 
+			ret = ret || (hab.getCapacidadMaxima() >= this.getCantDePasajeros()); 
 		}
 		return ret;
 	}

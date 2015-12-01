@@ -55,7 +55,7 @@ public class FiltroBusquedaTest {
 		listaDeHoteles.add(hotel2);
 		
 		//listaDeFiltros.add(filtroCant);
-	//	listaDeFiltros.add(filtroNombreHotel);
+		//listaDeFiltros.add(filtroNombreHotel);
 		
 		//List<Filtro> listaDeFiltros = new ArrayList<Filtro>();
 		//filtro ciudad, nombre de hotel, rango disponible, cantidad de personas	
