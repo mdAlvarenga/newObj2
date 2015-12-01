@@ -1,10 +1,8 @@
 package modelTest;
 
 import static org.junit.Assert.assertEquals;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import model.FiltroBusqueda;
 import model.FiltroCantidadHuespedes;
 import model.FiltroCiudadHotel;
@@ -14,125 +12,177 @@ import model.FiltroRango;
 import model.Habitacion;
 import model.Hotel;
 
+import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
-import org.mockito.stubbing.OngoingStubbing;
 
-import static org.mockito.Mockito.*;
 
 public class FiltroBusquedaTest {
-	FiltroBusqueda sutBuscador;
-	Hotel hotel1;
-	Hotel hotel2;
-	Habitacion hab1;
-	Habitacion hab2;
-	Habitacion hab3;
-	Habitacion hab4;
 	
-	List<Hotel> expected;
-	List<Hotel> resultado;
-	List<Hotel> listaDeHoteles;
+	private FiltroBusqueda sutBuscador;
+	private Hotel hotel1;
+	private Hotel hotel2;
+	private Habitacion hab1;
+	private Habitacion hab2;
+	private Habitacion hab3;
+	private Habitacion hab4;
 	
-	List<Habitacion> listaDeHabitaciones;
+	private List<Hotel> resultado;
+	private List<Hotel> listaDeHoteles;
 	
-	List<FiltroBusqueda> listaDeFiltros;
+	private List<Habitacion> listaDeHabitacionesHotel1;
+	private List<Habitacion> listaDeHabitacionesHotel2;
+	
+	private List<FiltroBusqueda> listaDeFiltros;
+	
+	private FiltroBusqueda filtroNombreHotel;
+	private FiltroBusqueda filtroCiudadHotel;
+	private FiltroBusqueda filtroCantidadHuespedes;
+	private FiltroBusqueda filtroRango;
+	
+	private DateTime fechaDesde;
+	private DateTime fechaHasta;
 	
 	@Before
 	public void setUp(){
-		Habitacion hab1 = Mockito.mock(Habitacion.class);
-			when(hab1.getCapacidadMaxima()).thenReturn(5);
-		Habitacion hab2 = Mockito.mock(Habitacion.class);
-			when(hab1.getCapacidadMaxima()).thenReturn(1);
-		Habitacion hab3 = Mockito.mock(Habitacion.class);
-			when(hab1.getCapacidadMaxima()).thenReturn(5);
-		Habitacion hab4 = Mockito.mock(Habitacion.class);
-			when(hab1.getCapacidadMaxima()).thenReturn(5);
 		
-		Hotel hotel1 = Mockito.mock(Hotel.class);
-		Hotel hotel2 = Mockito.mock(Hotel.class);
-		listaDeHoteles.add(hotel1);
-		listaDeHoteles.add(hotel2);
+		//se crean habitaciones
+		this.hab1 = new Habitacion();
+		this.hab2 = new Habitacion();
 		
-		//listaDeFiltros.add(filtroCant);
-		//listaDeFiltros.add(filtroNombreHotel);
+		this.hab3 = new Habitacion();
+		this.hab4 = new Habitacion();
 		
-		//List<Filtro> listaDeFiltros = new ArrayList<Filtro>();
-		//filtro ciudad, nombre de hotel, rango disponible, cantidad de personas	
-		FiltroBusqueda sutBuscador = new FiltroCompuesto(listaDeFiltros);
+		//se crean hoteles
+		this.hotel1 = new Hotel("AAA","");
+		this.hotel2 = new Hotel("BBB","Bernal");
 		
+		//se arman listas de habitaciones
+		this.listaDeHabitacionesHotel1 = new ArrayList<Habitacion>();
+		this.listaDeHabitacionesHotel1.add(hab1);
+		this.listaDeHabitacionesHotel1.add(hab2);
 		
+		this.listaDeHabitacionesHotel2 = new ArrayList<Habitacion>();
+		this.listaDeHabitacionesHotel2.add(hab3);
+		this.listaDeHabitacionesHotel2.add(hab4);
 		
-		//Ejerecitar el SUT
-		//El buscador busca en una lista de hoteles que tiene el sistema
-		//
-		resultado = sutBuscador.buscar(listaDeHoteles);
-		  // use mock in test.... 
-		  //assertEquals(test.getUniqueId(), 43);*/
+		//se agregan habitaciones a hoteles
+		this.hotel1.setHabitaciones(this.listaDeHabitacionesHotel1);
+		this.hotel1.setHabitaciones(this.listaDeHabitacionesHotel2);
+		
+		this.listaDeHoteles = new ArrayList<Hotel>();
+		
+		this.listaDeHoteles.add(this.hotel1);
+		this.listaDeHoteles.add(this.hotel2);
+
+		this.listaDeFiltros = new ArrayList<FiltroBusqueda>();
 		
 	}
 	
 	/**
-	 * El test consiste en buscar la disponibilidad de hoteles con habitaciones 
-	 * disponibles para 4 personas, se realice una busqueda y se obtiene como 
-	 * resultado un Hotel.
+	 * Busqueda simple SOLO por nombre de hotel
 	 */
 	@Test
-	public void testObtengoHotelDisponiblePara4Personas() {
+	public void testObtengoHotelPorNombre() {
 		
-		//this.sistema.agregarHotel(this.hotel1);
-		//this.sistema.agregarHotel(this.hotel2);
+		//se crea y arma la escructura de busqueda
+		this.filtroNombreHotel = new FiltroNombreHotel("AAA");
+		this.listaDeFiltros.add(this.filtroNombreHotel);
+		this.sutBuscador = new FiltroCompuesto(listaDeFiltros);
 		
-		//ArrayList<Hotel> resultados = this.sistema.evaluar(this.parametros);
-		//(new ArrayList<Hotel>()).add(hotel1)
-		assertEquals(expected.size(), resultado.size());
+		resultado = sutBuscador.buscar(listaDeHoteles);
+
+		assertEquals(1, resultado.size());
+		
+	}
+	
+	/**
+	 * Busqueda simple SOLO por nombre de ciudad
+	 */
+	@Test
+	public void testObtengoHotelPorCiudad() {
+		
+		//se crea y arma la escructura de busqueda
+		this.filtroCiudadHotel = new FiltroCiudadHotel("Bernal");
+		this.listaDeFiltros.add(this.filtroCiudadHotel);
+		this.sutBuscador = new FiltroCompuesto(listaDeFiltros);
+		
+		resultado = sutBuscador.buscar(listaDeHoteles);
+
+		assertEquals(1, resultado.size());
 		
 	}
 	
 	
+	/**
+	 * Busqueda simple SOLO por cantidad de huespedes
+	 */
+	@Test
+	public void testObtengoHotelPorCantidadHuespedes() {
+		
+		//se crea y arma la escructura de busqueda
+		this.filtroCantidadHuespedes = new FiltroCantidadHuespedes(4);
+		this.listaDeFiltros.add(this.filtroCantidadHuespedes);
+		this.sutBuscador = new FiltroCompuesto(listaDeFiltros);
+		
+		resultado = sutBuscador.buscar(listaDeHoteles);
+
+		assertEquals(1, resultado.size());
+		
+	}
+
+	/**
+	 * Busqueda simple SOLO por rango de fechas
+	 */
+	@Test
+	public void testObtengoHotelPorRango() {
+		
+		// Rango Consultado
+		this.fechaDesde = new DateTime(2015,10,10,0,0);
+		this.fechaHasta = new DateTime(2015,11,11,0,0);
+		
+		//se crea y arma la escructura de busqueda
+		this.filtroRango = new FiltroRango(this.fechaDesde, this.fechaHasta);
+		this.listaDeFiltros.add(this.filtroRango);
+		this.sutBuscador = new FiltroCompuesto(listaDeFiltros);
+		
+		resultado = sutBuscador.buscar(listaDeHoteles);
+
+		assertEquals(1, resultado.size());
+		
+	}
+
+	/**
+	 * Busqueda complejo donde utilizo todos los filtros juntos
+	 */
+	@Test
+	public void testObtengoHotelTodosLosFiltros() {
+		
+		// Rango Consultado
+		this.fechaDesde = new DateTime(2015,10,10,0,0);
+		this.fechaHasta = new DateTime(2015,11,11,0,0);
+		
+		//se crea y arma la escructura de busqueda
+		this.filtroNombreHotel = new FiltroNombreHotel("CCC");
+		this.listaDeFiltros.add(this.filtroNombreHotel);
+		
+		this.filtroRango = new FiltroRango(this.fechaDesde, this.fechaHasta);
+		this.listaDeFiltros.add(this.filtroRango);
+		
+		this.filtroCiudadHotel = new FiltroCiudadHotel("Wilde");
+		this.listaDeFiltros.add(this.filtroCiudadHotel);
+		
+		this.filtroCantidadHuespedes = new FiltroCantidadHuespedes(4);
+		this.listaDeFiltros.add(this.filtroCantidadHuespedes);
+		
+		this.sutBuscador = new FiltroCompuesto(listaDeFiltros);
+		
+		resultado = sutBuscador.buscar(listaDeHoteles);
+
+		assertEquals(0, resultado.size());
+		
+	}
 	
 	
-/*	@Test
-	public void test1()  {
-	  //  create mock
-	  MyClass test = Mockito.mock(MyClass.class);
-	  
-	  // define return value for method getUniqueId()
-	  when(test.getUniqueId()).thenReturn(43);
-	  
-	  // use mock in test.... 
-	  assertEquals(test.getUniqueId(), 43);
-	}
-
-
-	// Demonstrates the return of multiple values
-	@Test
-	public void testMoreThanOneReturnValue()  {
-	  Iterator i= mock(Iterator.class);
-	  when(i.next()).thenReturn("Mockito").thenReturn("rocks");
-	  String result=i.next()+" "+i.next();
-	  //assert
-	  assertEquals("Mockito rocks", result);
-	}
-
-	// this test demonstrates how to return values based on the input
-	@Test
-	public void testReturnValueDependentOnMethodParameter()  {
-	  Comparable c= mock(Comparable.class);
-	  when(c.compareTo("Mockito")).thenReturn(1);
-	  when(c.compareTo("Eclipse")).thenReturn(2);
-	  //assert
-	  assertEquals(1,c.compareTo("Mockito"));
-	}
-
-	// this test demonstrates how to return values independent of the input value
-
-	@Test
-	public void testReturnValueInDependentOnMethodParameter()  {
-	  Comparable c= mock(Comparable.class);
-	  when(c.compareTo(anyInt())).thenReturn(-1);
-	  //assert
-	  assertEquals(-1 ,c.compareTo(9));
-	}*/
 	
 }
