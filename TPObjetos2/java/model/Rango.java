@@ -32,9 +32,4 @@ public class Rango {
 		return this.fechaDesde;
 	}
 
-	public boolean fechaDeReservaPosteriorA(DateTime unaFecha) {
-		
-		return this.fechaDesde.isAfter(unaFecha);
-	}
-
 }
