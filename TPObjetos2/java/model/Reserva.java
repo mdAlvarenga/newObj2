@@ -34,7 +34,8 @@ public class Reserva {
 
 	public boolean fechaDeReservaPosteriorA(DateTime unaFecha) {
 		
-		return rangoDeReserva.fechaDeReservaPosteriorA(unaFecha);
+		Rango rango = new Rango(unaFecha, unaFecha);
+		return rangoDeReserva.intercepta(rango);
 	}
 
 }
