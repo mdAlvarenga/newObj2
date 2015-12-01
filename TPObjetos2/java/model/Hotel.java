@@ -2,6 +2,8 @@ package model;
 
 import java.util.List;
 
+import org.joda.time.DateTime;
+
 public class Hotel {
 	private String nombreHotel;
 	private String nombreCiudad;
@@ -21,6 +23,11 @@ public class Hotel {
 	
 	public void setHabitaciones(List<Habitacion> habitaciones) {
 		this.habitaciones = habitaciones;
+	}
+
+	public List<Reserva> reservasDentroDeFecha(DateTime unaFecha) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
