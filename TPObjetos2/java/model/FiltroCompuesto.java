@@ -1,7 +1,9 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class FiltroCompuesto extends FiltroBusqueda{
 	List<FiltroBusqueda> listaDeFiltros;
@@ -12,12 +14,26 @@ public class FiltroCompuesto extends FiltroBusqueda{
 
 	@Override
 	public List<Hotel> buscar(List<Hotel> lHoteles) {
-		List<Hotel> res = new ArrayList<Hotel>();
+		
+		// para evitar hoteles repetidos
+		Set<Hotel> res = new HashSet<Hotel>();
 		
 		for (FiltroBusqueda f : this.getListaDeFiltros()) {
-			res.addAll(f.buscar(lHoteles));
+			// si uno solo de los filtros no cumple, ya 
+			//no puedo retornar resultados positivos en la busqueda
+			if (f.buscar(lHoteles).size() == 0){
+				res.removeAll(res);
+				break;
+			}else{
+				res.addAll(f.buscar(lHoteles));
+			}
 		}
-		return res;
+		
+		//chanchada para retornar una lista y no cambiar la interfaz, por las dudas
+		List<Hotel> resultado = new ArrayList<Hotel>();
+		resultado.addAll(res);
+		
+		return resultado;
 	}
 
 	public List<FiltroBusqueda> getListaDeFiltros() {

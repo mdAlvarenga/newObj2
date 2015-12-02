@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" output="target/classes" path="src/main/java">
-		<attributes>
-			<attribute name="optional" value="true"/>
-			<attribute name="maven.pomderived" value="true"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="src" output="target/test-classes" path="java">
 		<attributes>
 			<attribute name="optional" value="true"/>
@@ -22,6 +16,5 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/MarcosDaniel/.m2/repository/joda-time/joda-time/2.7/joda-time-2.7.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

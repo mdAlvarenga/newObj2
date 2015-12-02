@@ -1,8 +1,14 @@
 package modelTest;
 
 import static org.junit.Assert.assertEquals;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import org.joda.time.DateTime;
+import org.junit.Before;
+import org.junit.Test;
+
 import model.FiltroBusqueda;
 import model.FiltroCantidadHuespedes;
 import model.FiltroCiudadHotel;
@@ -11,10 +17,6 @@ import model.FiltroNombreHotel;
 import model.FiltroRango;
 import model.Habitacion;
 import model.Hotel;
-
-import org.joda.time.DateTime;
-import org.junit.Before;
-import org.junit.Test;
 
 
 public class FiltroBusquedaTest {
@@ -47,15 +49,23 @@ public class FiltroBusquedaTest {
 	public void setUp(){
 		
 		//se crean habitaciones
-		this.hab1 = new Habitacion();
-		this.hab2 = new Habitacion();
+		this.hab1 = new Habitacion(1);
+		this.hab2 = new Habitacion(2);
 		
-		this.hab3 = new Habitacion();
-		this.hab4 = new Habitacion();
+		this.hab3 = new Habitacion(3);
+		this.hab4 = new Habitacion(4);
 		
 		//se crean hoteles
-		this.hotel1 = new Hotel("AAA","");
+		this.hotel1 = new Hotel("AAA","Quilmes");
 		this.hotel2 = new Hotel("BBB","Bernal");
+		
+		//se crean reservas en todas las habitaciones para el mismo rango
+		this.fechaDesde = new DateTime(2015,9,9,0,0);
+		this.fechaHasta = new DateTime(2015,9,30,0,0);		
+		this.hab1.reservar(fechaDesde, fechaHasta, new Double(234));
+		this.hab2.reservar(fechaDesde, fechaHasta, new Double(100));
+		this.hab3.reservar(fechaDesde, fechaHasta, new Double(2300));	
+		this.hab4.reservar(fechaDesde, fechaHasta, new Double(7654));
 		
 		//se arman listas de habitaciones
 		this.listaDeHabitacionesHotel1 = new ArrayList<Habitacion>();
@@ -133,16 +143,17 @@ public class FiltroBusquedaTest {
 
 	/**
 	 * Busqueda simple SOLO por rango de fechas
+	 * Disponibilidad OK
 	 */
 	@Test
 	public void testObtengoHotelPorRango() {
 		
 		// Rango Consultado
-		this.fechaDesde = new DateTime(2015,10,10,0,0);
-		this.fechaHasta = new DateTime(2015,11,11,0,0);
+		DateTime fechaDesde = new DateTime(2015,10,10,0,0);
+		DateTime fechaHasta = new DateTime(2015,11,11,0,0);
 		
 		//se crea y arma la escructura de busqueda
-		this.filtroRango = new FiltroRango(this.fechaDesde, this.fechaHasta);
+		this.filtroRango = new FiltroRango(fechaDesde, fechaHasta);
 		this.listaDeFiltros.add(this.filtroRango);
 		this.sutBuscador = new FiltroCompuesto(listaDeFiltros);
 		
@@ -151,30 +162,53 @@ public class FiltroBusquedaTest {
 		assertEquals(1, resultado.size());
 		
 	}
+	
+	/**
+	 * Busqueda simple SOLO por rango de fechas
+	 * Disponibilidad NOK
+	 */
+	@Test
+	public void testObtengoHotelPorRangoNoDisponible() {
+		
+		// Rango Consultado
+		DateTime fechaDesde = new DateTime(2015,9,9,0,0);
+		DateTime fechaHasta = new DateTime(2015,9,30,0,0);
+		
+		//se crea y arma la escructura de busqueda
+		this.filtroRango = new FiltroRango(fechaDesde, fechaHasta);
+		this.listaDeFiltros.add(this.filtroRango);
+		this.sutBuscador = new FiltroCompuesto(listaDeFiltros);
+		
+		resultado = sutBuscador.buscar(listaDeHoteles);
+
+		assertEquals(0, resultado.size());
+		
+	}
 
 	/**
-	 * Busqueda complejo donde utilizo todos los filtros juntos
+	 * Busqueda compleja donde utilizo todos los filtros juntos
+	 * Disponibilidad NO OK por todas las condiciones
 	 */
 	@Test
 	public void testObtengoHotelTodosLosFiltros() {
 		
 		// Rango Consultado
-		this.fechaDesde = new DateTime(2015,10,10,0,0);
-		this.fechaHasta = new DateTime(2015,11,11,0,0);
+		DateTime fechaDesde = new DateTime(2015,9,9,0,0);
+		DateTime fechaHasta = new DateTime(2015,9,30,0,0);
 		
 		//se crea y arma la escructura de busqueda
 		this.filtroNombreHotel = new FiltroNombreHotel("CCC");
 		this.listaDeFiltros.add(this.filtroNombreHotel);
 		
-		this.filtroRango = new FiltroRango(this.fechaDesde, this.fechaHasta);
+		this.filtroRango = new FiltroRango(fechaDesde, fechaHasta);
 		this.listaDeFiltros.add(this.filtroRango);
 		
 		this.filtroCiudadHotel = new FiltroCiudadHotel("Wilde");
 		this.listaDeFiltros.add(this.filtroCiudadHotel);
 		
-		this.filtroCantidadHuespedes = new FiltroCantidadHuespedes(4);
+		this.filtroCantidadHuespedes = new FiltroCantidadHuespedes(5);
 		this.listaDeFiltros.add(this.filtroCantidadHuespedes);
-		
+
 		this.sutBuscador = new FiltroCompuesto(listaDeFiltros);
 		
 		resultado = sutBuscador.buscar(listaDeHoteles);
@@ -183,6 +217,66 @@ public class FiltroBusquedaTest {
 		
 	}
 	
-	
+	/**
+	 * Busqueda compleja donde utilizo todos los filtros juntos
+	 * Disponibilidad OK
+	 */
+	@Test
+	public void testObtengoHotelTodosLosFiltrosConDisponibilidad() {
+		
+		// Rango Consultado
+		DateTime fechaDesde = new DateTime(2015,10,10,0,0);
+		DateTime fechaHasta = new DateTime(2015,11,11,0,0);
+		
+		//se crea y arma la escructura de busqueda
+		this.filtroNombreHotel = new FiltroNombreHotel("AAA");
+		this.listaDeFiltros.add(this.filtroNombreHotel);
+
+		this.filtroRango = new FiltroRango(fechaDesde, fechaHasta);
+		this.listaDeFiltros.add(this.filtroRango);
+
+		this.filtroCiudadHotel = new FiltroCiudadHotel("Quilmes");
+		this.listaDeFiltros.add(this.filtroCiudadHotel);
+		
+		this.filtroCantidadHuespedes = new FiltroCantidadHuespedes(1);
+		this.listaDeFiltros.add(this.filtroCantidadHuespedes);
+
+		this.sutBuscador = new FiltroCompuesto(listaDeFiltros);
+		resultado = sutBuscador.buscar(listaDeHoteles);
+
+		assertEquals(1, resultado.size());
+		
+	}
+
+	/**
+	 * Busqueda compleja donde utilizo todos los filtros juntos
+	 * Disponibilidad NO OK solo por una condiciòn
+	 */
+	@Test
+	public void testObtengoHotelTodosLosFiltrosSinDisponibilidad() {
+		
+		// Rango Consultado
+		DateTime fechaDesde = new DateTime(2015,10,10,0,0);
+		DateTime fechaHasta = new DateTime(2015,11,11,0,0);
+		
+		//se crea y arma la escructura de busqueda
+		this.filtroNombreHotel = new FiltroNombreHotel("AAA");
+		this.listaDeFiltros.add(this.filtroNombreHotel);
+
+		this.filtroRango = new FiltroRango(fechaDesde, fechaHasta);
+		this.listaDeFiltros.add(this.filtroRango);
+
+		this.filtroCiudadHotel = new FiltroCiudadHotel("Avellaneda");
+		this.listaDeFiltros.add(this.filtroCiudadHotel);
+		
+		this.filtroCantidadHuespedes = new FiltroCantidadHuespedes(1);
+		this.listaDeFiltros.add(this.filtroCantidadHuespedes);
+
+		this.sutBuscador = new FiltroCompuesto(listaDeFiltros);
+		resultado = sutBuscador.buscar(listaDeHoteles);
+
+		assertEquals(0, resultado.size());
+		
+	}
 	
 }
