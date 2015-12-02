@@ -5,6 +5,8 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import model.Rango;
 import model.Reserva;
+import model.Usuario;
+import model.UsuarioPasajero;
 
 import org.joda.time.DateTime;
 import org.junit.Before;
@@ -14,6 +16,7 @@ public class ReservaTest {
 	public Rango rangoConsulta;
 	public Reserva reserva;
 	public DateTime fechaTest;
+	public Usuario pasajero;
 	
 	@Before
 	public void setupReserva(){
@@ -23,7 +26,8 @@ public class ReservaTest {
 		DateTime fechaHasta = new DateTime(2015,11,11,0,0);
 		Rango rango = new Rango(fechaDesde, fechaHasta);
 		Double totalReserva = 200.0;
-		reserva = new Reserva(rango, totalReserva);
+		pasajero = new UsuarioPasajero();
+		reserva = new Reserva(rango, totalReserva, pasajero);
 		
 	//RANGO DE CONSULTA
 		fechaDesde = new DateTime(2015,9,9,0,0);

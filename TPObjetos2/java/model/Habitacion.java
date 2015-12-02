@@ -38,9 +38,9 @@ public class Habitacion {
 		return aux;
 	}
 	
-	public void reservar(DateTime fechaDesde, DateTime fechaHasta, Double unMonto){
+	public void reservar(DateTime fechaDesde, DateTime fechaHasta, Double unMonto, Usuario usuario){
 		Rango rango = new Rango(fechaDesde, fechaHasta);
-		Reserva nuevaReserva = new Reserva(rango, unMonto);
+		Reserva nuevaReserva = new Reserva(rango, unMonto, usuario);
 		this.reservas.add(nuevaReserva);
 		
 		//HAY QUE MANDAR EL MAIL

@@ -10,9 +10,10 @@ public class Reserva {
 	private Rango rangoDeReserva;
 	private Double importeDeReserva;
 
-	public Reserva(Rango unRango, Double unMonto) {
+	public Reserva(Rango unRango, Double unMonto, Usuario usuario) {
 		this.rangoDeReserva = unRango;
 		this.importeDeReserva = unMonto;
+		this.usuarioQueReserva = usuario;
 	}
 
 	public Usuario getUsuarioQueReserva() {
