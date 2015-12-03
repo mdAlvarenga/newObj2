@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import model.Habitacion;
 
-public class HabbitacionTest {
+public class HabitacionTest {
 	
 	private Habitacion habitacion;
 	private Object ciudad;
@@ -23,11 +23,11 @@ public class HabbitacionTest {
 	@Test
 	public void testDisponibilidadPara(){
 		
-		DateTime hoy = new DateTime()
-		DateTime pasadoMañana = new DateTime();
-		pasadoMañana.plusDays(2);
+		DateTime hoy = new DateTime();
+		DateTime pasadoManiana = new DateTime();
+		pasadoManiana.plusDays(2);
 		
-		assertTrue(habitacion.disponibilidadPara(hoy, pasadoMañana));
+		assertTrue(habitacion.disponibilidadPara(hoy, pasadoManiana));
 	}
 	
 	@Test

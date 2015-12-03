@@ -3,12 +3,13 @@ package modelTest;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import model.Rango;
-import model.Reserva;
 
 import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
+
+import model.Rango;
+import model.Reserva;
 
 public class ReservaTest {
 	public Rango rangoConsulta;

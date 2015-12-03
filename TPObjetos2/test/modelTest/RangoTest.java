@@ -2,11 +2,12 @@ package modelTest;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import model.Rango;
 
 import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
+
+import model.Rango;
 
 public class RangoTest {
 	public Rango rangoConsultado;

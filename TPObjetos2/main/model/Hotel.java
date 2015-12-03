@@ -9,6 +9,10 @@ public class Hotel {
 	private String nombreCiudad;
 	private List<Habitacion> habitaciones;
 	
+	public Hotel(String string, String string2) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Object getNombreHotel() {
 		return this.nombreHotel;
 	}
