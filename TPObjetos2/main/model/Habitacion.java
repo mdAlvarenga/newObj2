@@ -6,7 +6,9 @@ import java.util.List;
 import org.joda.time.DateTime;
 
 public class Habitacion {
-	
+	/*
+	 * CONSIDERACIONES DE LA CLASE: En la lista de precios, los rangos no se solapan.
+	 */
 	private int capacidadMaxima;
 	private String baseDoble;
 	private List<Servicio> servicios;
@@ -89,12 +91,14 @@ public class Habitacion {
 		this.getReservas().add(reserva);
 	}
 
-
 	private Double calcularMonto(Rango unRango){
-		
-		
-		return 1.12;
-		
+		Double ret = 0.0;
+		for (Precio precio : this.getPrecios()) {
+			if(unRango.intercepta(precio.getRango())){
+				ret = ret + precio.calcularMontoPara(unRango);
+			}
+		}
+		return ret;
 	}
 	
 	/*Getters and Setters

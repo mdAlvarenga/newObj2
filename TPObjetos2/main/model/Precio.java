@@ -1,20 +1,20 @@
 package model;
 
 public class Precio {
-	private Double monto;
+	private Double valor;
 	private Rango rango;
 	
-	public Precio(Double unMonto, Rango unRango){
-		this.setMonto(unMonto);
+	public Precio(Double unValor, Rango unRango){
+		this.setMonto(unValor);
 		this.setRango(unRango);
 	}
 	
 	public Double getMonto() {
-		return monto;
+		return valor;
 	}
 
-	public void setMonto(Double monto) {
-		this.monto = monto;
+	public void setMonto(Double valor) {
+		this.valor = valor;
 	}
 
 	public Rango getRango() {
@@ -23,5 +23,9 @@ public class Precio {
 
 	public void setRango(Rango rango) {
 		this.rango = rango;
+	}
+
+	public Double calcularMontoPara(Rango unRango) {
+		return (this.getMonto() * unRango.cantDeDiasQueInterceptan(this.getRango()));
 	}
 }
