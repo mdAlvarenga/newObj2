@@ -25,19 +25,37 @@ public class UsuarioHotelero extends Usuario {
 		}
 		return reservasActuales;
 	}
+
+	public List<Reserva> reservasFuturas() {
+		DateTime hoy = new DateTime();
+		return this.reservaConFechaMayorA(hoy);
+	}
+
+	public List<Reserva> reservasDentroDeNDiasFuturos(Integer nDiasFuturos) {
+		DateTime fechaFutura = new DateTime();
+		fechaFutura.plusDays(nDiasFuturos);
+		return this.reservaConFechaMayorA(fechaFutura);
+	}
+	
+	public List<Reserva> reservaConFechaMayorA(DateTime unaFecha){
+		
+		List<Reserva> reservasConFechaMayorA = new ArrayList<Reserva>();
+		for(Hotel hotel:this.hoteles){
+			reservasConFechaMayorA.addAll(hotel.reservasConFechaMayorA(unaFecha));
+		}
+		return reservasConFechaMayorA;
+	}
+
+	public void nuevoHotel(Hotel unHotel) {
+		this.hoteles.add(unHotel);
+	}
 	
 	public UsuarioHotelero(){
 		
 		hoteles = new ArrayList<Hotel>();
 	}
 
-	public List<Reserva> reservasFuturas() {
-		DateTime hoy = new DateTime();
-		List<Reserva> reservasFuturas = new ArrayList<Reserva>();
-		for(Hotel hotel:this.hoteles){
-			reservasFuturas.addAll(hotel.reservasDentroDeFecha(hoy));
-		}
-		return reservasFuturas;
-		
+	public List<Hotel> getHoteles() {
+		return this.hoteles;
 	}
 }

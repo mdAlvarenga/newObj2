@@ -10,10 +10,9 @@ public class Reserva {
 	private Rango rangoDeReserva;
 	private Double importeDeReserva;
 
-	public Reserva(Rango unRango, Double unMonto, Usuario usuario) {
+	public Reserva(Rango unRango, Double unMonto) {
 		this.rangoDeReserva = unRango;
 		this.importeDeReserva = unMonto;
-		this.usuarioQueReserva = usuario;
 	}
 
 	public Usuario getUsuarioQueReserva() {
@@ -35,8 +34,7 @@ public class Reserva {
 
 	public boolean fechaDeReservaPosteriorA(DateTime unaFecha) {
 		
-		Rango rango = new Rango(unaFecha, unaFecha);
-		return rangoDeReserva.intercepta(rango);
+		return rangoDeReserva.fechaDeReservaPosteriorA(unaFecha);
 	}
 
 }

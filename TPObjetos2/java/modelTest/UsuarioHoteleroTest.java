@@ -11,7 +11,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import model.Habitacion;
 import model.Hotel;
 import model.Reserva;
 import model.UsuarioHotelero;
@@ -23,20 +22,23 @@ public class UsuarioHoteleroTest {
 	private Reserva mockReserva2;
 	private Reserva mockReserva3;
 	private Reserva mockReserva4;
-	private Habitacion mockHabitacion1;
-	private Habitacion mockHabitacion2;
 	private Hotel mockHotel1;
 	private Hotel mockHotel2;
+	private DateTime hoy;
+	private List<Reserva> listaDeMockReservas1;
+	private List<Reserva> listaDeMockReservas2;
+	private List<Reserva> listaDeMockReservas3;
+	private List<Reserva> listaDeMockReservas4;
 
 	@Before
 	public void setUp(){
 		
 		usuario = new UsuarioHotelero();
-		DateTime hoy = new DateTime();
-		List<Reserva> listaDeMockReservas1 = new ArrayList<Reserva>();
-		List<Reserva> listaDeMockReservas2 = new ArrayList<Reserva>();
-		List<Reserva> listaDeMockReservas3 = new ArrayList<Reserva>();
-		List<Reserva> listaDeMockReservas4 = new ArrayList<Reserva>();
+		hoy = new DateTime();
+		listaDeMockReservas1 = new ArrayList<Reserva>();
+		listaDeMockReservas2 = new ArrayList<Reserva>();
+		listaDeMockReservas3 = new ArrayList<Reserva>();
+		listaDeMockReservas4 = new ArrayList<Reserva>();
 
 		mockReserva1 = Mockito.mock(Reserva.class);
 		mockReserva2 = Mockito.mock(Reserva.class);
@@ -50,29 +52,27 @@ public class UsuarioHoteleroTest {
 		listaDeMockReservas2.add(mockReserva4);
 		listaDeMockReservas3.add(mockReserva4);
 
-/*		
-		mockHabitacion1 = Mockito.mock(Habitacion.class);
-		when(mockHabitacion1.reservasDelUsuario(usuario)).thenReturn(listaDeMockReservas1);
-		when(mockHabitacion1.reservasFuturasDelUsuario(usuario)).thenReturn(listaDeMockReservas1);
-		when(mockHabitacion1.reservasDeUnaCiudadDelUsuario(unaCiudad, usuario)).thenReturn(listaDeMockReservas3);
-		when(mockHabitacion1.ciudadDelHotelDondeEstas()).thenReturn("BUENOS_AIRES");
-		
-		mockHabitacion2 = Mockito.mock(Habitacion.class);
-		when(mockHabitacion2.reservasDelUsuario(usuario)).thenReturn(listaDeMockReservas2);
-		when(mockHabitacion2.reservasFuturasDelUsuario(usuario)).thenReturn(listaDeMockReservas4);
-		when(mockHabitacion2.reservasDeUnaCiudadDelUsuario(unaCiudad, usuario)).thenReturn(listaDeMockReservas4);
-		when(mockHabitacion2.ciudadDelHotelDondeEstas()).thenReturn("QUILMES");
-*/	
-
 		mockHotel1 = Mockito.mock(Hotel.class);
 		when(mockHotel1.reservasDentroDeFecha(hoy)).thenReturn(listaDeMockReservas1);
+		when(mockHotel1.reservasConFechaMayorA(hoy)).thenReturn(listaDeMockReservas3);		
+		when(mockHotel1.reservasConFechaMayorA(hoy.plusDays(4))).thenReturn(listaDeMockReservas3);
 		
 		mockHotel2 = Mockito.mock(Hotel.class);
 		when(mockHotel2.reservasDentroDeFecha(hoy)).thenReturn(listaDeMockReservas2);
+		when(mockHotel2.reservasConFechaMayorA(hoy)).thenReturn(listaDeMockReservas3);		
+		when(mockHotel2.reservasConFechaMayorA(hoy.plusDays(4))).thenReturn(listaDeMockReservas4);
 		
-
+		usuario.nuevoHotel(mockHotel1);
+		usuario.nuevoHotel(mockHotel2);
 	}
 	
+	@Test
+	public void testAgregaHotel(){
+		
+		assertEquals(listaDeMockReservas1.size(), 2);
+		assertEquals(listaDeMockReservas2.size(), 2);
+		assertEquals(usuario.getHoteles().size(), 2);
+	}	
 	@Test
 	public void testReservasActuales(){
 		
@@ -85,11 +85,10 @@ public class UsuarioHoteleroTest {
 		assertEquals(usuario.reservasFuturas().size(), 2);
 	}
 
-	/* lo comento por que no compila
 	@Test
 	public void testReservasDentroDeNDiasFuturos(){
 		
-		assetEquals(usuario.reservasDentroDeNDiasFuturos(4).size(), 1);
+		assertEquals(usuario.reservasDentroDeNDiasFuturos(4).size(), 1);
 	}
-	*/
+	
 }

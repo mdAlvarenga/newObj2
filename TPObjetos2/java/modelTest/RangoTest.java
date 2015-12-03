@@ -15,6 +15,7 @@ public class RangoTest {
 	public Rango rangoCompletamenteInterceptante;
 	public Rango rangoNoInterceptante;
 	public DateTime unaFecha;
+	private DateTime otraFecha;
 	
 	@Before
 	public void setUp(){
@@ -48,8 +49,14 @@ public class RangoTest {
 		fechaDesde = new DateTime(2015,12,10,0,0);
 		fechaHasta = new DateTime(2015,12,15,0,0);
 		rangoNoInterceptante = new Rango(fechaDesde, fechaHasta);
+		
+		// Fecha Rango Fecha de Inicio Mayor
+			unaFecha = new DateTime(2015,10,9,0,0);
+			
+		// Fecha Rango Fecha de Inicio Menor
+			otraFecha = new DateTime(2015,10,15,0,0);
+		
 	}
-	
 	@Test
 	public void testRangoInterceptantePorUltimosDias() {
 		
@@ -73,4 +80,17 @@ public class RangoTest {
 		
 		assertFalse(rangoConsultado.intercepta(rangoNoInterceptante));
 	}
+	
+	@Test
+	public void testRangoFechaInicioMayorAUnaFecha(){
+		
+		assertTrue(rangoConsultado.fechaDeReservaPosteriorA(unaFecha));
+	}
+	
+	@Test
+	public void testRangoFechaInicioMenorAOtraFecha(){
+		
+		assertFalse(rangoConsultado.fechaDeReservaPosteriorA(otraFecha));
+	}
+
 }
