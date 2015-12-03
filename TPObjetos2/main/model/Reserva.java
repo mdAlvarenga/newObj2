@@ -10,9 +10,10 @@ public class Reserva {
 	private Rango rangoDeReserva;
 	private Double importeDeReserva;
 
-	public Reserva(Rango unRango, Double unMonto) {
-		this.rangoDeReserva = unRango;
-		this.importeDeReserva = unMonto;
+	public Reserva(Rango unRango, Double unMonto, Usuario unUsuario) {
+		this.setRangoDeReserva(unRango);
+		this.setImporteDeReserva(unMonto);
+		this.setUsuarioQueReserva(unUsuario);
 	}
 
 	public Usuario getUsuarioQueReserva() {
@@ -26,6 +27,22 @@ public class Reserva {
 	public boolean ocupadaEn(Rango unRangoConsulta) {
 		
 		return this.rangoDeReserva.intercepta(unRangoConsulta);
+	}
+
+	public Rango getRangoDeReserva() {
+		return rangoDeReserva;
+	}
+
+	public void setRangoDeReserva(Rango rangoDeReserva) {
+		this.rangoDeReserva = rangoDeReserva;
+	}
+
+	public Double getImporteDeReserva() {
+		return importeDeReserva;
+	}
+
+	public void setImporteDeReserva(Double importeDeReserva) {
+		this.importeDeReserva = importeDeReserva;
 	}
 
 	public Object getMonto() {

@@ -13,14 +13,21 @@ public class Rango {
 		this.fechaHasta = fechaHasta;
 	}
 
-	public boolean intercepta(Rango rangoIntercepta) {
+	public boolean intercepta(Rango unRango) {
 		/**
 		 * Este metodo evalua si el rango recibido por parametro intercepta en algun
 		 * instante al rango receptor
 		 */
 
-		return (rangoIntercepta.getFechaDesde().isBefore(this.fechaHasta))&(rangoIntercepta.getFechaHasta().isAfter(this.fechaDesde));
+		return (unRango.getFechaDesde().isBefore(this.fechaHasta))
+					&(unRango.getFechaHasta().isAfter(this.fechaDesde));
 		
+	}
+	
+	public int cantidadDeDiasQueIntercepta(Rango unRango){
+		if (this.getFechaDesde().isBefore(unRango.getFechaDesde())){
+			
+		}
 	}
 
 	private DateTime getFechaHasta() {
