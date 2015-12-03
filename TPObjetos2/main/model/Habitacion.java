@@ -5,22 +5,30 @@ import java.util.List;
 import org.joda.time.DateTime;
 
 public class Habitacion {
-	public Habitacion(int i) {
-		// TODO Auto-generated constructor stub
-	}
-
-	public int getCapacidadMaxima() {
-		// TODO Auto-generated method stub
-		return 0;
+	
+	private int capacidadMaxima;
+	private String baseDoble;
+	private List<Servicio> servicios;
+	private List<Reserva> reservas;
+	
+	public Habitacion(int unaCapacidad, String unaBase, List<Servicio> servicios, 
+						List<Reserva> reservas) {
+		this.setCapacidadMaxima(unaCapacidad);
+		this.setBaseDobleOSimple(unaBase);
+		this.setServicios(servicios);
+		this.setReservas(reservas);
 	}
 
 	public boolean disponibilidadPara(DateTime fechaDesde, DateTime fechaHasta) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean ret = true;
+		Rango rangoAConsultar = new Rango(fechaDesde, fechaHasta);
+		for (Reserva r : reservas) {
+			ret = ret & !(r.ocupadaEn(rangoAConsultar)); 
+		}
+		return ret;
 	}
 
 	public List<Reserva> reservasDeUnaCiudadDelUsuario(String unaCiudad, Usuario unUsuario) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -60,7 +68,43 @@ public class Habitacion {
 	}
 
 	public void reservar(DateTime fechaDesde, DateTime fechaHasta, Double double1, Usuario pasajero) {
-		// TODO Auto-generated method stub
+	
 		
+	}
+
+
+	
+	/*Getters and Setters
+	 **/
+	public String getBaseDobleOSimple() {
+		return this.baseDoble;
+	}
+
+	public void setBaseDobleOSimple(String baseDobleOSimple) {
+		this.baseDoble = baseDobleOSimple;
+	}
+
+	public List<Servicio> getServicios() {
+		return this.servicios;
+	}
+
+	public void setServicios(List<Servicio> servicios) {
+		this.servicios = servicios;
+	}
+
+	public List<Reserva> getReservas() {
+		return this.reservas;
+	}
+
+	public void setReservas(List<Reserva> reservas) {
+		this.reservas = reservas;
+	}
+
+	public void setCapacidadMaxima(int capacidadMaxima) {
+		this.capacidadMaxima = capacidadMaxima;
+	}
+
+	public int getCapacidadMaxima() {
+		return this.capacidadMaxima;
 	}
 }
