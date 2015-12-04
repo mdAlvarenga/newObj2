@@ -58,11 +58,12 @@ public class Habitacion {
 		return this.hotelPertenece.getNombreCiudad();
 	}
 
-	public List<Reserva> reservasFuturasDelUsuario() {
+	public List<Reserva> reservasFuturasDelUsuario(Usuario unUsuario) {
 		
 		List<Reserva> ret = new ArrayList<Reserva>();
 		for (Reserva reserva : this.getReservas()) {
-			if (reserva.fechaDeReservaPosteriorA(new DateTime())){
+			if (reserva.fechaDeReservaPosteriorA(new DateTime())
+					& reserva.getUsuarioQueReserva().equals(unUsuario)){
 				ret.add(reserva);
 			}
 		}

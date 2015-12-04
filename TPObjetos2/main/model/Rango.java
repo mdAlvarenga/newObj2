@@ -24,6 +24,10 @@ public class Rango {
 	}
 
 	public int cantDeDiasQueInterceptan(Rango unRango) {
+		/**
+		 * Sin todos los feos if, no se me ocurrio otra manera mas elegante.
+		 * retorna la cantidad de dias que interceptan unRango y this(Rango)
+		 */
 		if (unRango.getFechaDesde().isAfter(this.getFechaHasta()) || 
 				unRango.getFechaHasta().isBefore(this.getFechaDesde())){
 			return 0;
@@ -72,26 +76,7 @@ public class Rango {
 
 	public boolean fechaDeReservaPosteriorA(DateTime unaFecha) {
 		
-		return this.fechaDesde.isAfter(unaFecha);
-	}
-
-	public static void main(String [] args){
-		Rango r1 = new Rango(new DateTime("2015-10-03"),new DateTime("2015-10-15"));
-		Rango rNointerceptaNada = new Rango(new DateTime("2015-09-21"),new DateTime("2015-09-23"));
-		Rango intercetanDosDias= new Rango(new DateTime("2015-10-13"),new DateTime("2015-10-23"));
-		Rango intercetanTresDias= new Rango(new DateTime("2015-09-20"),new DateTime("2015-10-06"));
-		Rango cincoDiasDentro= new Rango(new DateTime("2015-09-20"),new DateTime("2015-10-06"));
-		
-
-		//int d = r1.cantDeDiasQueInterceptan(rNointerceptaNada);
-		//int d = r1.cantDeDiasQueInterceptan(intercetanDosDias);
-		//int d = r1.cantDeDiasQueInterceptan(intercetanTresDias);
-		int d = r1.cantDeDiasQueInterceptan(cincoDiasDentro);
-		
-		//System.out.println(r1.intercepta(r3));
-		//System.out.println(d.getDays());
-		System.out.println(d);
-		
+		return this.getFechaDesde().isAfter(unaFecha);
 	}
 
 }

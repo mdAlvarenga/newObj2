@@ -17,7 +17,7 @@ public class UsuarioPasajero extends Usuario {
 
 	public List<Reserva> todasLasReservas() {
 		List<Reserva> reservasDelUsuario = new ArrayList<Reserva>();
-		for(Habitacion habitacion : this.habitaciones){
+		for(Habitacion habitacion : this.getHabitaciones()){
 
 			reservasDelUsuario.addAll(habitacion.reservasDelUsuario(this));
 		}
@@ -26,16 +26,16 @@ public class UsuarioPasajero extends Usuario {
 
 	public List<Reserva> reservasFuturas() {
 		List<Reserva> reservasFuturas = new ArrayList<Reserva>();
-		for(Habitacion habitacion : this.habitaciones){
+		for(Habitacion habitacion : this.getHabitaciones()){
 
-			reservasFuturas.addAll(habitacion.reservasFuturasDelUsuario());
+			reservasFuturas.addAll(habitacion.reservasFuturasDelUsuario(this));
 		}
 		return reservasFuturas;
 	}
 
 	public List<Reserva> reservasDeUnaCiudad(String unaCiudad) {
 		List<Reserva> reservasDeUnaCiudad = new ArrayList<Reserva>();
-		for(Habitacion habitacion : this.habitaciones){
+		for(Habitacion habitacion : this.getHabitaciones()){
 
 			reservasDeUnaCiudad.addAll(habitacion.reservasDeUnaCiudadDelUsuario(unaCiudad, this));
 		}
@@ -44,7 +44,7 @@ public class UsuarioPasajero extends Usuario {
 
 	public List<String> ciudadesConReserva() {
 		List<String> ciudadesConReserva = new ArrayList<String>();
-		for(Habitacion habitacion : this.habitaciones){
+		for(Habitacion habitacion : this.getHabitaciones()){
 
 			ciudadesConReserva.add(habitacion.ciudadDelHotelDondeEstas());
 		}
@@ -52,16 +52,24 @@ public class UsuarioPasajero extends Usuario {
 	}
 
 	public void agregarHabitacionReservada(Habitacion unaHabitacion) {
-		this.habitaciones.add(unaHabitacion);
+		this.getHabitaciones().add(unaHabitacion);
 	}
 	
+	public List<Habitacion> getHabitaciones() {
+		return habitaciones;
+	}
+
+	public void setHabitaciones(List<Habitacion> habitaciones) {
+		this.habitaciones = habitaciones;
+	}
+
 	public UsuarioPasajero(){
 		
 		habitaciones = new ArrayList<Habitacion>();
 	}
 
 	public void cancelarReserva(Reserva unaReserva) {
-		for(Habitacion habitacion: this.habitaciones){
+		for(Habitacion habitacion: this.getHabitaciones()){
 			habitacion.cancelaSiPodes(unaReserva);
 		}
 	}
