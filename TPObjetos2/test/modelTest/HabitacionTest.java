@@ -103,7 +103,7 @@ public class HabitacionTest {
 	@Test
 	public void testReservasFuturasDelUsuario(){
 		
-		assertEquals(habitacion.reservasFuturasDelUsuario().size(), 1);
+		assertEquals(habitacion.reservasFuturasDelUsuario(this.usuario).size(), 1);
 	}
 	
 	@Test
