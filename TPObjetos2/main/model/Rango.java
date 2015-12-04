@@ -1,6 +1,7 @@
 package model;
 
 import org.joda.time.DateTime;
+import org.joda.time.Days;
 
 import model.Rango;
 
@@ -22,14 +23,42 @@ public class Rango {
 					&(unRango.getFechaHasta().isAfter(this.fechaDesde));
 	}
 
-	public Double cantDeDiasQueInterceptan(Rango unRango) {
-		if (unRango.getFechaDesde().isBefore(this.fechaHasta))
-		this.getFechaDesde();
-		this.getFechaHasta();
-		rango.getFechaDesde();
-		rango.getFechaHasta();
+	public int cantDeDiasQueInterceptan(Rango unRango) {
+		if (unRango.getFechaDesde().isAfter(this.getFechaHasta()) || 
+				unRango.getFechaHasta().isBefore(this.getFechaDesde())){
+			return 0;
+		}
+
+		if (unRango.getFechaDesde().isAfter(this.getFechaDesde()) & 
+				unRango.getFechaHasta().isBefore(this.getFechaHasta())){
+			Days d = Days.daysBetween(unRango.getFechaDesde(),unRango.getFechaHasta());
+			return d.getDays();
+		}
 		
-		return null;
+		if (unRango.getFechaDesde().isBefore(this.getFechaHasta()) & 
+				unRango.getFechaHasta().isAfter(this.getFechaHasta())){
+			Days d = Days.daysBetween(unRango.getFechaDesde(),this.getFechaHasta());
+			return d.getDays();
+		}
+		
+		if (unRango.getFechaDesde().isBefore(this.getFechaHasta()) & 
+				unRango.getFechaHasta().isAfter(this.getFechaHasta())){
+			Days d = Days.daysBetween(unRango.getFechaDesde(),this.getFechaHasta());
+			return d.getDays();
+		}
+		
+		if (unRango.getFechaDesde().isBefore(this.getFechaDesde()) & 
+				unRango.getFechaHasta().isAfter(this.getFechaDesde())){
+			Days d = Days.daysBetween(this.getFechaDesde(),unRango.getFechaHasta());
+			return d.getDays();
+		}
+		
+		//unRango = i f
+		//this = ix fx
+		// <   isBefore
+		// >   isAfter
+		//i > fx or f< ix  entonces fuera del rango. o sea 0.
+		return 0;
 	}
 	
 	private DateTime getFechaHasta() {
@@ -47,11 +76,22 @@ public class Rango {
 	}
 
 	public static void main(String [] args){
-		Rango r1 = new Rango(new DateTime("2015-10-01"),new DateTime("2015-10-20"));
-		Rango r2 = new Rango(new DateTime("2015-11-01"),new DateTime("2015-11-20"));
-		Rango r3 = new Rango(new DateTime("2015-09-19"),new DateTime("2015-11-02"));
+		Rango r1 = new Rango(new DateTime("2015-10-03"),new DateTime("2015-10-15"));
+		Rango rNointerceptaNada = new Rango(new DateTime("2015-09-21"),new DateTime("2015-09-23"));
+		Rango intercetanDosDias= new Rango(new DateTime("2015-10-13"),new DateTime("2015-10-23"));
+		Rango intercetanTresDias= new Rango(new DateTime("2015-09-20"),new DateTime("2015-10-06"));
+		Rango cincoDiasDentro= new Rango(new DateTime("2015-09-20"),new DateTime("2015-10-06"));
 		
-		System.out.println(r1.intercepta(r3));
+
+		//int d = r1.cantDeDiasQueInterceptan(rNointerceptaNada);
+		//int d = r1.cantDeDiasQueInterceptan(intercetanDosDias);
+		//int d = r1.cantDeDiasQueInterceptan(intercetanTresDias);
+		int d = r1.cantDeDiasQueInterceptan(cincoDiasDentro);
+		
+		//System.out.println(r1.intercepta(r3));
+		//System.out.println(d.getDays());
+		System.out.println(d);
+		
 	}
 
 }

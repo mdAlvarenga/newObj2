@@ -10,11 +10,13 @@ import org.junit.Test;
 
 import model.Rango;
 import model.Reserva;
+import model.Usuario;
 
 public class ReservaTest {
 	public Rango rangoConsulta;
 	public Reserva reserva;
 	public DateTime fechaTest;
+	public Usuario usu;
 	
 	@Before
 	public void setupReserva(){
@@ -24,7 +26,7 @@ public class ReservaTest {
 		DateTime fechaHasta = new DateTime(2015,11,11,0,0);
 		Rango rango = new Rango(fechaDesde, fechaHasta);
 		Double totalReserva = 200.0;
-		reserva = new Reserva(rango, totalReserva);
+		reserva = new Reserva(rango, totalReserva, usu);
 		
 	//RANGO DE CONSULTA
 		fechaDesde = new DateTime(2015,9,9,0,0);
