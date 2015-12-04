@@ -10,6 +10,7 @@ import org.junit.Test;
 import model.Habitacion;
 import model.Hotel;
 import model.Precio;
+import model.Rango;
 import model.Reserva;
 import model.Servicio;
 import model.UsuarioPasajero;
@@ -27,27 +28,34 @@ public class UsuarioPasajeroTest {
 	private DateTime fechaHasta;
 	private DateTime otraFechaDesde;
 	private DateTime otraFechaHasta;
+	private Rango unRango;
 
 	@Before
 	public void setUp(){
 		
-		usuario = new UsuarioPasajero();
-		unaCiudad = "QUILMES";
+		this.fechaDesde = new DateTime(2015,9,9,0,0);
+		this.fechaHasta = new DateTime(2015,9,30,0,0);
+		this.unRango = new Rango(this.fechaDesde, this.fechaHasta);
+		
+		Precio unPrecio = new Precio(new Double(200.0), this.unRango);
+		
+		List<Precio> precios = new ArrayList<Precio>();
+		precios.add(unPrecio);
+		
+		this.usuario = new UsuarioPasajero();
+		this.unaCiudad = "QUILMES";
 
 		this.hotel1 = new Hotel("AAA", "BUENOS_AIRES", new ArrayList<Habitacion>(), 
 				new ArrayList<Servicio>(), "unaCategoria", new DateTime(), new DateTime());
 		
 		this.habitacion1 = new Habitacion(1, "simple", new ArrayList<Servicio>(), 
-				new ArrayList<Reserva>(), this.hotel1, new ArrayList<Precio>());
+				new ArrayList<Reserva>(), this.hotel1, precios);
 		
 		this.hotel2 = new Hotel("BBB", "QUILMES", new ArrayList<Habitacion>(), 
 				new ArrayList<Servicio>(), "unaCategoria", new DateTime(), new DateTime());
 		
 		this.habitacion2 = new Habitacion(2, "simple", new ArrayList<Servicio>(), 
 				new ArrayList<Reserva>(), this.hotel2, new ArrayList<Precio>());
-
-		this.fechaDesde = new DateTime(2015,9,9,0,0);
-		this.fechaHasta = new DateTime(2015,9,30,0,0);
 		
 		this.habitacion1.reservar(fechaDesde, fechaHasta, this.usuario);
 		this.habitacion2.reservar(fechaDesde, fechaHasta, this.usuario);
@@ -93,14 +101,15 @@ public class UsuarioPasajeroTest {
 		assertEquals(usuario.ciudadesConReserva().size(),2);
 	}
 	
-	/*
 	@Test
 	public void testUsuarioCancelaReserva(){
 		
-		usuario.cancelarReserva(mockReserva1);
-		verify(mockHabitacion2, times(1)).cancelaSiPodes(mockReserva1);
-		verify(mockHabitacion1, times(1)).cancelaSiPodes(mockReserva1);
+		this.usuario.cancelarReserva(this.usuario.todasLasReservas().get(1));
+		assertEquals(this.usuario.todasLasReservas().size(), 3);
+		
+		//verify(mockHabitacion2, times(1)).cancelaSiPodes(mockReserva1);
+		//verify(mockHabitacion1, times(1)).cancelaSiPodes(mockReserva1);
 	}
-	*/
+
 	// FALTA LA MODIFICACION DE LA RESERVA
 }

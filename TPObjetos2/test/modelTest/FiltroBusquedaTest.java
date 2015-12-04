@@ -20,7 +20,6 @@ import model.Hotel;
 import model.Precio;
 import model.Reserva;
 import model.Servicio;
-import model.Usuario;
 import model.UsuarioPasajero;
 
 

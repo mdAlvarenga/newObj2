@@ -45,10 +45,6 @@ public class Reserva {
 		this.importeDeReserva = importeDeReserva;
 	}
 
-	public Object getMonto() {
-		return this.importeDeReserva;
-	}
-
 	public boolean fechaDeReservaPosteriorA(DateTime unaFecha) {
 		
 		return rangoDeReserva.fechaDeReservaPosteriorA(unaFecha);

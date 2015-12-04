@@ -10,25 +10,25 @@ import org.junit.Test;
 
 import model.Rango;
 import model.Reserva;
-import model.Usuario;
+import model.UsuarioPasajero;
 
 public class ReservaTest {
 
 	private Rango rangoConsulta;
 	private Reserva reserva;
 	private DateTime fechaTest;
-	private Usuario unUsuario;
+	private UsuarioPasajero unUsuario;
 	
 	@Before
 	public void setupReserva(){
 		
-		this.unUsuario = new Usuario();
+		this.unUsuario = new UsuarioPasajero();
 
 	// RESERVA
 		DateTime fechaDesde = new DateTime(2015,10,10,0,0);
 		DateTime fechaHasta = new DateTime(2015,11,11,0,0);
 		Rango rango = new Rango(fechaDesde, fechaHasta);
-		Double totalReserva = 200.0;
+		Double totalReserva = new Double(200.0);
 		reserva = new Reserva(rango, totalReserva, this.unUsuario);
 
 		
@@ -50,7 +50,7 @@ public class ReservaTest {
 	@Test
 	public void testMontoDeLaReserva(){
 		
-		assertEquals(reserva.getMonto(), 200.0);
+		assertEquals(reserva.getImporteDeReserva(), new Double(200.0));
 	}
 
 	@Test
