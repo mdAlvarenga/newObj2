@@ -11,18 +11,18 @@ public class Hotel {
 	 *			seria mucho mas entendible y escalable el sistema. 
 	 **/
 	private String nombreHotel;
-	private String nombreCiudad;
+	private Ciudad ciudad;
 	private List<Habitacion> habitaciones;
 	private List<Servicio> servicios;
 	private String categoria;
 	private DateTime checkIn;
 	private DateTime checkOut;
 	
-	public Hotel(String unNombre, String unaCiudad, List<Habitacion> habitaciones, 
+	public Hotel(String unNombre, Ciudad unaCiudad, List<Habitacion> habitaciones, 
 					List<Servicio> servicios, String unaCategoria, DateTime checkIn, DateTime checkOut) {
 		
 		this.setNombreHotel(unNombre);
-		this.setNombreCiudad(unaCiudad);
+		this.setCiudad(unaCiudad);
 		this.setHabitaciones(habitaciones);
 		this.setServicios(servicios);
 		this.setCategoria(unaCategoria);
@@ -61,12 +61,12 @@ public class Hotel {
 		this.nombreHotel = nombreHotel;
 	}
 
-	public String getNombreCiudad() {
-		return nombreCiudad;
+	public Ciudad getCiudad() {
+		return ciudad;
 	}
 
-	public void setNombreCiudad(String nombreCiudad) {
-		this.nombreCiudad = nombreCiudad;
+	public void setCiudad(Ciudad unaCiudad) {
+		this.ciudad = unaCiudad;
 	}
 
 	public List<Habitacion> getHabitaciones() {

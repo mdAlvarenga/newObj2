@@ -11,15 +11,12 @@ public class UsuarioPasajero extends Usuario {
 	 * a la espera de que se necesite, aunque no sea optimo.
 	 */
 	private int dni;
-	private List<Habitacion> habitaciones;
-	private String datosTarjetaDeCredito;
+	//private String datosTarjetaDeCredito; //Modelar las formas d pago y la marca de la tarjeta
 
 	public UsuarioPasajero(String unNombre, String unApellido, String unMail, String unTelefono,
 							int dni){	
 		super(unNombre, unApellido, unMail, unTelefono);
 		this.setDni(dni);
-		this.setHabitaciones(new ArrayList<Habitacion>());
-		this.setDatosTarjetaDeCredito("Sin datos");
 	}
 
 	public List<Reserva> todasLasReservas() {
@@ -86,22 +83,6 @@ public class UsuarioPasajero extends Usuario {
 
 	public void setDni(int dni) {
 		this.dni = dni;
-	}
-
-	public String getDatosTarjetaDeCredito() {
-		return datosTarjetaDeCredito;
-	}
-
-	public void setDatosTarjetaDeCredito(String datosTarjetaDeCredito) {
-		this.datosTarjetaDeCredito = datosTarjetaDeCredito;
-	}
-	
-	public List<Habitacion> getHabitaciones() {
-		return habitaciones;
-	}
-
-	public void setHabitaciones(List<Habitacion> habitaciones) {
-		this.habitaciones = habitaciones;
 	}
 
 }
