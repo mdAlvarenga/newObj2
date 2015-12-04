@@ -2,13 +2,11 @@ package model;
 
 public class Correo {
 	
-	private String from;
 	private String to;
 	private String subject;
 	private String body;
 		
-	public Correo(String from,String to,String subject,String body){
-		this.setFrom(from);
+	public Correo(String to,String subject,String body){
 		this.setTo(to);
 		this.setSubject(subject);
 		this.setBody(body);
@@ -37,13 +35,5 @@ public class Correo {
 	  
 	public void setTo(final String to) {
 	    this.to = to;
-	}
-	  
-	public String getFrom() {
-	    return this.from;
-	}
-	  
-	public void setFrom(final String from) {
-	    this.from = from;
 	}
 }

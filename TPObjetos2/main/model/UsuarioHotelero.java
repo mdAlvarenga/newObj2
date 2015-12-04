@@ -2,10 +2,9 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.joda.time.DateTime;
 
-public class UsuarioHotelero extends Usuario {
+public class UsuarioHotelero extends Usuario{
 	private String cuit;
 	private List<Hotel> hoteles;
 
@@ -15,7 +14,7 @@ public class UsuarioHotelero extends Usuario {
 		this.setCuit(unCuit);
 		this.setHoteles(new ArrayList<Hotel>());
 	}
-		
+	
 	public List<Reserva> reservasActuales() {
 		DateTime hoy = new DateTime();
 		List<Reserva> reservasActuales = new ArrayList<Reserva>();
@@ -65,5 +64,4 @@ public class UsuarioHotelero extends Usuario {
 	public void setCuit(String cuit) {
 		this.cuit = cuit;
 	}
-
 }

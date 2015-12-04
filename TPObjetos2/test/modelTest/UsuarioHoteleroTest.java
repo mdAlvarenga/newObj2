@@ -31,6 +31,7 @@ public class UsuarioHoteleroTest {
 	private UsuarioHotelero usuarioHotelero;
 	private DateTime otraFechaDesde;
 	private DateTime otraFechaHasta;
+	private Rango otroRango;
 
 	@Before
 	public void setUp(){
@@ -60,15 +61,15 @@ public class UsuarioHoteleroTest {
 		this.habitacion2 = new Habitacion(2, "simple", new ArrayList<Servicio>(), 
 				new ArrayList<Reserva>(), this.hotel2, new ArrayList<Precio>());
 		
-		this.habitacion1.reservar(fechaDesde, fechaHasta, this.usuarioPasajero);
-		this.habitacion2.reservar(fechaDesde, fechaHasta, this.usuarioPasajero);
+		this.habitacion1.reservar(this.unRango, this.usuarioPasajero);
+		this.habitacion2.reservar(this.unRango, this.usuarioPasajero);
 		
 		//para la reserva futura
 		this.otraFechaDesde = new DateTime(2016,2,9,0,0);
 		this.otraFechaHasta = new DateTime(2016,3,9,0,0);	
-		
-		this.habitacion1.reservar(otraFechaDesde, otraFechaHasta, this.usuarioPasajero);
-		this.habitacion2.reservar(otraFechaDesde, otraFechaHasta, this.usuarioPasajero);
+		this.otroRango = new Rango(this.otraFechaDesde, this.otraFechaHasta);
+		this.habitacion1.reservar(this.otroRango,this.usuarioPasajero);
+		this.habitacion2.reservar(this.otroRango, this.usuarioPasajero);
 
 		List<Habitacion> aux = new ArrayList<Habitacion>();
 		aux.add(habitacion1);

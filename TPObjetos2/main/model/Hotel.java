@@ -108,4 +108,5 @@ public class Hotel {
 	public void setCheckOut(DateTime checkOut) {
 		this.checkOut = checkOut;
 	}
+
 }

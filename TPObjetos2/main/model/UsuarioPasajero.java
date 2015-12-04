@@ -19,7 +19,7 @@ public class UsuarioPasajero extends Usuario {
 		super(unNombre, unApellido, unMail, unTelefono);
 		this.setDni(dni);
 		this.setHabitaciones(new ArrayList<Habitacion>());
-		this.setDatosTarjetaDeCredito(null);
+		this.setDatosTarjetaDeCredito("Sin datos");
 	}
 
 	public List<Reserva> todasLasReservas() {

@@ -18,6 +18,7 @@ import model.FiltroRango;
 import model.Habitacion;
 import model.Hotel;
 import model.Precio;
+import model.Rango;
 import model.Reserva;
 import model.Servicio;
 import model.UsuarioPasajero;
@@ -46,6 +47,7 @@ public class FiltroBusquedaTest {
 	private FiltroBusqueda filtroCantidadHuespedes;
 	private FiltroBusqueda filtroRango;
 	
+	private Rango rango;
 	private DateTime fechaDesde;
 	private DateTime fechaHasta;
 	
@@ -75,12 +77,13 @@ public class FiltroBusquedaTest {
 				new ArrayList<Reserva>(), this.hotel2, new ArrayList<Precio>());
 
 		//se crean reservas en todas las habitaciones para el mismo rango
-		this.fechaDesde = new DateTime(2015,9,9,0,0);
-		this.fechaHasta = new DateTime(2015,9,30,0,0);		
-		this.hab1.reservar(fechaDesde, fechaHasta, this.pasajero);
-		this.hab2.reservar(fechaDesde, fechaHasta, this.pasajero);
-		this.hab3.reservar(fechaDesde, fechaHasta, this.pasajero);	
-		this.hab4.reservar(fechaDesde, fechaHasta, this.pasajero);
+		this.fechaDesde = new DateTime("2015-09-09");
+		this.fechaHasta = new DateTime("2015-09-30");
+		this.rango = new Rango(fechaDesde,fechaHasta);
+		this.hab1.reservar(rango, this.pasajero);
+		this.hab2.reservar(rango, this.pasajero);
+		this.hab3.reservar(rango, this.pasajero);	
+		this.hab4.reservar(rango, this.pasajero);
 		
 		//se arman listas de habitaciones
 		this.listaDeHabitacionesHotel1 = new ArrayList<Habitacion>();

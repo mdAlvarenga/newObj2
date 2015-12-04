@@ -57,6 +57,10 @@ public class Habitacion {
 	public String ciudadDelHotelDondeEstas() {
 		return this.hotelPertenece.getNombreCiudad();
 	}
+	
+	public Usuario duenioHotel() {
+		return null;
+	}
 
 	public List<Reserva> reservasFuturasDelUsuario(Usuario unUsuario) {
 		
@@ -82,10 +86,9 @@ public class Habitacion {
 		return ret;
 	}
 
-	public void reservar(DateTime fechaDesde, DateTime fechaHasta, UsuarioPasajero unUsuario) {
-		Rango r = new Rango(fechaDesde,fechaHasta);
-		Double monto = this.calcularMonto(r);
-		Reserva reserva = new Reserva(r,monto,unUsuario);
+	public void reservar(Rango unRango, UsuarioPasajero unUsuario) {
+		Double monto = this.calcularMonto(unRango);
+		Reserva reserva = new Reserva(unRango,monto,unUsuario);
 		this.getReservas().add(reserva);
 		unUsuario.agregarHabitacionReservada(this);
 	}

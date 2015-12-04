@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SistemaHotelero {
-	List<Hotel> hoteles;
-	List<Usuario> Usuarios;
-	IServidor servidor;
+	private List<Hotel> hoteles;
+	private List<Usuario> Usuarios;
+	private IServidor servidor;
 
-	public SistemaHotelero(List<Hotel> hoteles, List<Usuario> usuarios){
+	public SistemaHotelero(List<Hotel> hoteles, List<Usuario> usuarios, IServidor unServidor){
 		this.setHoteles(hoteles);
 		this.setUsuarios(usuarios);
+		this.setServidor(unServidor);
 	}
 	
 	public void agregarUsuario(Usuario unUsuario){
@@ -34,11 +35,27 @@ public class SistemaHotelero {
 		return ret;
 	}
 	
-	public void reservar(Usuario unUsuario, Habitacion unaHabitacion, Rango unRango){
+	public void reservar(UsuarioPasajero unUsuario, Habitacion unaHabitacion, Rango unRango){
+		unaHabitacion.reservar(unRango, unUsuario);
+		String body = this.buildBodyMail(unUsuario, unaHabitacion, unRango);
+		this.enviarCorreo(unUsuario.getEmail(),"Datos de la reserva que realizaste!", body);
+		this.notificarAHotelero(unaHabitacion, body);
+	}
+	
+	private String buildBodyMail(UsuarioPasajero aUser, Habitacion aRoom, Rango arank){
+		String body = aUser.getDatosTarjetaDeCredito() + "";
+		Usuario duenio = aRoom.duenioHotel();
+		//aca armar el cuerpo del mail con info necesaria para una reserva
+		
+		return "";
+	}
+	
+	private void notificarAHotelero(Habitacion unaHabitacion, String body){
 		
 	}
-	private void enviarCorreo(String from, String to, String subject, String body){
-		Correo correo = new Correo(from,to,subject,body);
+	
+	private void enviarCorreo(String to, String subject, String body){
+		Correo correo = new Correo(to,subject,body);
 		this.getServidor().enviar(correo);
 	}
 

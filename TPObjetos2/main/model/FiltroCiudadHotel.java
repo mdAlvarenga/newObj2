@@ -20,7 +20,7 @@ public class FiltroCiudadHotel extends FiltroBusqueda {
 		List<Hotel> res = new ArrayList<Hotel>();
 		
 		for (Hotel h : hoteles) {
-			if (h.getNombreCiudad().equals(this.getCiudadABuscar())){
+			if (h.getNombreCiudad().equalsIgnoreCase(this.getCiudadABuscar())){
 				res.add(h);
 			}
 		}
