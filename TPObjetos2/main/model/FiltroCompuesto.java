@@ -11,6 +11,15 @@ public class FiltroCompuesto extends FiltroBusqueda{
 	public FiltroCompuesto(List<FiltroBusqueda> l) {
 		this.setListaDeFiltros(l);
 	}
+	
+	@Override
+	public List<Habitacion> buscarHabitaciones(Hotel hotel) {
+		List<Habitacion> ret = new ArrayList<Habitacion>();
+		for (FiltroBusqueda f : this.getListaDeFiltros()) {
+			ret.addAll(f.buscarHabitaciones(hotel));
+		}
+		return ret;
+	}
 
 	@Override
 	public List<Hotel> buscar(List<Hotel> lHoteles) {

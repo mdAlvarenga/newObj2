@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SistemaHotelero {
@@ -20,6 +21,22 @@ public class SistemaHotelero {
 		this.getHoteles().add(unHotel);
 	}
 	
+	public List<Hotel> buscarHotelesFiltrados(FiltroBusqueda filtros){
+		return filtros.buscar(this.getHoteles());	
+	}
+	
+	public List<Habitacion> buscarHabitacionesFiltradas(FiltroBusqueda filtros, 
+															List<Hotel> hoteles){
+		List<Habitacion> ret = new ArrayList<Habitacion>();
+		for (Hotel hotel: hoteles) {
+			ret.addAll(filtros.buscarHabitaciones(hotel));
+		}
+		return ret;
+	}
+	
+	public void reservar(Usuario unUsuario, Habitacion unaHabitacion, Rango unRango){
+		
+	}
 	private void enviarCorreo(String from, String to, String subject, String body){
 		Correo correo = new Correo(from,to,subject,body);
 		this.getServidor().enviar(correo);

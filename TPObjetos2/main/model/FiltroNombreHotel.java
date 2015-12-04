@@ -10,6 +10,11 @@ public class FiltroNombreHotel extends FiltroBusqueda {
 	public FiltroNombreHotel (String nombreABuscar){
 		this.setNombreDeHotelABuscar(nombreABuscar);		
 	}	
+	
+	@Override
+	public List<Habitacion> buscarHabitaciones(Hotel hotel) {
+		return new ArrayList<Habitacion>();
+	}
 
 	@Override
 	public List<Hotel> buscar(List<Hotel> hoteles) {
@@ -31,5 +36,4 @@ public class FiltroNombreHotel extends FiltroBusqueda {
 	private void setNombreDeHotelABuscar(String nombreABuscar) {
 		this.nombreDeHotelABuscar = nombreABuscar;
 	}
-
 }

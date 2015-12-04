@@ -4,7 +4,7 @@ public class Servicio {
 	
 	private String nombre;
 	private String descripcion;
-	private double precio;
+	private Double precio;
 	
 	public Servicio(String nom, String des, double precio){
 		this.nombre = nom;
@@ -12,6 +12,7 @@ public class Servicio {
 		this.precio = precio;
 	}
 
+	//Getters and Setters
 	public String getNombre() {
 		return nombre;
 	}
@@ -34,8 +35,5 @@ public class Servicio {
 
 	public void setPrecio(double precio) {
 		this.precio = precio;
-	}
-	
-	
-
+	}	
 }

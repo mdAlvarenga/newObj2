@@ -121,8 +121,7 @@ public class Habitacion {
 		
 	}
 	
-	/*Getters and Setters
-	 **/
+	//Getters and Setters
 	public String getBaseDobleOSimple() {
 		return this.baseDoble;
 	}

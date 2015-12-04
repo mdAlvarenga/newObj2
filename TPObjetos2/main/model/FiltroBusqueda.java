@@ -9,4 +9,5 @@ public abstract class FiltroBusqueda {
 	 * cumplan todos los filtros solcitados.
 	 */
 	public abstract List<Hotel> buscar(List<Hotel> lHoteles);
+	public abstract List<Habitacion> buscarHabitaciones(Hotel hotel);
 }

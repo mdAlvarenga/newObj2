@@ -35,9 +35,6 @@ public class UsuarioHotelero extends Usuario {
 		fechaFutura.plusDays(nDiasFuturos);
 		return this.reservaConFechaMayorA(fechaFutura);
 	}
-	
-	
-
 
 	public List<Reserva> reservaConFechaMayorA(DateTime unaFecha){
 		
@@ -51,7 +48,6 @@ public class UsuarioHotelero extends Usuario {
 	public void nuevoHotel(Hotel unHotel) {
 		this.hoteles.add(unHotel);
 	}
-	
 	
 	//Getters and Setters
 	public List<Hotel> getHoteles() {

@@ -15,6 +15,18 @@ public class FiltroRango extends FiltroBusqueda {
 	}
 	
 	@Override
+	public List<Habitacion> buscarHabitaciones(Hotel hotel) {
+		List<Habitacion> res = new ArrayList<Habitacion>();
+		for (Habitacion h : hotel.getHabitaciones()) {
+			if (h.disponibilidadPara(this.getFechaDesde(), this.getFechaHasta())){
+				res.add(h);
+			}
+		}
+		return res;
+	}
+		
+		
+	@Override
 	public List<Hotel> buscar(List<Hotel> hoteles) {
 		List<Hotel> res = new ArrayList<Hotel>();
 		for (Hotel h : hoteles) {
@@ -49,5 +61,4 @@ public class FiltroRango extends FiltroBusqueda {
 	public void setFechaHasta(DateTime fechaHasta) {
 		this.fechaHasta = fechaHasta;
 	}
-
 }

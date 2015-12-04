@@ -10,8 +10,8 @@ public class Rango {
 	private DateTime fechaHasta;
 
 	public Rango(DateTime fechaDesde, DateTime fechaHasta) {
-		this.fechaDesde = fechaDesde;
-		this.fechaHasta = fechaHasta;
+		this.setFechaDesde(fechaDesde);
+		this.setFechaHasta(fechaHasta);
 	}
 
 	public boolean intercepta(Rango unRango) {
@@ -19,8 +19,8 @@ public class Rango {
 		 * Este metodo evalua si el rango recibido por parametro intercepta en algun
 		 * instante al rango receptor
 		 */
-		return (unRango.getFechaDesde().isBefore(this.fechaHasta))
-					&(unRango.getFechaHasta().isAfter(this.fechaDesde));
+		return (unRango.getFechaDesde().isBefore(this.getFechaHasta()))
+					&(unRango.getFechaHasta().isAfter(this.getFechaDesde()));
 	}
 
 	public int cantDeDiasQueInterceptan(Rango unRango) {
@@ -65,6 +65,12 @@ public class Rango {
 		return 0;
 	}
 	
+	public boolean fechaDeReservaPosteriorA(DateTime unaFecha) {
+		
+		return this.getFechaDesde().isAfter(unaFecha);
+	}
+	
+	//Getters and Setters
 	private DateTime getFechaHasta() {
 
 		return this.fechaHasta;
@@ -73,10 +79,12 @@ public class Rango {
 	private DateTime getFechaDesde() {
 		return this.fechaDesde;
 	}
-
-	public boolean fechaDeReservaPosteriorA(DateTime unaFecha) {
-		
-		return this.getFechaDesde().isAfter(unaFecha);
+	
+	public void setFechaDesde(DateTime fechaDesde) {
+		this.fechaDesde = fechaDesde;
 	}
 
+	public void setFechaHasta(DateTime fechaHasta) {
+		this.fechaHasta = fechaHasta;
+	}
 }

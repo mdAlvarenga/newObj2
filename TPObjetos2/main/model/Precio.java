@@ -8,7 +8,12 @@ public class Precio {
 		this.setMonto(unValor);
 		this.setRango(unRango);
 	}
-	
+
+	public Double calcularMontoPara(Rango unRango) {
+		return (this.getMonto() * unRango.cantDeDiasQueInterceptan(this.getRango()));
+	}
+
+	//Getters and Setters
 	public Double getMonto() {
 		return valor;
 	}
@@ -23,9 +28,5 @@ public class Precio {
 
 	public void setRango(Rango rango) {
 		this.rango = rango;
-	}
-
-	public Double calcularMontoPara(Rango unRango) {
-		return (this.getMonto() * unRango.cantDeDiasQueInterceptan(this.getRango()));
 	}
 }

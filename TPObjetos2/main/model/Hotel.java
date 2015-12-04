@@ -27,8 +27,7 @@ public class Hotel {
 		this.setServicios(servicios);
 		this.setCategoria(unaCategoria);
 		this.setCheckIn(checkIn);
-		this.setCheckOut(checkOut);
-		
+		this.setCheckOut(checkOut);		
 	}
 	
 	public List<Reserva> reservasDentroDeFecha(DateTime unaFecha) {
@@ -53,9 +52,7 @@ public class Hotel {
 		return reservas;
 	}
 
-	/*Getters and setters
-	 */
-
+	//Getters and setters
 	public String getNombreHotel() {
 		return nombreHotel;
 	}

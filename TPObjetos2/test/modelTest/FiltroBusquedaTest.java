@@ -54,7 +54,7 @@ public class FiltroBusquedaTest {
 	@Before
 	public void setUp(){
 		
-		this.pasajero = new UsuarioPasajero(4);
+		this.pasajero = new UsuarioPasajero(null, null, null, null, 4);
 		
 		this.hotel1 = new Hotel("AAA", "Quilmes", new ArrayList<Habitacion>(), 
 				new ArrayList<Servicio>(), "unaCategoria", new DateTime(), new DateTime());

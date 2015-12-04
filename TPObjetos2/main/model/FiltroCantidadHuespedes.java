@@ -11,6 +11,17 @@ public class FiltroCantidadHuespedes extends FiltroBusqueda {
 	}
 
 	@Override
+	public List<Habitacion> buscarHabitaciones(Hotel hotel) {
+		List<Habitacion> res = new ArrayList<Habitacion>();
+		for (Habitacion h : hotel.getHabitaciones()) {
+			if (h.getCapacidadMaxima() >= this.getCantDePasajeros()){
+				res.add(h);
+			}
+		}
+		return res;
+	}
+	
+	@Override
 	public List<Hotel> buscar(List<Hotel> hoteles) {
 		List<Hotel> res = new ArrayList<Hotel>();
 		
@@ -38,5 +49,4 @@ public class FiltroCantidadHuespedes extends FiltroBusqueda {
 	private int getCantDePasajeros() {
 		return this.cantDePasajeros;
 	}
-
 }
