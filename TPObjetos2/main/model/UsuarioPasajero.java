@@ -1,7 +1,9 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class UsuarioPasajero extends Usuario {
 	private int dni;
@@ -16,39 +18,50 @@ public class UsuarioPasajero extends Usuario {
 	}
 
 	public List<Reserva> todasLasReservas() {
-		List<Reserva> reservasDelUsuario = new ArrayList<Reserva>();
+		Set<Reserva> reservasDelUsuario = new HashSet<Reserva>();
+
 		for(Habitacion habitacion : this.getHabitaciones()){
 
 			reservasDelUsuario.addAll(habitacion.reservasDelUsuario(this));
 		}
-		return reservasDelUsuario;
+		List<Reserva> resultado = new ArrayList<Reserva>();
+		resultado.addAll(reservasDelUsuario);
+		return resultado;
 	}
 
 	public List<Reserva> reservasFuturas() {
-		List<Reserva> reservasFuturas = new ArrayList<Reserva>();
+		Set<Reserva> reservasFuturas = new HashSet<Reserva>();
 		for(Habitacion habitacion : this.getHabitaciones()){
-
 			reservasFuturas.addAll(habitacion.reservasFuturasDelUsuario(this));
 		}
-		return reservasFuturas;
+		List<Reserva> resultado = new ArrayList<Reserva>();
+		resultado.addAll(reservasFuturas);
+		return resultado;
 	}
 
 	public List<Reserva> reservasDeUnaCiudad(String unaCiudad) {
-		List<Reserva> reservasDeUnaCiudad = new ArrayList<Reserva>();
+		
+		Set<Reserva> reservasDeUnaCiudad = new HashSet<Reserva>();
 		for(Habitacion habitacion : this.getHabitaciones()){
-
 			reservasDeUnaCiudad.addAll(habitacion.reservasDeUnaCiudadDelUsuario(unaCiudad, this));
 		}
-		return reservasDeUnaCiudad;		
+		List<Reserva> resultado = new ArrayList<Reserva>();
+		resultado.addAll(reservasDeUnaCiudad);
+		return resultado;		
 	}
 
 	public List<String> ciudadesConReserva() {
-		List<String> ciudadesConReserva = new ArrayList<String>();
-		for(Habitacion habitacion : this.getHabitaciones()){
 
+		Set<String> ciudadesConReserva = new HashSet<String>();
+		
+		for(Habitacion habitacion : this.getHabitaciones()){
 			ciudadesConReserva.add(habitacion.ciudadDelHotelDondeEstas());
 		}
-		return ciudadesConReserva;		
+		
+		List<String> resultado = new ArrayList<String>();
+		resultado.addAll(ciudadesConReserva);
+		
+		return resultado;		
 	}
 
 	public void agregarHabitacionReservada(Habitacion unaHabitacion) {

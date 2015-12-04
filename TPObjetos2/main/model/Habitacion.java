@@ -138,8 +138,9 @@ public class Habitacion {
 		this.preciosPorFechas = precios;
 	}
 
+	// si la reserva no llega a existir, esto explota
 	public void cancelaSiPodes(Reserva unaReserva) {
-		// TODO Auto-generated method stub
+		this.reservas.remove(unaReserva);
 		
 	}
 }
