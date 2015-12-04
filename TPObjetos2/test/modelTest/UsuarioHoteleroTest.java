@@ -1,7 +1,6 @@
 package modelTest;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,86 +8,101 @@ import java.util.List;
 import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 
+import model.Habitacion;
 import model.Hotel;
+import model.Precio;
+import model.Rango;
 import model.Reserva;
+import model.Servicio;
 import model.UsuarioHotelero;
+import model.UsuarioPasajero;
 
 public class UsuarioHoteleroTest {
 
-	private UsuarioHotelero usuario;
-	private Reserva mockReserva1;
-	private Reserva mockReserva2;
-	private Reserva mockReserva3;
-	private Reserva mockReserva4;
-	private Hotel mockHotel1;
-	private Hotel mockHotel2;
-	private DateTime hoy;
-	private List<Reserva> listaDeMockReservas1;
-	private List<Reserva> listaDeMockReservas2;
-	private List<Reserva> listaDeMockReservas3;
-	private List<Reserva> listaDeMockReservas4;
+	private UsuarioPasajero usuarioPasajero;
+	private DateTime fechaDesde;
+	private DateTime fechaHasta;
+	private Rango unRango;
+	private Hotel hotel1;
+	private Habitacion habitacion1;
+	private Hotel hotel2;
+	private Habitacion habitacion2;
+	private UsuarioHotelero usuarioHotelero;
+	private DateTime otraFechaDesde;
+	private DateTime otraFechaHasta;
 
 	@Before
 	public void setUp(){
 		
-		usuario = new UsuarioHotelero();
-		hoy = new DateTime();
-		listaDeMockReservas1 = new ArrayList<Reserva>();
-		listaDeMockReservas2 = new ArrayList<Reserva>();
-		listaDeMockReservas3 = new ArrayList<Reserva>();
-		listaDeMockReservas4 = new ArrayList<Reserva>();
+		this.usuarioHotelero = new UsuarioHotelero();
+		this.usuarioPasajero = new UsuarioPasajero();
 
-		mockReserva1 = Mockito.mock(Reserva.class);
-		mockReserva2 = Mockito.mock(Reserva.class);
-		mockReserva3 = Mockito.mock(Reserva.class);
-		mockReserva4 = Mockito.mock(Reserva.class);
+		// para la reserva actual
+		this.fechaDesde = new DateTime(2015,9,9,0,0);
+		this.fechaHasta = new DateTime(2015,12,30,0,0);
+		this.unRango = new Rango(this.fechaDesde, this.fechaHasta);
 		
+		Precio unPrecio = new Precio(new Double(200.0), this.unRango);
 		
-		listaDeMockReservas1.add(mockReserva1);
-		listaDeMockReservas1.add(mockReserva2);
-		listaDeMockReservas2.add(mockReserva3);
-		listaDeMockReservas2.add(mockReserva4);
-		listaDeMockReservas3.add(mockReserva4);
+		List<Precio> precios = new ArrayList<Precio>();
+		precios.add(unPrecio);
+		
+		this.hotel1 = new Hotel("AAA", "BUENOS_AIRES", new ArrayList<Habitacion>(), 
+				new ArrayList<Servicio>(), "unaCategoria", new DateTime(), new DateTime());
+		
+		this.habitacion1 = new Habitacion(1, "simple", new ArrayList<Servicio>(), 
+				new ArrayList<Reserva>(), this.hotel1, precios);
+		
+		this.hotel2 = new Hotel("BBB", "QUILMES", new ArrayList<Habitacion>(), 
+				new ArrayList<Servicio>(), "unaCategoria", new DateTime(), new DateTime());
+		
+		this.habitacion2 = new Habitacion(2, "simple", new ArrayList<Servicio>(), 
+				new ArrayList<Reserva>(), this.hotel2, new ArrayList<Precio>());
+		
+		this.habitacion1.reservar(fechaDesde, fechaHasta, this.usuarioPasajero);
+		this.habitacion2.reservar(fechaDesde, fechaHasta, this.usuarioPasajero);
+		
+		//para la reserva futura
+		this.otraFechaDesde = new DateTime(2016,2,9,0,0);
+		this.otraFechaHasta = new DateTime(2016,3,9,0,0);	
+		
+		this.habitacion1.reservar(otraFechaDesde, otraFechaHasta, this.usuarioPasajero);
+		this.habitacion2.reservar(otraFechaDesde, otraFechaHasta, this.usuarioPasajero);
 
-		mockHotel1 = Mockito.mock(Hotel.class);
-		when(mockHotel1.reservasDentroDeFecha(hoy)).thenReturn(listaDeMockReservas1);
-		when(mockHotel1.reservasConFechaMayorA(hoy)).thenReturn(listaDeMockReservas3);		
-		when(mockHotel1.reservasConFechaMayorA(hoy.plusDays(4))).thenReturn(listaDeMockReservas3);
+		List<Habitacion> aux = new ArrayList<Habitacion>();
+		aux.add(habitacion1);
+		this.hotel1.setHabitaciones(aux);
 		
-		mockHotel2 = Mockito.mock(Hotel.class);
-		when(mockHotel2.reservasDentroDeFecha(hoy)).thenReturn(listaDeMockReservas2);
-		when(mockHotel2.reservasConFechaMayorA(hoy)).thenReturn(listaDeMockReservas3);		
-		when(mockHotel2.reservasConFechaMayorA(hoy.plusDays(4))).thenReturn(listaDeMockReservas4);
-		
-		usuario.nuevoHotel(mockHotel1);
-		usuario.nuevoHotel(mockHotel2);
+		List<Habitacion> aux2 = new ArrayList<Habitacion>();
+		aux2.add(habitacion2);
+		this.hotel2.setHabitaciones(aux2);
+
+		this.usuarioHotelero.nuevoHotel(hotel1);
+		this.usuarioHotelero.nuevoHotel(hotel2);
 	}
 	
 	@Test
 	public void testAgregaHotel(){
 		
-		assertEquals(listaDeMockReservas1.size(), 2);
-		assertEquals(listaDeMockReservas2.size(), 2);
-		assertEquals(usuario.getHoteles().size(), 2);
+		assertEquals(this.usuarioHotelero.getHoteles().size(), 2);
 	}	
 	@Test
 	public void testReservasActuales(){
 		
-		assertEquals(usuario.reservasActuales().size(), 4);
+		assertEquals(this.usuarioHotelero.reservasActuales().size(), 2);
 	}
 	
 	@Test
 	public void testReservasFuturas(){
 		
-		assertEquals(usuario.reservasFuturas().size(), 2);
+		assertEquals(this.usuarioHotelero.reservasFuturas().size(), 2);
 	}
 
 	@Test
 	public void testReservasDentroDeNDiasFuturos(){
 		
-		assertEquals(usuario.reservasDentroDeNDiasFuturos(4).size(), 1);
+		assertEquals(this.usuarioHotelero.reservasDentroDeNDiasFuturos(4).size(), 2);
 	}
 	
 }

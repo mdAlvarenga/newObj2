@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.joda.time.DateTime;
@@ -31,11 +32,25 @@ public class Hotel {
 	}
 	
 	public List<Reserva> reservasDentroDeFecha(DateTime unaFecha) {
-		return null;
+
+		List<Reserva> reservas = new ArrayList<Reserva>();
+		
+		for(Habitacion h: this.habitaciones){
+			if (!h.disponibilidadPara(unaFecha, unaFecha)){
+				reservas.add(h.getReservaParaFecha(unaFecha));
+			}
+		}
+		return reservas;
 	}
 
 	public List<Reserva> reservasConFechaMayorA(DateTime unaFecha) {
-		return null;
+
+		List<Reserva> reservas = new ArrayList<Reserva>();
+		
+		for(Habitacion h: this.habitaciones){
+				reservas.addAll(h.reservasConFechaMayorA(unaFecha));
+		}
+		return reservas;
 	}
 
 	/*Getters and setters

@@ -69,6 +69,18 @@ public class Habitacion {
 		}
 		return ret;
 	}
+	
+	
+	public List<Reserva> reservasConFechaMayorA(DateTime unaFecha) {
+		
+		List<Reserva> ret = new ArrayList<Reserva>();
+		for (Reserva reserva : this.getReservas()) {
+			if (reserva.fechaDeReservaPosteriorA(unaFecha)){
+				ret.add(reserva);
+			}
+		}
+		return ret;
+	}
 
 	public void reservar(DateTime fechaDesde, DateTime fechaHasta, UsuarioPasajero unUsuario) {
 		Rango r = new Rango(fechaDesde,fechaHasta);
@@ -86,6 +98,20 @@ public class Habitacion {
 			}
 		}
 		return ret;
+	}
+	
+	public Reserva getReservaParaFecha(DateTime unaFecha){
+		
+		Reserva reservaFinal = null;
+		Rango rangoAConsultar = new Rango(unaFecha, unaFecha);
+		
+		for (Reserva r : this.getReservas()) {
+			if (r.ocupadaEn(rangoAConsultar)){
+				reservaFinal = r;
+				break;
+			}
+		}
+		return reservaFinal;
 	}
 	
 	/*Getters and Setters
