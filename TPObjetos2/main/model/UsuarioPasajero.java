@@ -28,7 +28,7 @@ public class UsuarioPasajero extends Usuario {
 		List<Reserva> reservasFuturas = new ArrayList<Reserva>();
 		for(Habitacion habitacion : this.habitaciones){
 
-			reservasFuturas.addAll(habitacion.reservasFuturasDelUsuario(this));
+			reservasFuturas.addAll(habitacion.reservasFuturasDelUsuario());
 		}
 		return reservasFuturas;
 	}

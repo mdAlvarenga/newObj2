@@ -17,6 +17,9 @@ import model.FiltroNombreHotel;
 import model.FiltroRango;
 import model.Habitacion;
 import model.Hotel;
+import model.Precio;
+import model.Reserva;
+import model.Servicio;
 import model.Usuario;
 import model.UsuarioPasajero;
 
@@ -47,30 +50,38 @@ public class FiltroBusquedaTest {
 	private DateTime fechaDesde;
 	private DateTime fechaHasta;
 	
-	private Usuario pasajero;
+	private UsuarioPasajero pasajero;
+	
 	@Before
 	public void setUp(){
 		
 		this.pasajero = new UsuarioPasajero();
 		
-		//se crean habitaciones
-		this.hab1 = new Habitacion(1);
-		this.hab2 = new Habitacion(2);
+		this.hotel1 = new Hotel("AAA", "Quilmes", new ArrayList<Habitacion>(), 
+				new ArrayList<Servicio>(), "unaCategoria", new DateTime(), new DateTime());
 		
-		this.hab3 = new Habitacion(3);
-		this.hab4 = new Habitacion(4);
+		this.hotel2 = new Hotel("BBB", "Bernal", new ArrayList<Habitacion>(), 
+				new ArrayList<Servicio>(), "unaCategoria", new DateTime(), new DateTime());
 		
-		//se crean hoteles
-		this.hotel1 = new Hotel("AAA","Quilmes");
-		this.hotel2 = new Hotel("BBB","Bernal");
+		this.hab1 = new Habitacion(1, "simple", new ArrayList<Servicio>(), 
+				new ArrayList<Reserva>(), this.hotel1, new ArrayList<Precio>());
 		
+		this.hab2 = new Habitacion(2, "simple", new ArrayList<Servicio>(), 
+				new ArrayList<Reserva>(), this.hotel1, new ArrayList<Precio>());
+		
+		this.hab3 = new Habitacion(3, "simple", new ArrayList<Servicio>(), 
+				new ArrayList<Reserva>(), this.hotel2, new ArrayList<Precio>());
+		
+		this.hab4 = new Habitacion(4, "simple", new ArrayList<Servicio>(), 
+				new ArrayList<Reserva>(), this.hotel2, new ArrayList<Precio>());
+
 		//se crean reservas en todas las habitaciones para el mismo rango
 		this.fechaDesde = new DateTime(2015,9,9,0,0);
 		this.fechaHasta = new DateTime(2015,9,30,0,0);		
-		this.hab1.reservar(fechaDesde, fechaHasta, new Double(234), this.pasajero);
-		this.hab2.reservar(fechaDesde, fechaHasta, new Double(100), this.pasajero);
-		this.hab3.reservar(fechaDesde, fechaHasta, new Double(2300), this.pasajero);	
-		this.hab4.reservar(fechaDesde, fechaHasta, new Double(7654), this.pasajero);
+		this.hab1.reservar(fechaDesde, fechaHasta, this.pasajero);
+		this.hab2.reservar(fechaDesde, fechaHasta, this.pasajero);
+		this.hab3.reservar(fechaDesde, fechaHasta, this.pasajero);	
+		this.hab4.reservar(fechaDesde, fechaHasta, this.pasajero);
 		
 		//se arman listas de habitaciones
 		this.listaDeHabitacionesHotel1 = new ArrayList<Habitacion>();
