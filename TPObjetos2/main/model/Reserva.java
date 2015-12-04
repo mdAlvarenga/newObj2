@@ -16,27 +16,17 @@ public class Reserva {
 		this.setUsuarioQueReserva(unUsuario);
 	}
 
-	public Usuario getUsuarioQueReserva() {
-		return usuarioQueReserva;
-	}
-
-	public void setUsuarioQueReserva(Usuario usuarioQueReserva) {
-		this.usuarioQueReserva = usuarioQueReserva;
-	}
-
 	public boolean ocupadaEn(Rango unRangoConsulta) {
 		
-		return this.rangoDeReserva.intercepta(unRangoConsulta);
+		return this.getRangoDeReserva().intercepta(unRangoConsulta);
 	}
 
-	public Rango getRangoDeReserva() {
-		return rangoDeReserva;
+	public boolean fechaDeReservaPosteriorA(DateTime unaFecha) {
+		
+		return this.getRangoDeReserva().fechaDeReservaPosteriorA(unaFecha);
 	}
-
-	public void setRangoDeReserva(Rango rangoDeReserva) {
-		this.rangoDeReserva = rangoDeReserva;
-	}
-
+	
+	//Getters and Setters
 	public Double getImporteDeReserva() {
 		return importeDeReserva;
 	}
@@ -44,10 +34,21 @@ public class Reserva {
 	public void setImporteDeReserva(Double importeDeReserva) {
 		this.importeDeReserva = importeDeReserva;
 	}
+	
+	public Rango getRangoDeReserva() {
+		return rangoDeReserva;
+	}
 
-	public boolean fechaDeReservaPosteriorA(DateTime unaFecha) {
-		
-		return rangoDeReserva.fechaDeReservaPosteriorA(unaFecha);
+	public void setRangoDeReserva(Rango rangoDeReserva) {
+		this.rangoDeReserva = rangoDeReserva;
+	}
+	
+	public Usuario getUsuarioQueReserva() {
+		return usuarioQueReserva;
+	}
+
+	public void setUsuarioQueReserva(Usuario usuarioQueReserva) {
+		this.usuarioQueReserva = usuarioQueReserva;
 	}
 
 }

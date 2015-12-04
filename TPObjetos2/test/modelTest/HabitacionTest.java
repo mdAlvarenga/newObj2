@@ -36,7 +36,7 @@ public class HabitacionTest {
 	@Before
 	public void setUp(){
 		
-		this.usuario = new UsuarioPasajero();
+		this.usuario = new UsuarioPasajero(3365);
 		
 		this.ciudad = "ciudad";
 		this.otraCiudad = "otraCiudad";

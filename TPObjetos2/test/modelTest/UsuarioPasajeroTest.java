@@ -42,7 +42,7 @@ public class UsuarioPasajeroTest {
 		List<Precio> precios = new ArrayList<Precio>();
 		precios.add(unPrecio);
 		
-		this.usuario = new UsuarioPasajero();
+		this.usuario = new UsuarioPasajero(unaCiudad, unaCiudad, unaCiudad, unaCiudad, 0);
 		this.unaCiudad = "QUILMES";
 
 		this.hotel1 = new Hotel("AAA", "BUENOS_AIRES", new ArrayList<Habitacion>(), 

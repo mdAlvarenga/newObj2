@@ -9,14 +9,13 @@ public class UsuarioHotelero extends Usuario {
 	private String cuit;
 	private List<Hotel> hoteles;
 
-	public String getCuit() {
-		return cuit;
+	public UsuarioHotelero(String unNombre, String unApellido, String unMail, String unTelefono,
+								String unCuit){	
+		super(unNombre, unApellido, unMail, unTelefono);
+		this.setCuit(unCuit);
+		this.setHoteles(new ArrayList<Hotel>());
 	}
-
-	public void setCuit(String cuit) {
-		this.cuit = cuit;
-	}
-
+		
 	public List<Reserva> reservasActuales() {
 		DateTime hoy = new DateTime();
 		List<Reserva> reservasActuales = new ArrayList<Reserva>();
@@ -37,6 +36,9 @@ public class UsuarioHotelero extends Usuario {
 		return this.reservaConFechaMayorA(fechaFutura);
 	}
 	
+	
+
+
 	public List<Reserva> reservaConFechaMayorA(DateTime unaFecha){
 		
 		List<Reserva> reservasConFechaMayorA = new ArrayList<Reserva>();
@@ -50,12 +52,22 @@ public class UsuarioHotelero extends Usuario {
 		this.hoteles.add(unHotel);
 	}
 	
-	public UsuarioHotelero(){
-		
-		hoteles = new ArrayList<Hotel>();
-	}
-
+	
+	//Getters and Setters
 	public List<Hotel> getHoteles() {
 		return this.hoteles;
 	}
+	
+	public void setHoteles(List<Hotel> hoteles) {
+		this.hoteles = hoteles;
+	}
+	
+	public String getCuit() {
+		return cuit;
+	}
+
+	public void setCuit(String cuit) {
+		this.cuit = cuit;
+	}
+
 }

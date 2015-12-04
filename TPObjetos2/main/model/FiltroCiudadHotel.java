@@ -22,6 +22,7 @@ public class FiltroCiudadHotel extends FiltroBusqueda {
 		return res;	
 	}
 
+	//Getters and Setters
 	private String getCiudadABuscar() {
 		return this.ciudadABuscar;
 	}

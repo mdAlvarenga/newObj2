@@ -35,8 +35,8 @@ public class UsuarioHoteleroTest {
 	@Before
 	public void setUp(){
 		
-		this.usuarioHotelero = new UsuarioHotelero();
-		this.usuarioPasajero = new UsuarioPasajero();
+		this.usuarioHotelero = new UsuarioHotelero(null);
+		this.usuarioPasajero = new UsuarioPasajero(467);
 
 		// para la reserva actual
 		this.fechaDesde = new DateTime(2015,9,9,0,0);

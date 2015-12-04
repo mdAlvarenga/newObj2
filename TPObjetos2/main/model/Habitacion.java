@@ -114,6 +114,13 @@ public class Habitacion {
 		return reservaFinal;
 	}
 	
+
+	// si la reserva no llega a existir, esto explota
+	public void cancelaSiPodes(Reserva unaReserva) {
+		this.reservas.remove(unaReserva);
+		
+	}
+	
 	/*Getters and Setters
 	 **/
 	public String getBaseDobleOSimple() {
@@ -162,11 +169,5 @@ public class Habitacion {
 
 	public void setPrecios(List<Precio> precios) {
 		this.preciosPorFechas = precios;
-	}
-
-	// si la reserva no llega a existir, esto explota
-	public void cancelaSiPodes(Reserva unaReserva) {
-		this.reservas.remove(unaReserva);
-		
 	}
 }

@@ -36,6 +36,7 @@ public class FiltroCompuesto extends FiltroBusqueda{
 		return resultado;
 	}
 
+	//Getters and Setters
 	public List<FiltroBusqueda> getListaDeFiltros() {
 		return listaDeFiltros;
 	}

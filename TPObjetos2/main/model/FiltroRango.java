@@ -33,7 +33,7 @@ public class FiltroRango extends FiltroBusqueda {
 		return ret;
 	}
 
-
+	//Getters and Setters
 	public DateTime getFechaDesde() {
 		return fechaDesde;
 	}

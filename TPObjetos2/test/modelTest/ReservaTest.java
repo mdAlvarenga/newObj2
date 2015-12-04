@@ -22,7 +22,7 @@ public class ReservaTest {
 	@Before
 	public void setupReserva(){
 		
-		this.unUsuario = new UsuarioPasajero();
+		this.unUsuario = new UsuarioPasajero(456);
 
 	// RESERVA
 		DateTime fechaDesde = new DateTime(2015,10,10,0,0);

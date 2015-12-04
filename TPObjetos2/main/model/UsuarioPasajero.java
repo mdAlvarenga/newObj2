@@ -6,15 +6,20 @@ import java.util.List;
 import java.util.Set;
 
 public class UsuarioPasajero extends Usuario {
+	/*
+	 * Consideraciones de la clase: modelamos los datos de la tarjeta de credito pero quedan null
+	 * a la espera de que se necesite, aunque no sea optimo.
+	 */
 	private int dni;
 	private List<Habitacion> habitaciones;
+	private String datosTarjetaDeCredito;
 
-	public int getDni() {
-		return dni;
-	}
-
-	public void setDni(int dni) {
-		this.dni = dni;
+	public UsuarioPasajero(String unNombre, String unApellido, String unMail, String unTelefono,
+							int dni){	
+		super(unNombre, unApellido, unMail, unTelefono);
+		this.setDni(dni);
+		this.setHabitaciones(new ArrayList<Habitacion>());
+		this.setDatosTarjetaDeCredito(null);
 	}
 
 	public List<Reserva> todasLasReservas() {
@@ -67,6 +72,29 @@ public class UsuarioPasajero extends Usuario {
 	public void agregarHabitacionReservada(Habitacion unaHabitacion) {
 		this.getHabitaciones().add(unaHabitacion);
 	}
+
+	public void cancelarReserva(Reserva unaReserva) {
+		for(Habitacion habitacion: this.getHabitaciones()){
+			habitacion.cancelaSiPodes(unaReserva);
+		}
+	}
+	
+	//Getters and Setters
+	public int getDni() {
+		return dni;
+	}
+
+	public void setDni(int dni) {
+		this.dni = dni;
+	}
+
+	public String getDatosTarjetaDeCredito() {
+		return datosTarjetaDeCredito;
+	}
+
+	public void setDatosTarjetaDeCredito(String datosTarjetaDeCredito) {
+		this.datosTarjetaDeCredito = datosTarjetaDeCredito;
+	}
 	
 	public List<Habitacion> getHabitaciones() {
 		return habitaciones;
@@ -76,14 +104,4 @@ public class UsuarioPasajero extends Usuario {
 		this.habitaciones = habitaciones;
 	}
 
-	public UsuarioPasajero(){
-		
-		habitaciones = new ArrayList<Habitacion>();
-	}
-
-	public void cancelarReserva(Reserva unaReserva) {
-		for(Habitacion habitacion: this.getHabitaciones()){
-			habitacion.cancelaSiPodes(unaReserva);
-		}
-	}
 }

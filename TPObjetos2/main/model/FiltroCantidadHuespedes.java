@@ -30,6 +30,7 @@ public class FiltroCantidadHuespedes extends FiltroBusqueda {
 		return ret;
 	}
 
+	//Getters and Setters
 	private void setCantDePasajeros(int cantABuscar) {
 		this.cantDePasajeros = cantABuscar;
 	}

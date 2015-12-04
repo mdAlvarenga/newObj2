@@ -9,11 +9,7 @@ public class FiltroNombreHotel extends FiltroBusqueda {
 	
 	public FiltroNombreHotel (String nombreABuscar){
 		this.setNombreDeHotelABuscar(nombreABuscar);		
-	}
-	
-	private void setNombreDeHotelABuscar(String nombreABuscar) {
-		this.nombreDeHotelABuscar = nombreABuscar;
-	}
+	}	
 
 	@Override
 	public List<Hotel> buscar(List<Hotel> hoteles) {
@@ -27,8 +23,13 @@ public class FiltroNombreHotel extends FiltroBusqueda {
 		return res;
 	}
 
+	//Getters and Setters
 	private String getNombreDeHotelABuscar() {
 		return this.nombreDeHotelABuscar;
+	}
+	
+	private void setNombreDeHotelABuscar(String nombreABuscar) {
+		this.nombreDeHotelABuscar = nombreABuscar;
 	}
 
 }
