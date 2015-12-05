@@ -6,11 +6,14 @@ import java.util.List;
 public class SistemaHotelero {
 	private List<Hotel> hoteles;
 	private List<Usuario> Usuarios;
+	private List<Reserva> reservas; 
 	private IServidor servidor;
 
-	public SistemaHotelero(List<Hotel> hoteles, List<Usuario> usuarios, IServidor unServidor){
+	public SistemaHotelero(List<Hotel> hoteles, List<Usuario> usuarios, List<Reserva> reservas, 
+							IServidor unServidor){
 		this.setHoteles(hoteles);
 		this.setUsuarios(usuarios);
+		
 		this.setServidor(unServidor);
 	}
 	
@@ -43,7 +46,7 @@ public class SistemaHotelero {
 	}
 	
 	private String buildBodyMail(UsuarioPasajero aUser, Habitacion aRoom, Rango arank){
-		String body = aUser.getDatosTarjetaDeCredito() + "";
+		
 		Usuario duenio = aRoom.duenioHotel();
 		//aca armar el cuerpo del mail con info necesaria para una reserva
 		
@@ -82,5 +85,13 @@ public class SistemaHotelero {
 
 	public void setServidor(IServidor servidor) {
 		this.servidor = servidor;
+	}
+
+	public List<Reserva> getReservas() {
+		return reservas;
+	}
+
+	public void setReservas(List<Reserva> reservas) {
+		this.reservas = reservas;
 	}
 }
