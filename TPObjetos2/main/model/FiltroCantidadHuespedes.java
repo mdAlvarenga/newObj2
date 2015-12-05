@@ -2,16 +2,19 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class FiltroCantidadHuespedes extends FiltroBusqueda {
 	private int cantDePasajeros;
 	
 	public FiltroCantidadHuespedes(int cantABuscar){
 		this.setCantDePasajeros(cantABuscar);
+		 
 	}
 
 	@Override
 	public List<Habitacion> buscarHabitaciones(Hotel hotel) {
+		
 		List<Habitacion> res = new ArrayList<Habitacion>();
 		for (Habitacion h : hotel.getHabitaciones()) {
 			if (h.getCapacidadMaxima() >= this.getCantDePasajeros()){
@@ -22,23 +25,15 @@ public class FiltroCantidadHuespedes extends FiltroBusqueda {
 	}
 	
 	@Override
-	public List<Hotel> buscar(List<Hotel> hoteles) {
+	public List<Hotel> buscar(List<Hotel> hoteles) {		
 		List<Hotel> res = new ArrayList<Hotel>();
 		
 		for (Hotel h : hoteles) {
-			if (this.tieneHabitacionQueCumpleCapacidad(h)){
+			if (h.tieneHabitacionQueCumpleCapacidad(this.getCantDePasajeros())){
 				res.add(h);
 			}
 		}
 		return res;
-	}
-	
-	private boolean tieneHabitacionQueCumpleCapacidad(Hotel h) {
-		boolean ret = false;
-		for (Habitacion hab : h.getHabitaciones()) {
-			ret = ret || (hab.getCapacidadMaxima() >= this.getCantDePasajeros()); 
-		}
-		return ret;
 	}
 
 	//Getters and Setters

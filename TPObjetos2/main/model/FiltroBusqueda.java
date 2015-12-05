@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class FiltroBusqueda {
@@ -9,5 +10,7 @@ public abstract class FiltroBusqueda {
 	 * cumplan todos los filtros solcitados.
 	 */
 	public abstract List<Hotel> buscar(List<Hotel> lHoteles);
-	public abstract List<Habitacion> buscarHabitaciones(Hotel hotel);
+	public List<Habitacion> buscarHabitaciones(Hotel hotel){
+		return new ArrayList<Habitacion>();
+	}
 }

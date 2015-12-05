@@ -11,6 +11,7 @@ public class UsuarioPasajero extends Usuario {
 	 * a la espera de que se necesite, aunque no sea optimo.
 	 */
 	private int dni;
+	
 	//private String datosTarjetaDeCredito; //Modelar las formas d pago y la marca de la tarjeta
 
 	public UsuarioPasajero(String unNombre, String unApellido, String unMail, String unTelefono,
@@ -20,60 +21,46 @@ public class UsuarioPasajero extends Usuario {
 	}
 
 	public List<Reserva> todasLasReservas() {
-		Set<Reserva> reservasDelUsuario = new HashSet<Reserva>();
-
-		for(Habitacion habitacion : this.getHabitaciones()){
-
-			reservasDelUsuario.addAll(habitacion.reservasDelUsuario(this));
-		}
 		List<Reserva> resultado = new ArrayList<Reserva>();
-		resultado.addAll(reservasDelUsuario);
+
 		return resultado;
 	}
 
 	public List<Reserva> reservasFuturas() {
-		Set<Reserva> reservasFuturas = new HashSet<Reserva>();
-		for(Habitacion habitacion : this.getHabitaciones()){
-			reservasFuturas.addAll(habitacion.reservasFuturasDelUsuario(this));
-		}
+		
+		//for(Habitacion habitacion : this.getHabitaciones()){
+			
+		//reservasFuturas.addAll(habitacion.reservasFuturasDelUsuario(this));
+		//}
 		List<Reserva> resultado = new ArrayList<Reserva>();
-		resultado.addAll(reservasFuturas);
+		
 		return resultado;
 	}
 
 	public List<Reserva> reservasDeUnaCiudad(String unaCiudad) {
 		
-		Set<Reserva> reservasDeUnaCiudad = new HashSet<Reserva>();
-		for(Habitacion habitacion : this.getHabitaciones()){
-			reservasDeUnaCiudad.addAll(habitacion.reservasDeUnaCiudadDelUsuario(unaCiudad, this));
-		}
+		//Set<Reserva> reservasDeUnaCiudad = new HashSet<Reserva>();
+		//for(Habitacion habitacion : this.getHabitaciones()){
+			//reservasDeUnaCiudad.addAll(habitacion.reservasDeUnaCiudadDelUsuario(unaCiudad, this));
+		//}
 		List<Reserva> resultado = new ArrayList<Reserva>();
-		resultado.addAll(reservasDeUnaCiudad);
+		//resultado.addAll(reservasDeUnaCiudad);
 		return resultado;		
 	}
 
 	public List<String> ciudadesConReserva() {
 
-		Set<String> ciudadesConReserva = new HashSet<String>();
-		
-		for(Habitacion habitacion : this.getHabitaciones()){
-			ciudadesConReserva.add(habitacion.ciudadDelHotelDondeEstas());
-		}
-		
 		List<String> resultado = new ArrayList<String>();
-		resultado.addAll(ciudadesConReserva);
 		
 		return resultado;		
 	}
 
 	public void agregarHabitacionReservada(Habitacion unaHabitacion) {
-		this.getHabitaciones().add(unaHabitacion);
+		
 	}
 
 	public void cancelarReserva(Reserva unaReserva) {
-		for(Habitacion habitacion: this.getHabitaciones()){
-			habitacion.cancelaSiPodes(unaReserva);
-		}
+		
 	}
 	
 	//Getters and Setters

@@ -31,7 +31,7 @@
 		@Before
 		public void setUp(){
 			
-			usuario = new UsuarioHotelero();
+			usuario = new UsuarioHotelero(null, null, null, null, null);
 			DateTime hoy = new DateTime();
 			List<Reserva> listaDeMockReservas1 = new ArrayList<Reserva>();
 			List<Reserva> listaDeMockReservas2 = new ArrayList<Reserva>();

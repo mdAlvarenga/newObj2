@@ -2,112 +2,153 @@ package modelTest;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
+import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 
 import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import model.FiltroBusqueda;
 import model.FiltroNombreHotel;
 import model.Habitacion;
 import model.Hotel;
+import model.IServidor;
 import model.Precio;
 import model.Rango;
 import model.Reserva;
 import model.Servicio;
 import model.SistemaHotelero;
+import model.SistemaHoteleroAntesDeTDD;
 import model.Usuario;
+import model.UsuarioHotelero;
 import model.UsuarioPasajero;
 
 public class SistemaHoteleroTest {
 
-	private SistemaHotelero sh;
-	private Hotel hotel1;
-	private Hotel hotel2;
-	private Habitacion hab1;
-	private Habitacion hab2;
-	private Habitacion hab3;
-	private Habitacion hab4;
-	
-	private UsuarioPasajero pasajero1;
-	private UsuarioPasajero pasajero2;
-	
-	private DateTime fechaDesde;
-	private DateTime fechaHasta;
-	private ArrayList<Habitacion> listaDeHabitacionesHotel1;
-	private ArrayList<Habitacion>  listaDeHabitacionesHotel2;
+	private SistemaHotelero sutSistemaHotelero;
+	private ArrayList<Habitacion> listaDeHabitacionesHotelBoca;
+	private ArrayList<Habitacion>  listaDeHabitacionesHotelColonial;
+	private DateTime desdeMarzo2015;
+	private DateTime hastaMarzo2015;
+	private DateTime desdeJunio2015;
+	private DateTime hastaJunio2015;
+	private Rango rangoMarzo;
+	private Rango rangoJunio;
 	private ArrayList<Hotel> listaDeHoteles;
-	private FiltroBusqueda filtroNombreHotel;
-	
-	private Rango rangoConsultado;
+	private ArrayList<Hotel>listaHotelesPrimerFiltro;
+	private ArrayList<Hotel>listaHotelesSegundoFiltro;
+	private ArrayList<Usuario> listaDeUsuarios;
+	private ArrayList<Reserva> listaDeReservas;
+	 
+	@Mock UsuarioPasajero pasajeroMarcos;
+	@Mock UsuarioPasajero pasajeroAgustin;
+	@Mock UsuarioPasajero pasajeraMari;
+	@Mock UsuarioHotelero unUsuarioHoteleto;
+	@Mock UsuarioHotelero otroUsuarioHoteleto;
+	@Mock Rango unRango;
+	@Mock IServidor servidor;
+	@Mock Hotel hotelBoca;
+	@Mock Hotel hotelColonial;
+	@Mock Hotel hotelSheraton;
+	@Mock Hotel hotelInternacional;
+	@Mock Habitacion habitacionBianchi;
+	@Mock Habitacion habitacionTevez;
+	@Mock Habitacion habitacionPalermo;
+	@Mock Habitacion habitacionColonia10;
+	@Mock Habitacion habitacionColonia17;
+	@Mock Habitacion habitacionColonia20;
+	@Mock Reserva primerReserva;
+	@Mock Reserva segundaReserva;
+	@Mock Reserva tercerReserva;
+	@Mock FiltroBusqueda primerFiltro;
+	@Mock FiltroBusqueda segundoFiltro;
 
 	@Before
-	public void setUp() throws Exception {
+	public void setUp(){
+	    MockitoAnnotations.initMocks(this);
+	    
+		desdeMarzo2015 = new DateTime("2015-03-02");
+		hastaMarzo2015 = new DateTime("2015-03-15");
+		desdeJunio2015 = new DateTime("2015-06-16");
+		hastaJunio2015 = new DateTime("2015-06-30");
+		rangoMarzo = new Rango(desdeMarzo2015, hastaMarzo2015);
+		rangoJunio = new Rango(desdeJunio2015, hastaJunio2015);
 		
-		this.pasajero1 = new UsuarioPasajero(null, null, null, null, 4);
-		this.pasajero2 = new UsuarioPasajero(null, null, null, null, 4);
-				
-		this.hotel1 = new Hotel("AAA", "Quilmes", new ArrayList<Habitacion>(), 
-				new ArrayList<Servicio>(), "unaCategoria", new DateTime(), new DateTime());
+		listaDeReservas = new ArrayList<Reserva>();
+		listaDeReservas.add(primerReserva);
+		listaDeReservas.add(segundaReserva);
 		
-		this.hotel2 = new Hotel("BBB", "Bernal", new ArrayList<Habitacion>(), 
-				new ArrayList<Servicio>(), "unaCategoria", new DateTime(), new DateTime());
+		listaDeHoteles = new ArrayList<Hotel>();
+		listaDeHoteles.add(hotelBoca);
 		
-		this.hab1 = new Habitacion(1, "simple", new ArrayList<Servicio>(), 
-				new ArrayList<Reserva>(), this.hotel1, new ArrayList<Precio>());
+		listaHotelesPrimerFiltro = new ArrayList<Hotel>();
+		listaHotelesPrimerFiltro.add(hotelBoca);
+		listaHotelesPrimerFiltro.add(hotelInternacional);
 		
-		this.hab2 = new Habitacion(2, "simple", new ArrayList<Servicio>(), 
-				new ArrayList<Reserva>(), this.hotel1, new ArrayList<Precio>());
+		listaHotelesSegundoFiltro = new ArrayList<Hotel>();
+		listaHotelesSegundoFiltro.add(hotelSheraton);
 		
-		this.hab3 = new Habitacion(3, "simple", new ArrayList<Servicio>(), 
-				new ArrayList<Reserva>(), this.hotel2, new ArrayList<Precio>());
-		
-		this.hab4 = new Habitacion(4, "simple", new ArrayList<Servicio>(), 
-				new ArrayList<Reserva>(), this.hotel2, new ArrayList<Precio>());
+		listaDeUsuarios = new ArrayList<Usuario>();
+		listaDeUsuarios.add(pasajeraMari);
+		listaDeUsuarios.add(pasajeroAgustin);
 
-		//se crean reservas en todas las habitaciones para el mismo rango
-		this.fechaDesde = new DateTime(2015,9,9,0,0);
-		this.fechaHasta = new DateTime(2015,9,30,0,0);	
-		this.rangoConsultado = new Rango(fechaDesde, fechaHasta);
-		this.hab1.reservar(this.rangoConsultado, this.pasajero1);
-		this.hab2.reservar(this.rangoConsultado, this.pasajero2);
-		this.hab3.reservar(this.rangoConsultado, this.pasajero1);	
-		this.hab4.reservar(this.rangoConsultado, this.pasajero2);
+		sutSistemaHotelero = new SistemaHotelero(listaDeHoteles, listaDeUsuarios, listaDeReservas, servidor);
 		
-		//se arman listas de habitaciones
-		this.listaDeHabitacionesHotel1 = new ArrayList<Habitacion>();
-		this.listaDeHabitacionesHotel1.add(hab1);
-		this.listaDeHabitacionesHotel1.add(hab2);
-		
-		this.listaDeHabitacionesHotel2 = new ArrayList<Habitacion>();
-		this.listaDeHabitacionesHotel2.add(hab3);
-		this.listaDeHabitacionesHotel2.add(hab4);
-		
-		//se agregan habitaciones a hoteles
-		this.hotel1.setHabitaciones(this.listaDeHabitacionesHotel1);
-		this.hotel2.setHabitaciones(this.listaDeHabitacionesHotel2);
-		
-		this.listaDeHoteles = new ArrayList<Hotel>();
-		
-		this.listaDeHoteles.add(this.hotel1);
-		this.listaDeHoteles.add(this.hotel2);	
-		
-		this.sh = new SistemaHotelero(new ArrayList<Hotel>(), new ArrayList<Usuario>(), null);
-		this.sh.agregarHotel(this.hotel1);
-		this.sh.agregarUsuario(this.pasajero1);
-
-	}
-
-	@Test
-	public void agregarUsuarioTest() {
-		this.sh.agregarUsuario(pasajero2);
-		assertEquals(this.sh.getUsuarios().size(),2);
+		//when(sutSistemaHotelero.getUsuarios().size()).thenReturn(2);
+		//when(habitacionBianchi.getCapacidadMaxima()).thenReturn(2);
+		when(primerFiltro.buscar(listaDeHoteles)).thenReturn(listaHotelesPrimerFiltro);
 		
 	}
 	
 	@Test
+	public void nuevo() {
+		assertEquals(sutSistemaHotelero.buscarHotelesPorFiltros(primerFiltro),listaHotelesPrimerFiltro);
+	}
+	
+	/////////////////////////////////////////////////////
+	@Test
+	public void cuandoBuscoHotelesConElPrimerFiltroRetornaLista1() {
+		assertEquals(sutSistemaHotelero.buscarHotelesPorFiltros(primerFiltro),listaHotelesPrimerFiltro);
+	}
+	
+	@Test
+	public void cuandoPidoElSizeDeLaListaDeReservasMeRetorna2() {
+		assertEquals(sutSistemaHotelero.getListaDeReservas().size(),2);
+	}
+	
+	@Test
+	public void cuandoAgregoUnaReservaElSizeDeLaListaDeReservasMeRetorna3() {
+		sutSistemaHotelero.agregarReserva(tercerReserva);
+		assertEquals(sutSistemaHotelero.getListaDeReservas().size(),3);
+	}
+
+	@Test
+	public void cuandoPidoElSizeDeLaListaDeHotelesMeRetorna1() {
+		assertEquals(sutSistemaHotelero.getListaDeHoteles().size(),1);
+	}
+	
+	@Test
+	public void cuandoAgregoUnHotelElSizeDeLaListaDeHotelesMeRetorna2() {
+		sutSistemaHotelero.agregarHotel(hotelBoca);
+		assertEquals(sutSistemaHotelero.getListaDeHoteles().size(),2);
+	}
+	
+	@Test
+	public void cuandoPidoElSizeDeLaListaDeUsuariosMeRetorna2() {
+		assertEquals(sutSistemaHotelero.getListaDeUsuarios().size(),2);
+	}
+	
+	@Test
+	public void cuandoAgregoUnUsuarioElSizeDeLaListaDeUsuariosMeRetorna3() {
+		sutSistemaHotelero.agregarUsuario(pasajeroMarcos);
+		assertEquals(sutSistemaHotelero.getListaDeUsuarios().size(),3);
+	}
+	
+	/*@Test
 	public void agregarHotelTest() {
 		this.sh.agregarHotel(hotel2);
 		assertEquals(this.sh.getHoteles().size(),2);
@@ -148,6 +189,18 @@ public class SistemaHoteleroTest {
 	@Test
 	public void enviarCorreoTest() {
 		fail("Not yet implemented");
-	}
+	}*/
 
+	/*
+	 * listaDeHabitacionesHotelBoca = new ArrayList<Habitacion>();
+		listaDeHabitacionesHotelColonial = new ArrayList<Habitacion>();
+		
+		listaDeHabitacionesHotelBoca.add(habitacionBianchi);
+		listaDeHabitacionesHotelBoca.add(habitacionPalermo);
+		listaDeHabitacionesHotelBoca.add(habitacionTevez);
+		listaDeHabitacionesHotelColonial.add(habitacionColonia10);
+		listaDeHabitacionesHotelColonial.add(habitacionColonia17);
+		listaDeHabitacionesHotelColonial.add(habitacionColonia20);
+
+	 */
 }

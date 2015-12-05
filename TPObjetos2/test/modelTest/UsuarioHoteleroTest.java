@@ -49,17 +49,17 @@ public class UsuarioHoteleroTest {
 		List<Precio> precios = new ArrayList<Precio>();
 		precios.add(unPrecio);
 		
-		this.hotel1 = new Hotel("AAA", "BUENOS_AIRES", new ArrayList<Habitacion>(), 
+		this.hotel1 = new Hotel("AAA", null, new ArrayList<Habitacion>(), 
 				new ArrayList<Servicio>(), "unaCategoria", new DateTime(), new DateTime());
 		
 		this.habitacion1 = new Habitacion(1, "simple", new ArrayList<Servicio>(), 
-				new ArrayList<Reserva>(), this.hotel1, precios);
+				new ArrayList<Reserva>(), precios);
 		
-		this.hotel2 = new Hotel("BBB", "QUILMES", new ArrayList<Habitacion>(), 
+		this.hotel2 = new Hotel("BBB", null, new ArrayList<Habitacion>(), 
 				new ArrayList<Servicio>(), "unaCategoria", new DateTime(), new DateTime());
 		
 		this.habitacion2 = new Habitacion(2, "simple", new ArrayList<Servicio>(), 
-				new ArrayList<Reserva>(), this.hotel2, new ArrayList<Precio>());
+				new ArrayList<Reserva>(), new ArrayList<Precio>());
 		
 		this.habitacion1.reservar(this.unRango, this.usuarioPasajero);
 		this.habitacion2.reservar(this.unRango, this.usuarioPasajero);

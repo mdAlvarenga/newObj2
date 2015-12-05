@@ -16,6 +16,9 @@ public class FiltroCompuesto extends FiltroBusqueda{
 	public List<Habitacion> buscarHabitaciones(Hotel hotel) {
 		List<Habitacion> ret = new ArrayList<Habitacion>();
 		for (FiltroBusqueda f : this.getListaDeFiltros()) {
+			if (f.buscarHabitaciones(hotel).isEmpty()){
+				return new ArrayList<Habitacion>();
+			}
 			ret.addAll(f.buscarHabitaciones(hotel));
 		}
 		return ret;
@@ -23,25 +26,16 @@ public class FiltroCompuesto extends FiltroBusqueda{
 
 	@Override
 	public List<Hotel> buscar(List<Hotel> lHoteles) {
-		
-		// para evitar hoteles repetidos
 		Set<Hotel> res = new HashSet<Hotel>();
+		List<Hotel> resultado = new ArrayList<Hotel>();
 		
 		for (FiltroBusqueda f : this.getListaDeFiltros()) {
-			// si uno solo de los filtros no cumple, ya 
-			//no puedo retornar resultados positivos en la busqueda
-			if (f.buscar(lHoteles).size() == 0){
-				res.removeAll(res);
-				break;
-			}else{
-				res.addAll(f.buscar(lHoteles));
+			if (f.buscar(lHoteles).isEmpty()){
+				return resultado; 
 			}
+			res.addAll(f.buscar(lHoteles));	
 		}
-		
-		//chanchada para retornar una lista y no cambiar la interfaz, por las dudas
-		List<Hotel> resultado = new ArrayList<Hotel>();
 		resultado.addAll(res);
-		
 		return resultado;
 	}
 

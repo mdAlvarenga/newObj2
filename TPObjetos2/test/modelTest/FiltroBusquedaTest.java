@@ -9,6 +9,7 @@ import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
 
+import model.Ciudad;
 import model.FiltroBusqueda;
 import model.FiltroCantidadHuespedes;
 import model.FiltroCiudadHotel;
@@ -52,29 +53,40 @@ public class FiltroBusquedaTest {
 	private DateTime fechaHasta;
 	
 	private UsuarioPasajero pasajero;
-	
+	private Ciudad quilmes;
+	private Ciudad bernal;
+	private Ciudad wilde;
+	private Ciudad avellaneda;
+	private Rango otroRango;
+	private Rango nuevoRango;
+	private Rango qRango;
+	private Rango eRango;
+	private Rango wRango;
 	@Before
 	public void setUp(){
-		
+		quilmes = new Ciudad("Quilmes");
+		bernal = new Ciudad("Bernal");
+		avellaneda = new Ciudad("Avellaneda");
+		wilde = new Ciudad("Wilde");
 		this.pasajero = new UsuarioPasajero(null, null, null, null, 4);
 		
-		this.hotel1 = new Hotel("AAA", "Quilmes", new ArrayList<Habitacion>(), 
+		this.hotel1 = new Hotel("AAA", quilmes, new ArrayList<Habitacion>(), 
 				new ArrayList<Servicio>(), "unaCategoria", new DateTime(), new DateTime());
 		
-		this.hotel2 = new Hotel("BBB", "Bernal", new ArrayList<Habitacion>(), 
+		this.hotel2 = new Hotel("BBB", bernal, new ArrayList<Habitacion>(), 
 				new ArrayList<Servicio>(), "unaCategoria", new DateTime(), new DateTime());
 		
 		this.hab1 = new Habitacion(1, "simple", new ArrayList<Servicio>(), 
-				new ArrayList<Reserva>(), this.hotel1, new ArrayList<Precio>());
+				new ArrayList<Reserva>(), new ArrayList<Precio>());
 		
 		this.hab2 = new Habitacion(2, "simple", new ArrayList<Servicio>(), 
-				new ArrayList<Reserva>(), this.hotel1, new ArrayList<Precio>());
+				new ArrayList<Reserva>(), new ArrayList<Precio>());
 		
 		this.hab3 = new Habitacion(3, "simple", new ArrayList<Servicio>(), 
-				new ArrayList<Reserva>(), this.hotel2, new ArrayList<Precio>());
+				new ArrayList<Reserva>(), new ArrayList<Precio>());
 		
 		this.hab4 = new Habitacion(4, "simple", new ArrayList<Servicio>(), 
-				new ArrayList<Reserva>(), this.hotel2, new ArrayList<Precio>());
+				new ArrayList<Reserva>(), new ArrayList<Precio>());
 
 		//se crean reservas en todas las habitaciones para el mismo rango
 		this.fechaDesde = new DateTime("2015-09-09");
@@ -131,7 +143,7 @@ public class FiltroBusquedaTest {
 	public void testObtengoHotelPorCiudad() {
 		
 		//se crea y arma la escructura de busqueda
-		this.filtroCiudadHotel = new FiltroCiudadHotel("Bernal");
+		this.filtroCiudadHotel = new FiltroCiudadHotel(bernal);
 		this.listaDeFiltros.add(this.filtroCiudadHotel);
 		this.sutBuscador = new FiltroCompuesto(listaDeFiltros);
 		
@@ -167,11 +179,11 @@ public class FiltroBusquedaTest {
 	public void testObtengoHotelPorRango() {
 		
 		// Rango Consultado
-		DateTime fechaDesde = new DateTime(2015,10,10,0,0);
-		DateTime fechaHasta = new DateTime(2015,11,11,0,0);
-		
+		DateTime fechaDesde = new DateTime("2015-10-10");
+		DateTime fechaHasta = new DateTime("2015-11-11");
+		otroRango = new Rango(fechaDesde, fechaHasta);
 		//se crea y arma la escructura de busqueda
-		this.filtroRango = new FiltroRango(fechaDesde, fechaHasta);
+		this.filtroRango = new FiltroRango(otroRango);
 		this.listaDeFiltros.add(this.filtroRango);
 		this.sutBuscador = new FiltroCompuesto(listaDeFiltros);
 		
@@ -191,9 +203,9 @@ public class FiltroBusquedaTest {
 		// Rango Consultado
 		DateTime fechaDesde = new DateTime(2015,9,9,0,0);
 		DateTime fechaHasta = new DateTime(2015,9,30,0,0);
-		
+		nuevoRango = new Rango(fechaDesde, fechaHasta);
 		//se crea y arma la escructura de busqueda
-		this.filtroRango = new FiltroRango(fechaDesde, fechaHasta);
+		this.filtroRango = new FiltroRango(nuevoRango);
 		this.listaDeFiltros.add(this.filtroRango);
 		this.sutBuscador = new FiltroCompuesto(listaDeFiltros);
 		
@@ -213,15 +225,15 @@ public class FiltroBusquedaTest {
 		// Rango Consultado
 		DateTime fechaDesde = new DateTime(2015,9,9,0,0);
 		DateTime fechaHasta = new DateTime(2015,9,30,0,0);
-		
+		qRango = new Rango(fechaDesde, fechaHasta);
 		//se crea y arma la escructura de busqueda
 		this.filtroNombreHotel = new FiltroNombreHotel("CCC");
 		this.listaDeFiltros.add(this.filtroNombreHotel);
 		
-		this.filtroRango = new FiltroRango(fechaDesde, fechaHasta);
+		this.filtroRango = new FiltroRango(qRango);
 		this.listaDeFiltros.add(this.filtroRango);
 		
-		this.filtroCiudadHotel = new FiltroCiudadHotel("Wilde");
+		this.filtroCiudadHotel = new FiltroCiudadHotel(wilde);
 		this.listaDeFiltros.add(this.filtroCiudadHotel);
 		
 		this.filtroCantidadHuespedes = new FiltroCantidadHuespedes(5);
@@ -245,15 +257,15 @@ public class FiltroBusquedaTest {
 		// Rango Consultado
 		DateTime fechaDesde = new DateTime(2015,10,10,0,0);
 		DateTime fechaHasta = new DateTime(2015,11,11,0,0);
-		
+		eRango = new Rango(fechaDesde, fechaHasta);
 		//se crea y arma la escructura de busqueda
 		this.filtroNombreHotel = new FiltroNombreHotel("AAA");
 		this.listaDeFiltros.add(this.filtroNombreHotel);
 
-		this.filtroRango = new FiltroRango(fechaDesde, fechaHasta);
+		this.filtroRango = new FiltroRango(eRango);
 		this.listaDeFiltros.add(this.filtroRango);
 
-		this.filtroCiudadHotel = new FiltroCiudadHotel("Quilmes");
+		this.filtroCiudadHotel = new FiltroCiudadHotel(quilmes);
 		this.listaDeFiltros.add(this.filtroCiudadHotel);
 		
 		this.filtroCantidadHuespedes = new FiltroCantidadHuespedes(1);
@@ -276,15 +288,15 @@ public class FiltroBusquedaTest {
 		// Rango Consultado
 		DateTime fechaDesde = new DateTime(2015,10,10,0,0);
 		DateTime fechaHasta = new DateTime(2015,11,11,0,0);
-		
+		wRango = new Rango(fechaDesde, fechaHasta);
 		//se crea y arma la escructura de busqueda
 		this.filtroNombreHotel = new FiltroNombreHotel("AAA");
 		this.listaDeFiltros.add(this.filtroNombreHotel);
 
-		this.filtroRango = new FiltroRango(fechaDesde, fechaHasta);
+		this.filtroRango = new FiltroRango(wRango);
 		this.listaDeFiltros.add(this.filtroRango);
 
-		this.filtroCiudadHotel = new FiltroCiudadHotel("Avellaneda");
+		this.filtroCiudadHotel = new FiltroCiudadHotel(avellaneda);
 		this.listaDeFiltros.add(this.filtroCiudadHotel);
 		
 		this.filtroCantidadHuespedes = new FiltroCantidadHuespedes(1);

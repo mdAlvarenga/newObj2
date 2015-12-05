@@ -4,94 +4,66 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SistemaHotelero {
-	private List<Hotel> hoteles;
-	private List<Usuario> Usuarios;
-	private List<Reserva> reservas; 
-	private IServidor servidor;
-
-	public SistemaHotelero(List<Hotel> hoteles, List<Usuario> usuarios, List<Reserva> reservas, 
-							IServidor unServidor){
-		this.setHoteles(hoteles);
-		this.setUsuarios(usuarios);
-		
-		this.setServidor(unServidor);
-	}
+	List<Hotel> listaDeHoteles;
+	List<Usuario> listaDeUsuarios; 
+	List<Reserva> listaDeReservas;
+	IServidor servidor;
 	
-	public void agregarUsuario(Usuario unUsuario){
-		this.getUsuarios().add(unUsuario);
-	}
 	
-	public void agregarHotel(Hotel unHotel){
-		this.getHoteles().add(unHotel);
-	}
-	
-	public List<Hotel> buscarHotelesFiltrados(FiltroBusqueda filtros){
-		return filtros.buscar(this.getHoteles());	
-	}
-	
-	public List<Habitacion> buscarHabitacionesFiltradas(FiltroBusqueda filtros, 
-															List<Hotel> hoteles){
-		List<Habitacion> ret = new ArrayList<Habitacion>();
-		for (Hotel hotel: hoteles) {
-			ret.addAll(filtros.buscarHabitaciones(hotel));
-		}
-		return ret;
-	}
-	
-	public void reservar(UsuarioPasajero unUsuario, Habitacion unaHabitacion, Rango unRango){
-		unaHabitacion.reservar(unRango, unUsuario);
-		String body = this.buildBodyMail(unUsuario, unaHabitacion, unRango);
-		this.enviarCorreo(unUsuario.getEmail(),"Datos de la reserva que realizaste!", body);
-		this.notificarAHotelero(unaHabitacion, body);
-	}
-	
-	private String buildBodyMail(UsuarioPasajero aUser, Habitacion aRoom, Rango arank){
-		
-		Usuario duenio = aRoom.duenioHotel();
-		//aca armar el cuerpo del mail con info necesaria para una reserva
-		
-		return "";
-	}
-	
-	private void notificarAHotelero(Habitacion unaHabitacion, String body){
-		
-	}
-	
-	private void enviarCorreo(String to, String subject, String body){
-		Correo correo = new Correo(to,subject,body);
-		this.getServidor().enviar(correo);
+	public SistemaHotelero(List<Hotel> listaDeHoteles, List<Usuario> listaDeUsuarios,
+							List<Reserva> listaDeReservas, IServidor servidor) {
+		this.setHoteles(listaDeHoteles);
+		this.setUsuarios(listaDeUsuarios);
+		this.setReservas(listaDeReservas);
+		this.setServidor(servidor);
 	}
 
-	//Getters and Setters
-	public List<Hotel> getHoteles() {
-		return hoteles;
+	public List<Hotel> getListaDeHoteles() {
+		return listaDeHoteles;
 	}
 
-	public void setHoteles(List<Hotel> hoteles) {
-		this.hoteles = hoteles;
+	public List<Usuario> getListaDeUsuarios() {
+		return listaDeUsuarios;
 	}
 
-	public List<Usuario> getUsuarios() {
-		return Usuarios;
+	public List<Reserva> getListaDeReservas() {
+		return listaDeReservas;
 	}
 
-	public void setUsuarios(List<Usuario> usuarios) {
-		Usuarios = usuarios;
-	}
-	
 	public IServidor getServidor() {
 		return servidor;
 	}
 
-	public void setServidor(IServidor servidor) {
+	private void setReservas(List<Reserva> listaDeReservas) {
+		this.listaDeReservas = listaDeReservas;
+	}
+
+	private void setUsuarios(List<Usuario> listaDeUsuarios) {
+		this.listaDeUsuarios = listaDeUsuarios;
+	}
+
+	private void setHoteles(List<Hotel> listaDeHoteles) {
+		this.listaDeHoteles = listaDeHoteles;
+	}
+
+	private void setServidor(IServidor servidor) {
 		this.servidor = servidor;
 	}
 
-	public List<Reserva> getReservas() {
-		return reservas;
+	public void agregarReserva(Reserva unaReserva) {
+		this.getListaDeReservas().add(unaReserva);
 	}
 
-	public void setReservas(List<Reserva> reservas) {
-		this.reservas = reservas;
+	public void agregarHotel(Hotel unHotel) {
+		this.getListaDeHoteles().add(unHotel);
 	}
+
+	public void agregarUsuario(Usuario unUsuario) {
+		this.getListaDeUsuarios().add(unUsuario);
+	}
+
+	public List<Hotel> buscarHotelesPorFiltros(FiltroBusqueda filtros) {
+		return filtros.buscar(this.getListaDeHoteles());
+	}
+
 }

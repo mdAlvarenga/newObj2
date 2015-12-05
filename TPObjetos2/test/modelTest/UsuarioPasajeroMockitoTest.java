@@ -29,7 +29,7 @@ public class UsuarioPasajeroMockitoTest {
 	@Before
 	public void setUp(){
 		
-		usuario = new UsuarioPasajero();
+		usuario = new UsuarioPasajero(unaCiudad, unaCiudad, unaCiudad, unaCiudad, 0);
 		unaCiudad = "UnaCiudad";
 		
 		List<Reserva> listaDeMockReservas1 = new ArrayList<Reserva>();

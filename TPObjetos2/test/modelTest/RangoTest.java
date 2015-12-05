@@ -94,4 +94,8 @@ public class RangoTest {
 		assertFalse(rangoConsultado.fechaDeReservaPosteriorA(otraFecha));
 	}
 
+	public static void main (String [] args){
+		System.out.println(new DateTime("11:23:44"));
+	}
+			
 }

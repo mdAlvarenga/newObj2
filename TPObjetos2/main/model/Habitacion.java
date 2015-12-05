@@ -13,34 +13,31 @@ public class Habitacion {
 	private String baseDoble;
 	private List<Servicio> servicios;
 	private List<Reserva> reservas;
-	private Hotel hotelPertenece;
 	private List<Precio> preciosPorFechas;
 	
 	public Habitacion(int unaCapacidad, String unaBase, List<Servicio> servicios, 
-						List<Reserva> reservas, Hotel hotel, List<Precio> precios) {
+						List<Reserva> reservas, List<Precio> precios) {
 		
 		this.setCapacidadMaxima(unaCapacidad);
 		this.setBaseDobleOSimple(unaBase);
 		this.setServicios(servicios);
 		this.setReservas(reservas);
-		this.setHotelPertenece(hotel);
 		this.setPrecios(precios);
 	}
 
-	public boolean disponibilidadPara(DateTime fechaDesde, DateTime fechaHasta) {
+	public boolean disponibilidadPara(Rango unRango) {
 		boolean ret = true;
-		Rango rangoAConsultar = new Rango(fechaDesde, fechaHasta);
 		for (Reserva r : this.getReservas()) {
-			ret = ret & !(r.ocupadaEn(rangoAConsultar)); 
+			ret = ret & !(r.ocupadaEn(unRango)); 
 		}
 		return ret;
 	}
 
 	public List<Reserva> reservasDeUnaCiudadDelUsuario(String unaCiudad, Usuario unUsuario) {
 		List<Reserva> ret = new ArrayList<Reserva>();
-		if (this.getHotelPertenece().getNombreCiudad().equals(unaCiudad)){
+		/*if (this.getHotelPertenece().getNombreCiudad().equals(unaCiudad)){
 			ret.addAll(this.reservasDelUsuario(unUsuario));
-		}
+		}*/
 		return ret;
 	}
 
@@ -55,7 +52,8 @@ public class Habitacion {
 	}
 
 	public String ciudadDelHotelDondeEstas() {
-		return this.hotelPertenece.getNombreCiudad();
+		//return this.hotelPertenece.getNombreCiudad();
+		return null;
 	}
 	
 	public Usuario duenioHotel() {
@@ -155,14 +153,6 @@ public class Habitacion {
 
 	public int getCapacidadMaxima() {
 		return this.capacidadMaxima;
-	}
-
-	public Hotel getHotelPertenece() {
-		return hotelPertenece;
-	}
-
-	public void setHotelPertenece(Hotel hotelPertenece) {
-		this.hotelPertenece = hotelPertenece;
 	}
 	
 	public List<Precio> getPrecios() {

@@ -34,8 +34,8 @@ public class UsuarioPasajeroTest {
 	@Before
 	public void setUp(){
 		
-		this.fechaDesde = new DateTime(2015,9,9,0,0);
-		this.fechaHasta = new DateTime(2015,9,30,0,0);
+		this.fechaDesde = new DateTime("2015-09-09");
+		this.fechaHasta = new DateTime("2015-09-30");
 		this.unRango = new Rango(this.fechaDesde, this.fechaHasta);
 		
 		Precio unPrecio = new Precio(new Double(200.0), this.unRango);
@@ -46,17 +46,17 @@ public class UsuarioPasajeroTest {
 		this.usuario = new UsuarioPasajero(unaCiudad, unaCiudad, unaCiudad, unaCiudad, 0);
 		this.unaCiudad = "QUILMES";
 
-		this.hotel1 = new Hotel("AAA", "BUENOS_AIRES", new ArrayList<Habitacion>(), 
+		this.hotel1 = new Hotel("AAA", null, new ArrayList<Habitacion>(), 
 				new ArrayList<Servicio>(), "unaCategoria", new DateTime(), new DateTime());
 		
 		this.habitacion1 = new Habitacion(1, "simple", new ArrayList<Servicio>(), 
-				new ArrayList<Reserva>(), this.hotel1, precios);
+				new ArrayList<Reserva>(), precios);
 		
-		this.hotel2 = new Hotel("BBB", "QUILMES", new ArrayList<Habitacion>(), 
+		this.hotel2 = new Hotel("BBB", null, new ArrayList<Habitacion>(), 
 				new ArrayList<Servicio>(), "unaCategoria", new DateTime(), new DateTime());
 		
 		this.habitacion2 = new Habitacion(2, "simple", new ArrayList<Servicio>(), 
-				new ArrayList<Reserva>(), this.hotel2, new ArrayList<Precio>());
+				new ArrayList<Reserva>(), new ArrayList<Precio>());
 		
 		this.habitacion1.reservar(unRango, this.usuario);
 		this.habitacion2.reservar(unRango, this.usuario);

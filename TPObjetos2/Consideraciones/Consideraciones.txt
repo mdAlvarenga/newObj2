@@ -1,0 +1,23 @@
+Escribimos aca(si les gusta mas otro medio, simplemente diganlo) las cosas que vemos y así, decidimos entre todos que hacemos.
+Hasta los DETALLES que vean diganlos, así estamos de acuerdo en todo, o al menos sabemos, AHORA SI, porque se toman ciertas decisiones.
+
+Marcos: 
+		-Detallecito 1: el mensaje en el diagrama -> reservasFuturas(): List<Reservas>
+		se repite en las subclases de Usuario. Si la subimos, PIOLA. 
+		-Detallecito 2: privacidad de ciertos mensajes
+		
+		Todo lo que toque fue porque odio las marcas rojas jaja
+		Pero no cambie nada que no haya que pisar luego con TDD.
+		Los tests(que no estan hechos con mocks) no importan porque los vamos a pisar, pero los dejo
+		como orientacion.
+		
+		Toque el diagrama de clases, pero mejor que se encargue la analista, porque a mi me hincho los huevos
+		y no pude hacer todo lo que quise. 
+		
+		RECUERDENME(a travez del UML) como habiamos quedado si el hotel tenia a su due�o o un hotelero
+		tiene una lista de hoteles.
+		
+		Tambien modifique un poquitin el algortimo de la busqueda compuesta. 
+		Ah y tambien lo de las benditas formas de pago. Saludos :D
+		
+		 

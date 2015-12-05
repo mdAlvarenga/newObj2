@@ -4,15 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FiltroCiudadHotel extends FiltroBusqueda {
-	private String ciudadABuscar;
+	private Ciudad ciudadABuscar;
 	
-	public FiltroCiudadHotel(String ciudad){
-		this.setCiudadABuscar(ciudad);
-	}
-
-	@Override
-	public List<Habitacion> buscarHabitaciones(Hotel hotel) {
-		return new ArrayList<Habitacion>();
+	public FiltroCiudadHotel(Ciudad unaCiudad){
+		this.setCiudadABuscar(unaCiudad);
 	}
 	
 	@Override
@@ -20,19 +15,23 @@ public class FiltroCiudadHotel extends FiltroBusqueda {
 		List<Hotel> res = new ArrayList<Hotel>();
 		
 		for (Hotel h : hoteles) {
-			if (h.getNombreCiudad().equalsIgnoreCase(this.getCiudadABuscar())){
+			if (h.nombreCiudad().equalsIgnoreCase(this.nombreCiudadABuscar())){
 				res.add(h);
 			}
 		}
 		return res;	
 	}
 
+	private String nombreCiudadABuscar() {
+		return this.getCiudadABuscar().getNombre();
+	}
+
 	//Getters and Setters
-	private String getCiudadABuscar() {
+	private Ciudad getCiudadABuscar() {
 		return this.ciudadABuscar;
 	}
 	
-	private void setCiudadABuscar(String ciudad) {
+	private void setCiudadABuscar(Ciudad ciudad) {
 		this.ciudadABuscar = ciudad;
 	}
 }

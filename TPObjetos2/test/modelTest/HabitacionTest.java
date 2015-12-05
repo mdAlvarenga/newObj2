@@ -35,15 +35,13 @@ public class HabitacionTest {
 	private Rango oct_nov;
 	private Rango ene_feb;
 	private Rango marzo_abril;
+	private Rango rango2;
 	
 	
 	@Before
 	public void setUp(){
 		
 		this.usuario = new UsuarioPasajero(ciudad, ciudad, ciudad, ciudad, 3365);
-		
-		this.ciudad = "ciudad";
-		this.otraCiudad = "otraCiudad";
 
 		this.fechaDesde_oct= new DateTime(2015,10,10,0,0);
 		this.fechaHasta_nov = new DateTime(2015,11,11,0,0);
@@ -58,21 +56,15 @@ public class HabitacionTest {
 		ene_feb= new Rango(this.fechaDesde_ene, this.fechaHasta_feb);
 		marzo_abril= new Rango(this.fechaDesde_marzo,this.fechaHasta_abril);
 		
-		this.unHotel = new Hotel("unHotel", this.ciudad, new ArrayList<Habitacion>(), 
-				new ArrayList<Servicio>(), "unaCategoria", new DateTime(), new DateTime());
-		
 		this.habitacion = new Habitacion(10, "simple", new ArrayList<Servicio>(), 
-				new ArrayList<Reserva>(), this.unHotel, new ArrayList<Precio>());
+				new ArrayList<Reserva>(), new ArrayList<Precio>());
 		
 		this.habitacion.reservar(this.oct_nov, this.usuario);
 		
 		this.habitacion.reservar(this.marzo_abril, this.usuario);
 		
-		this.unHotel2 = new Hotel("unHotel2", this.otraCiudad, new ArrayList<Habitacion>(), 
-				new ArrayList<Servicio>(), "unaCategoria", new DateTime(), new DateTime());
-		
 		this.habitacion2 = new Habitacion(10, "simple", new ArrayList<Servicio>(), 
-				new ArrayList<Reserva>(), this.unHotel2, new ArrayList<Precio>());
+				new ArrayList<Reserva>(), new ArrayList<Precio>());
 		
 		this.habitacion2.reservar(this.ene_feb, this.usuario);
 		
@@ -90,8 +82,8 @@ public class HabitacionTest {
 		DateTime hoy = new DateTime();
 		DateTime pasadoManiana = new DateTime();
 		pasadoManiana.plusDays(2);
-		
-		assertTrue(habitacion.disponibilidadPara(hoy, pasadoManiana));
+		rango2 = new Rango(hoy, pasadoManiana);
+		assertTrue(habitacion.disponibilidadPara(rango2));
 	}
 	
 	@Test

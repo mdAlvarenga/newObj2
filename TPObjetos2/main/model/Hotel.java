@@ -33,9 +33,9 @@ public class Hotel {
 	public List<Reserva> reservasDentroDeFecha(DateTime unaFecha) {
 
 		List<Reserva> reservas = new ArrayList<Reserva>();
-		
+		Rango unDiaEnRango = new Rango(unaFecha, unaFecha);
 		for(Habitacion h: this.habitaciones){
-			if (!h.disponibilidadPara(unaFecha, unaFecha)){
+			if (!h.disponibilidadPara(unDiaEnRango)){
 				reservas.add(h.getReservaParaFecha(unaFecha));
 			}
 		}
@@ -50,6 +50,14 @@ public class Hotel {
 				reservas.addAll(h.reservasConFechaMayorA(unaFecha));
 		}
 		return reservas;
+	}
+
+	public boolean tieneHabitacionQueCumpleCapacidad(int unaCapacidad) {
+		boolean ret = false;
+		for (Habitacion hab : this.getHabitaciones()) {
+			ret = ret || (hab.getCapacidadMaxima() >= unaCapacidad); 
+		}
+		return ret;
 	}
 
 	//Getters and setters
@@ -107,6 +115,10 @@ public class Hotel {
 
 	public void setCheckOut(DateTime checkOut) {
 		this.checkOut = checkOut;
+	}
+
+	public String nombreCiudad() {
+		return this.getCiudad().getNombre();
 	}
 
 }

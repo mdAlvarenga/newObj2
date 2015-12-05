@@ -6,25 +6,22 @@ import java.util.List;
 import org.joda.time.DateTime;;
 
 public class FiltroRango extends FiltroBusqueda {
-	private DateTime fechaDesde;
-	private DateTime fechaHasta;
+	private Rango rango;
 	
-	public FiltroRango(DateTime fD, DateTime fH){
-		this.setFechaDesde(fD);
-		this.setFechaHasta(fH);
+	public FiltroRango(Rango unRango){
+		this.setRango(unRango);
 	}
 	
 	@Override
 	public List<Habitacion> buscarHabitaciones(Hotel hotel) {
 		List<Habitacion> res = new ArrayList<Habitacion>();
 		for (Habitacion h : hotel.getHabitaciones()) {
-			if (h.disponibilidadPara(this.getFechaDesde(), this.getFechaHasta())){
+			if (h.disponibilidadPara(this.getRango())){
 				res.add(h);
 			}
 		}
 		return res;
 	}
-		
 		
 	@Override
 	public List<Hotel> buscar(List<Hotel> hoteles) {
@@ -40,25 +37,17 @@ public class FiltroRango extends FiltroBusqueda {
 	private boolean tieneHabitacionQueCumpleFechas(Hotel h) {
 		boolean ret = false;
 		for (Habitacion hab : h.getHabitaciones()) {
-			ret = ret || hab.disponibilidadPara(this.getFechaDesde(), this.getFechaHasta()); 
+			ret = ret || hab.disponibilidadPara(this.getRango()); 
 		}
 		return ret;
 	}
 
 	//Getters and Setters
-	public DateTime getFechaDesde() {
-		return fechaDesde;
+	public Rango getRango() {
+		return rango;
 	}
 
-	public void setFechaDesde(DateTime fechaDesde) {
-		this.fechaDesde = fechaDesde;
-	}
-
-	public DateTime getFechaHasta() {
-		return fechaHasta;
-	}
-
-	public void setFechaHasta(DateTime fechaHasta) {
-		this.fechaHasta = fechaHasta;
+	public void setRango(Rango rango) {
+		this.rango = rango;
 	}
 }
