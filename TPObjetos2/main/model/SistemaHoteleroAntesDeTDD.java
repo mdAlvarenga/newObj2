@@ -45,11 +45,11 @@ public class SistemaHoteleroAntesDeTDD {
 	
 	
 	
-	public List<Hotel> buscarHotelesFiltrados(FiltroBusqueda filtros){
+	public List<Hotel> buscarHotelesFiltrados(FiltroBusquedaAntesTDD filtros){
 		return filtros.buscar(this.getHoteles());	
 	}
 	
-	public List<Habitacion> buscarHabitacionesFiltradas(FiltroBusqueda filtros, 
+	public List<Habitacion> buscarHabitacionesFiltradas(FiltroBusquedaAntesTDD filtros, 
 															List<Hotel> hoteles){
 		List<Habitacion> ret = new ArrayList<Habitacion>();
 		for (Hotel hotel: hoteles) {

@@ -1,7 +1,6 @@
 package modelTest;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -10,6 +9,7 @@ import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import model.FiltroBusqueda;
@@ -43,7 +43,9 @@ public class SistemaHoteleroTest {
 	private ArrayList<Hotel>listaHotelesSegundoFiltro;
 	private ArrayList<Usuario> listaDeUsuarios;
 	private ArrayList<Reserva> listaDeReservas;
-	 
+	private ArrayList<Habitacion> listaHabitacionesPrimerFiltro;
+	private ArrayList<Habitacion> listaHabitacionesSegundoFiltro;
+	
 	@Mock UsuarioPasajero pasajeroMarcos;
 	@Mock UsuarioPasajero pasajeroAgustin;
 	@Mock UsuarioPasajero pasajeraMari;
@@ -55,6 +57,7 @@ public class SistemaHoteleroTest {
 	@Mock Hotel hotelColonial;
 	@Mock Hotel hotelSheraton;
 	@Mock Hotel hotelInternacional;
+	@Mock Hotel h;
 	@Mock Habitacion habitacionBianchi;
 	@Mock Habitacion habitacionTevez;
 	@Mock Habitacion habitacionPalermo;
@@ -96,22 +99,45 @@ public class SistemaHoteleroTest {
 		listaDeUsuarios.add(pasajeraMari);
 		listaDeUsuarios.add(pasajeroAgustin);
 
+		listaHabitacionesPrimerFiltro = new ArrayList<Habitacion>();
+		listaHabitacionesPrimerFiltro.add(habitacionBianchi);
+		listaHabitacionesPrimerFiltro.add(habitacionPalermo);
+		
+		listaHabitacionesSegundoFiltro = new ArrayList<Habitacion>();
+		listaHabitacionesSegundoFiltro.add(habitacionColonia17);
+		
 		sutSistemaHotelero = new SistemaHotelero(listaDeHoteles, listaDeUsuarios, listaDeReservas, servidor);
 		
-		//when(sutSistemaHotelero.getUsuarios().size()).thenReturn(2);
-		//when(habitacionBianchi.getCapacidadMaxima()).thenReturn(2);
-		when(primerFiltro.buscar(listaDeHoteles)).thenReturn(listaHotelesPrimerFiltro);
+		hotelBoca = Mockito.mock(Hotel.class);
 		
+		
+		
+		
+		//verify(mockedList, times(2)).add("twice");
 	}
 	
 	@Test
-	public void nuevo() {
-		assertEquals(sutSistemaHotelero.buscarHotelesPorFiltros(primerFiltro),listaHotelesPrimerFiltro);
+	public void cuandoBuscoHabitacionesEnLosHotelesFiltradosDelPrimerFiltroMeRetornaListaHabitaciones1() {	
+		when(primerFiltro.buscarHabitaciones(hotelBoca)).thenReturn(listaHabitacionesPrimerFiltro);
+		assertEquals(sutSistemaHotelero.filtrarHabitaciones(primerFiltro, hotelBoca),listaHabitacionesPrimerFiltro);
 	}
 	
-	/////////////////////////////////////////////////////
+	@Test
+	public void cuandoBuscoHabitacionesEnLosHotelesDelSegundoFiltroMeRetornaListaHabitaciones2() {
+		when(segundoFiltro.buscarHabitaciones(hotelColonial)).thenReturn(listaHabitacionesSegundoFiltro);
+		assertEquals(sutSistemaHotelero
+						.filtrarHabitaciones(segundoFiltro,hotelColonial),listaHabitacionesSegundoFiltro);
+	}
+	
+	@Test
+	public void cuandoBuscoHotelesConElSegundoFiltroRetornaLista2() {
+		when(segundoFiltro.buscar(listaDeHoteles)).thenReturn(listaHotelesSegundoFiltro);
+		assertEquals(sutSistemaHotelero.buscarHotelesPorFiltros(segundoFiltro),listaHotelesSegundoFiltro);
+	}
+	
 	@Test
 	public void cuandoBuscoHotelesConElPrimerFiltroRetornaLista1() {
+		when(primerFiltro.buscar(listaDeHoteles)).thenReturn(listaHotelesPrimerFiltro);
 		assertEquals(sutSistemaHotelero.buscarHotelesPorFiltros(primerFiltro),listaHotelesPrimerFiltro);
 	}
 	

@@ -1,4 +1,4 @@
-Escribimos aca(si les gusta mas otro medio, simplemente diganlo) las cosas que vemos y así, decidimos entre todos que hacemos.
+	Escribimos aca(si les gusta mas otro medio, simplemente diganlo) las cosas que vemos y así, decidimos entre todos que hacemos.
 Hasta los DETALLES que vean diganlos, así estamos de acuerdo en todo, o al menos sabemos, AHORA SI, porque se toman ciertas decisiones.
 
 Marcos: 
@@ -19,5 +19,6 @@ Marcos:
 		
 		Tambien modifique un poquitin el algortimo de la busqueda compuesta. 
 		Ah y tambien lo de las benditas formas de pago. Saludos :D
+		
 		
 		 

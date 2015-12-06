@@ -1,6 +1,5 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class SistemaHotelero {
@@ -62,8 +61,18 @@ public class SistemaHotelero {
 		this.getListaDeUsuarios().add(unUsuario);
 	}
 
-	public List<Hotel> buscarHotelesPorFiltros(FiltroBusqueda filtros) {
-		return filtros.buscar(this.getListaDeHoteles());
+	public List<Hotel> buscarHotelesPorFiltros(FiltroBusqueda filtro) {
+		return filtro.buscar(this.getListaDeHoteles());
 	}
+
+	public List<Habitacion> filtrarHabitaciones(FiltroBusquedaAntesTDD filtro, Hotel hotel) {
+		return filtro.buscarHabitaciones(hotel);
+	}
+
+	public Object filtrarHabitaciones(FiltroBusqueda primerFiltro, Hotel hotelBoca) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.joda.time.DateTime;;
 
-public class FiltroRango extends FiltroBusqueda {
+public class FiltroRango extends FiltroBusquedaAntesTDD {
 	private Rango rango;
 	
 	public FiltroRango(Rango unRango){

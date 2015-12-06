@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FiltroNombreHotel extends FiltroBusqueda {
+public class FiltroNombreHotel extends FiltroBusquedaAntesTDD {
 	
 	private String nombreDeHotelABuscar;
 	

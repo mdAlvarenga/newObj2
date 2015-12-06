@@ -10,7 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import model.Ciudad;
-import model.FiltroBusqueda;
+import model.FiltroBusquedaAntesTDD;
 import model.FiltroCantidadHuespedes;
 import model.FiltroCiudadHotel;
 import model.FiltroCompuesto;
@@ -27,7 +27,7 @@ import model.UsuarioPasajero;
 
 public class FiltroBusquedaTest {
 	
-	private FiltroBusqueda sutBuscador;
+	private FiltroBusquedaAntesTDD sutBuscador;
 	private Hotel hotel1;
 	private Hotel hotel2;
 	private Habitacion hab1;
@@ -41,12 +41,12 @@ public class FiltroBusquedaTest {
 	private List<Habitacion> listaDeHabitacionesHotel1;
 	private List<Habitacion> listaDeHabitacionesHotel2;
 	
-	private List<FiltroBusqueda> listaDeFiltros;
+	private List<FiltroBusquedaAntesTDD> listaDeFiltros;
 	
-	private FiltroBusqueda filtroNombreHotel;
-	private FiltroBusqueda filtroCiudadHotel;
-	private FiltroBusqueda filtroCantidadHuespedes;
-	private FiltroBusqueda filtroRango;
+	private FiltroBusquedaAntesTDD filtroNombreHotel;
+	private FiltroBusquedaAntesTDD filtroCiudadHotel;
+	private FiltroBusquedaAntesTDD filtroCantidadHuespedes;
+	private FiltroBusquedaAntesTDD filtroRango;
 	
 	private Rango rango;
 	private DateTime fechaDesde;
@@ -115,7 +115,7 @@ public class FiltroBusquedaTest {
 		this.listaDeHoteles.add(this.hotel1);
 		this.listaDeHoteles.add(this.hotel2);
 
-		this.listaDeFiltros = new ArrayList<FiltroBusqueda>();
+		this.listaDeFiltros = new ArrayList<FiltroBusquedaAntesTDD>();
 		
 	}
 	
