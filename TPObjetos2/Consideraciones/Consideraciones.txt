@@ -4,6 +4,8 @@ Hasta los DETALLES que vean diganlos, asÃ­ estamos de acuerdo en todo, o al meno
 Marcos: 
 		-Detallecito 1: el mensaje en el diagrama -> reservasFuturas(): List<Reservas>
 		se repite en las subclases de Usuario. Si la subimos, PIOLA. 
+		MARI --> ok, tengo que verlo, si hacen lo mismo lo subo.
+		
 		-Detallecito 2: privacidad de ciertos mensajes
 		
 		Todo lo que toque fue porque odio las marcas rojas jaja
@@ -13,12 +15,20 @@ Marcos:
 		
 		Toque el diagrama de clases, pero mejor que se encargue la analista, porque a mi me hincho los huevos
 		y no pude hacer todo lo que quise. 
+		MARI --> ahi lo tunie, creo que ya esta reflejando lo que queremos
 		
-		RECUERDENME(a travez del UML) como habiamos quedado si el hotel tenia a su dueño o un hotelero
+		RECUERDENME(a travez del UML) como habiamos quedado si el hotel tenia a su dueï¿½o o un hotelero
 		tiene una lista de hoteles.
+		MARI --> el hotel conoce su duenio. Ya lo puse en el diagrama
 		
 		Tambien modifique un poquitin el algortimo de la busqueda compuesta. 
 		Ah y tambien lo de las benditas formas de pago. Saludos :D
 		
 		
+		MARI --> bueno... el sistema va a tener un gestor de servar que es el que le
+		va a responder las consultas a los usuarios. En principio (ademas de la las reservas)
+		 el sistema va a tener que pasarle la lista de hoteles para hacer las consultas 
+		 de los hoteleros
 		 
+		 
+		
