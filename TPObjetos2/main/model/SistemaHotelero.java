@@ -84,5 +84,13 @@ public class SistemaHotelero {
 		return this.gestorPasajero.reservaDePasajeroParaCiudad(unPasajero, unaCiudad);
 	}
 
+	public List<Ciudad> ciudadesConReservaDePasajero(UsuarioPasajero unPasajero) {
+		return this.gestorPasajero.ciudadesDondePasajeroTieneReserva(unPasajero);
+	}
+
+	public List<Reserva> todasReservasFuturasDePasajero(UsuarioPasajero unPasajero) {
+		return this.gestorPasajero.todasReservasFuturasDePasajero(unPasajero);
+	}
+
 
 }

@@ -6,10 +6,12 @@ import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 
 import model.Ciudad;
 import model.Habitacion;
@@ -38,36 +40,45 @@ public class GestorReservaPasajeroTest {
 	@Mock private List<Usuario> users;
 	@Mock private List<Ciudad> listCiudades;
 	@Mock private ArrayList<Habitacion> listhabitaciones;
+	private DateTime hoy;
 
 	@Before
 	public void setUp() throws Exception {
+		
+		MockitoAnnotations.initMocks(this);
 		
 		this.felipe = new UsuarioPasajero(null, null, null, null, 0);
 		this.puntaCana = new Ciudad("PuntaCana");
 		this.florianopolis = new Ciudad("florianopolis");
 		
-		//this.hotel1 = new Hotel(unNombre, unaCiudad, habitaciones, servicios, unaCategoria, checkIn, checkOut)
 		this.hotel1 = Mockito.mock(Hotel.class);
 		when(hotel1.getCiudad()).thenReturn(this.puntaCana);
 		
 		this.hotel2 = Mockito.mock(Hotel.class);
-		when(hotel1.getCiudad()).thenReturn(this.florianopolis);
+		when(hotel2.getCiudad()).thenReturn(this.florianopolis);
 		
+		this.hoy = new DateTime();
 		
 		this.res1 = Mockito.mock(Reserva.class);
-		when(res1.getUsuarioQueReserva()).thenReturn(felipe);
-		
+		when(this.res1.getUsuarioQueReserva()).thenReturn(felipe);
+		when(this.res1.fechaDeReservaPosteriorA(hoy)).thenReturn(true);
+
 		this.res2 = Mockito.mock(Reserva.class);
-		when(res2.getUsuarioQueReserva()).thenReturn(felipe);
+		when(this.res2.getUsuarioQueReserva()).thenReturn(felipe);
+		when(this.res2.fechaDeReservaPosteriorA(hoy)).thenReturn(false);
 		
 		this.listHotel = new ArrayList<Hotel>();
 		this.listReservas = new ArrayList<Reserva>();
 		this.listCiudades = new ArrayList<Ciudad>();
 		this.listhabitaciones = new ArrayList<Habitacion>();
+		this.users = new ArrayList<Usuario>();
+		
+		this.users.add(felipe);
 		
 		this.habitacion1 = Mockito.mock(Habitacion.class);
 		this.habitacion2 = Mockito.mock(Habitacion.class);
 		this.listhabitaciones.add(habitacion1);
+		this.listhabitaciones.add(habitacion2);
 		
 		when(hotel1.getHabitaciones()).thenReturn(this.listhabitaciones);
 		when(hotel2.getHabitaciones()).thenReturn(this.listhabitaciones);
@@ -82,11 +93,14 @@ public class GestorReservaPasajeroTest {
 		this.listCiudades.add(florianopolis);
 		
 		
+		when(habitacion1.reservasDelUsuario(this.felipe)).thenReturn(this.listReservas);
+		
+		
 		this.sh = new SistemaHotelero(listHotel, users, listReservas, server);
 
 	}
 
-	// ADMINISTRACION DE PASAJEROS -------------------------------------------------------------------
+	// ADMINISTRACION DE PASAJEROS ---------------------------------------------------------
 	@Test
 	public void cuandoUsuarioPasajeroPideTodasSusReservas(){
 
@@ -95,24 +109,23 @@ public class GestorReservaPasajeroTest {
 
 	}
 	
-	/*
 	@Test
 	public void cuandoUsuarioPasajeroPideReservasFuturas(){
-		
+		assertEquals(this.sh.todasReservasFuturasDePasajero(this.felipe).size(),1);
 	}
-	*/
 	
 	@Test
 	public void cuandoUsuarioPasajeroPideReservasENnUnaCiudadParticular(){
 		List<Reserva> res = new ArrayList<Reserva>();
 		res.add(res1);
+		res.add(res2);
 		assertEquals(this.sh.reservaDePasajeroParaCiudad(this.felipe, this.puntaCana),res);
 	}
-	/*
+
 	@Test
 	public void cuandoUsuarioPasajeroPideCiudadesDeSusReservas(){
 		assertEquals(this.sh.ciudadesConReservaDePasajero(felipe),this.listCiudades);
 	}
-	*/
+
 
 }
