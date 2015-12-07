@@ -7,6 +7,7 @@ public class SistemaHotelero {
 	List<Usuario> listaDeUsuarios; 
 	List<Reserva> listaDeReservas;
 	IServidor servidor;
+	private GestorPasajero gestorPasajero;
 	
 	
 	public SistemaHotelero(List<Hotel> listaDeHoteles, List<Usuario> listaDeUsuarios,
@@ -15,6 +16,7 @@ public class SistemaHotelero {
 		this.setUsuarios(listaDeUsuarios);
 		this.setReservas(listaDeReservas);
 		this.setServidor(servidor);
+		this.gestorPasajero = new GestorPasajero(listaDeReservas, listaDeHoteles);
 	}
 
 	public List<Hotel> getListaDeHoteles() {
@@ -72,6 +74,14 @@ public class SistemaHotelero {
 	public Object filtrarHabitaciones(FiltroBusqueda primerFiltro, Hotel hotelBoca) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public List<Reserva> todasReservasDePasajero(UsuarioPasajero unUsuario) {
+		return this.gestorPasajero.todasReservasDePasajero(unUsuario);
+	}
+
+	public List<Reserva> reservaDePasajeroParaCiudad(UsuarioPasajero unPasajero, Ciudad unaCiudad) {
+		return this.gestorPasajero.reservaDePasajeroParaCiudad(unPasajero, unaCiudad);
 	}
 
 

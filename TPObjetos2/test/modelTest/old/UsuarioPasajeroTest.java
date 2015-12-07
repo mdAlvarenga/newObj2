@@ -1,4 +1,4 @@
-package modelTest;
+package modelTest.old;
 
 import static org.junit.Assert.*;
 import java.util.ArrayList;
