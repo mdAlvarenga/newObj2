@@ -2,12 +2,15 @@ package model;
 
 import java.util.List;
 
+import modelTest.GestorReservaHoteleroTest;
+
 public class SistemaHotelero {
 	List<Hotel> listaDeHoteles;
 	List<Usuario> listaDeUsuarios; 
 	List<Reserva> listaDeReservas;
 	IServidor servidor;
 	private GestorPasajero gestorPasajero;
+	private GestorHotelero gestorHotelero;
 	
 	
 	public SistemaHotelero(List<Hotel> listaDeHoteles, List<Usuario> listaDeUsuarios,
@@ -17,6 +20,7 @@ public class SistemaHotelero {
 		this.setReservas(listaDeReservas);
 		this.setServidor(servidor);
 		this.gestorPasajero = new GestorPasajero(listaDeReservas, listaDeHoteles);
+		this.gestorHotelero = new GestorHotelero(listaDeReservas, listaDeHoteles);
 	}
 
 	public List<Hotel> getListaDeHoteles() {
@@ -85,6 +89,18 @@ public class SistemaHotelero {
 
 	public List<Reserva> todasReservasFuturasDePasajero(UsuarioPasajero unPasajero) {
 		return this.gestorPasajero.todasReservasFuturasDePasajero(unPasajero);
+	}
+
+	public List<Reserva> todasReservasActualesDeHotelero(UsuarioHotelero unHotelero) {
+		return this.gestorHotelero.ReservasActualesDeHotelero(unHotelero);
+	}
+
+	public List<Reserva> ReservasFuturasDeHotelero(UsuarioHotelero unHotelero) {
+		return this.gestorHotelero.ReservasFuturasDeHotelero(unHotelero);
+	}
+
+	public List<Reserva> ReservasInicioEnNFuturosDiasHotelero(UsuarioHotelero unHotelero, int i) {
+		return this.gestorHotelero.ReservasInicioEnNFuturosDiasHotelero(unHotelero, i);
 	}
 
 

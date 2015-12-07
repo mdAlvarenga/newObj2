@@ -17,6 +17,7 @@ public class Hotel {
 	private String categoria;
 	private DateTime checkIn;
 	private DateTime checkOut;
+	private UsuarioHotelero hotelero;
 	
 	public Hotel(String unNombre, Ciudad unaCiudad, List<Habitacion> habitaciones, 
 					List<Servicio> servicios, String unaCategoria, DateTime checkIn, DateTime checkOut) {
@@ -119,6 +120,10 @@ public class Hotel {
 
 	public String nombreCiudad() {
 		return this.getCiudad().getNombre();
+	}
+
+	public UsuarioHotelero getHotelero() {
+		return this.hotelero;
 	}
 
 }

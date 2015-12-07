@@ -48,8 +48,8 @@ public class GestorReservaPasajeroTest {
 		MockitoAnnotations.initMocks(this);
 		
 		this.felipe = new UsuarioPasajero(null, null, null, null, 0);
-		this.puntaCana = new Ciudad("PuntaCana");
-		this.florianopolis = new Ciudad("florianopolis");
+		this.puntaCana = new Ciudad("PuntaCana", "RepublicaDominicana");
+		this.florianopolis = new Ciudad("florianopolis", "Brasil");
 		
 		this.hotel1 = Mockito.mock(Hotel.class);
 		when(hotel1.getCiudad()).thenReturn(this.puntaCana);
