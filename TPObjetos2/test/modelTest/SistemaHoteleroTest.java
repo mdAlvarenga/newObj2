@@ -12,6 +12,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
+import antesDeTDD.SistemaHoteleroAntesDeTDD;
 import model.FiltroBusqueda;
 import model.FiltroNombreHotel;
 import model.Habitacion;
@@ -22,7 +23,6 @@ import model.Rango;
 import model.Reserva;
 import model.Servicio;
 import model.SistemaHotelero;
-import model.SistemaHoteleroAntesDeTDD;
 import model.Usuario;
 import model.UsuarioHotelero;
 import model.UsuarioPasajero;

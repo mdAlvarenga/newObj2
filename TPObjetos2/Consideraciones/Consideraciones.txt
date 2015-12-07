@@ -29,6 +29,10 @@ Marcos:
 		va a responder las consultas a los usuarios. En principio (ademas de la las reservas)
 		 el sistema va a tener que pasarle la lista de hoteles para hacer las consultas 
 		 de los hoteleros
-		 
-		 
+		MARCOS --> Incluso puede pasarse a el mismo al Gestor, y que le gestor le saque lo que necesite jaja 
+		 	   --> Antes de RESERVAR, hay que verificar si se puede reservar(para "manejar" la concurrencia.)
+		 	   --> Y Repito algo, no era que la RESERVA tenia habitaciones? asi estaba en la foto del
+		 	   --> diagrama que vimos en clases!! 
+		 	   --> y que la habitacion conocia a su hotel? y que el hotel a su duenio?
+		detallecito--> en el uml dice que hotel tiene pais, eso mandalo a la ciudad.		 	   
 		

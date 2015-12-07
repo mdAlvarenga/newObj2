@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FiltroCiudadHotel extends FiltroBusquedaAntesTDD {
+public class FiltroCiudadHotel extends FiltroBusqueda{
 	private Ciudad ciudadABuscar;
 	
 	public FiltroCiudadHotel(Ciudad unaCiudad){

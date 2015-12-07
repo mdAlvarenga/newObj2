@@ -9,8 +9,8 @@ import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
 
+import antesDeTDD.FiltroBusquedaAntesTDD;
 import model.Ciudad;
-import model.FiltroBusquedaAntesTDD;
 import model.FiltroCantidadHuespedes;
 import model.FiltroCiudadHotel;
 import model.FiltroCompuesto;

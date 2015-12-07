@@ -1,7 +1,10 @@
-package model;
+package antesDeTDD;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import model.Habitacion;
+import model.Hotel;
 
 public abstract class FiltroBusquedaAntesTDD {
 	/*

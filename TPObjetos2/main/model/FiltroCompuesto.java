@@ -5,17 +5,19 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class FiltroCompuesto extends FiltroBusquedaAntesTDD{
-	List<FiltroBusquedaAntesTDD> listaDeFiltros;
+import antesDeTDD.FiltroBusquedaAntesTDD;
+
+public class FiltroCompuesto extends FiltroBusqueda{
+	List<FiltroBusqueda> listaDeFiltros;
 	
-	public FiltroCompuesto(List<FiltroBusquedaAntesTDD> l) {
+	public FiltroCompuesto(List<FiltroBusqueda> l) {
 		this.setListaDeFiltros(l);
 	}
 	
 	@Override
 	public List<Habitacion> buscarHabitaciones(Hotel hotel) {
 		List<Habitacion> ret = new ArrayList<Habitacion>();
-		for (FiltroBusquedaAntesTDD f : this.getListaDeFiltros()) {
+		for (FiltroBusqueda f : this.getListaDeFiltros()) {
 			if (f.buscarHabitaciones(hotel).isEmpty()){
 				return new ArrayList<Habitacion>();
 			}
@@ -29,7 +31,7 @@ public class FiltroCompuesto extends FiltroBusquedaAntesTDD{
 		Set<Hotel> res = new HashSet<Hotel>();
 		List<Hotel> resultado = new ArrayList<Hotel>();
 		
-		for (FiltroBusquedaAntesTDD f : this.getListaDeFiltros()) {
+		for (FiltroBusqueda f : this.getListaDeFiltros()) {
 			if (f.buscar(lHoteles).isEmpty()){
 				return resultado; 
 			}
@@ -40,11 +42,11 @@ public class FiltroCompuesto extends FiltroBusquedaAntesTDD{
 	}
 
 	//Getters and Setters
-	public List<FiltroBusquedaAntesTDD> getListaDeFiltros() {
+	public List<FiltroBusqueda> getListaDeFiltros() {
 		return listaDeFiltros;
 	}
 
-	public void setListaDeFiltros(List<FiltroBusquedaAntesTDD> listaDeFiltros) {
+	public void setListaDeFiltros(List<FiltroBusqueda> listaDeFiltros) {
 		this.listaDeFiltros = listaDeFiltros;
 	}
 }

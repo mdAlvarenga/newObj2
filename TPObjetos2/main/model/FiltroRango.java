@@ -3,9 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.joda.time.DateTime;;
-
-public class FiltroRango extends FiltroBusquedaAntesTDD {
+public class FiltroRango extends FiltroBusqueda {
 	private Rango rango;
 	
 	public FiltroRango(Rango unRango){

@@ -1,7 +1,16 @@
-package model;
+package antesDeTDD;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import model.Correo;
+import model.Habitacion;
+import model.Hotel;
+import model.IServidor;
+import model.Rango;
+import model.Reserva;
+import model.Usuario;
+import model.UsuarioPasajero;
 
 public class SistemaHoteleroAntesDeTDD {
 	private List<Hotel> hoteles;

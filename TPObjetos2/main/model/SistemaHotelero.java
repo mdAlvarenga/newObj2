@@ -67,13 +67,8 @@ public class SistemaHotelero {
 		return filtro.buscar(this.getListaDeHoteles());
 	}
 
-	public List<Habitacion> filtrarHabitaciones(FiltroBusquedaAntesTDD filtro, Hotel hotel) {
+	public List<Habitacion> filtrarHabitaciones(FiltroBusqueda filtro, Hotel hotel) {
 		return filtro.buscarHabitaciones(hotel);
-	}
-
-	public Object filtrarHabitaciones(FiltroBusqueda primerFiltro, Hotel hotelBoca) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	public List<Reserva> todasReservasDePasajero(UsuarioPasajero unUsuario) {
