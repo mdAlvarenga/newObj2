@@ -11,12 +11,9 @@ import clasesSinTest.UsuarioPasajero;
 public class SistemaHotelero extends Observable{
 	private List<Usuario> listaDeUsuarios; 
 	private GestorConsulta gestor;
-	//private GestorCorreo gestorCorreo;
-	
 	
 	public SistemaHotelero(List<Usuario> listaDeUsuarios, GestorConsulta gestor) {
 		this.setUsuarios(listaDeUsuarios);
-		//this.setGestorCorreo(gestorCorreo);
 		this.setGestor(gestor); 
 	}
 
@@ -59,23 +56,16 @@ public class SistemaHotelero extends Observable{
 		return this.getGestor().todasReservasFuturasDePasajero(unPasajero);
 	}
 
-	public List<Reserva> todasReservasActualesDeHotelero(UsuarioHotelero bruno) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	/*	
 	public List<Reserva> todasReservasActualesDeHotelero(UsuarioHotelero unHotelero) {
-		return this.gestorHotelero.ReservasActualesDeHotelero(unHotelero);
+		return this.getGestor().ReservasActualesDeHotelero(unHotelero);
 	}
-
 	public List<Reserva> ReservasFuturasDeHotelero(UsuarioHotelero unHotelero) {
-		return this.gestorHotelero.ReservasFuturasDeHotelero(unHotelero);
+		return this.getGestor().ReservasFuturasDeHotelero(unHotelero);
 	}
 
 	public List<Reserva> ReservasInicioEnNFuturosDiasHotelero(UsuarioHotelero unHotelero, int i) {
-		return this.gestorHotelero.ReservasInicioEnNFuturosDiasHotelero(unHotelero, i);
+		return this.getGestor().ReservasInicioEnNFuturosDiasHotelero(unHotelero, i);
 	}
-*/
 
 	public GestorConsulta getGestor() {
 		return gestor;
@@ -92,26 +82,4 @@ public class SistemaHotelero extends Observable{
 	private void setUsuarios(List<Usuario> listaDeUsuarios) {
 		this.listaDeUsuarios = listaDeUsuarios;
 	}
-
-	public List<Reserva> ReservasFuturasDeHotelero(UsuarioHotelero bruno) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public List<Reserva> ReservasInicioEnNFuturosDiasHotelero(
-			UsuarioHotelero bruno, int i) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	
-
-	/*public GestorCorreo getGestorCorreo() {
-		return gestorCorreo;
-	}
-	
-	private void setGestorCorreo(GestorCorreo gestorCorreo) {
-		this.gestorCorreo = gestorCorreo;
-	}*/
-
 }

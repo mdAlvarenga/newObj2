@@ -6,6 +6,7 @@ import java.util.List;
 import org.joda.time.DateTime;
 
 import clasesSinTest.Ciudad;
+import clasesSinTest.UsuarioHotelero;
 import clasesSinTest.UsuarioPasajero;
 
 public class GestorConsulta {
@@ -111,5 +112,23 @@ public class GestorConsulta {
 	public void agregarHotel(Hotel unHotel) {
 		this.getHoteles().add(unHotel);		
 	}
+
+	public List<Reserva> ReservasActualesDeHotelero(UsuarioHotelero unHotelero) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<Reserva> ReservasFuturasDeHotelero(UsuarioHotelero unHotelero) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	public List<Reserva> ReservasInicioEnNFuturosDiasHotelero(
+			UsuarioHotelero unHotelero, int i) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 
 }
