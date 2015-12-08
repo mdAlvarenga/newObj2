@@ -1,14 +1,13 @@
 package model;
 
 import java.util.List;
-import java.util.Observable;
 
 import clasesSinTest.Ciudad;
 import clasesSinTest.Usuario;
 import clasesSinTest.UsuarioHotelero;
 import clasesSinTest.UsuarioPasajero;
 
-public class SistemaHotelero extends Observable{
+public class SistemaHotelero{
 	private List<Usuario> listaDeUsuarios; 
 	private GestorConsulta gestor;
 	
@@ -17,11 +16,9 @@ public class SistemaHotelero extends Observable{
 		this.setGestor(gestor); 
 	}
 
-	public void agregarReserva(Reserva unaReserva) {
-		this.getGestor().agregarReserva(unaReserva);
-		setChanged();
-		notifyObservers(this);
-		//Aca debe haber tipo un observer con el mail asi envia los mails correspondientes.
+	public void agregarReserva(Reserva unaReserva, Habitacion unaHabitacion, Hotel paraUnHotel) {
+		this.getGestor().agregarReserva(unaReserva, unaHabitacion, paraUnHotel);
+		
 	}
 
 	public void agregarHotel(Hotel unHotel) {
@@ -82,4 +79,5 @@ public class SistemaHotelero extends Observable{
 	private void setUsuarios(List<Usuario> listaDeUsuarios) {
 		this.listaDeUsuarios = listaDeUsuarios;
 	}
+	
 }

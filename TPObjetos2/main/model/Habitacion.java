@@ -13,13 +13,14 @@ public class Habitacion {
 	/*
 	 * CONSIDERACIONES DE LA CLASE: En la lista de precios, los rangos no se solapan.
 	 */
+	private String nombreONumero;
 	private int capacidadMaxima;
 	private String baseDoble;
 	private List<Servicio> servicios;
 	private List<Reserva> reservas;
 	private List<Precio> preciosPorFechas;
 	
-	public Habitacion(int unaCapacidad, String unaBase, List<Servicio> servicios, 
+	public Habitacion(String numeroONombre, int unaCapacidad, String unaBase, List<Servicio> servicios, 
 						List<Reserva> reservas, List<Precio> precios) {
 		
 		this.setCapacidadMaxima(unaCapacidad);
@@ -27,6 +28,7 @@ public class Habitacion {
 		this.setServicios(servicios);
 		this.setReservas(reservas);
 		this.setPrecios(precios);
+		this.setNombreONumero(numeroONombre);
 	}
 
 	public boolean disponibilidadPara(Rango unRango) {
@@ -55,15 +57,6 @@ public class Habitacion {
 		return ret;
 	}
 
-	public String ciudadDelHotelDondeEstas() {
-		//return this.hotelPertenece.getNombreCiudad();
-		return null;
-	}
-	
-	public Usuario duenioHotel() {
-		return null;
-	}
-
 	public List<Reserva> reservasFuturasDelUsuario(Usuario unUsuario) {
 		
 		List<Reserva> ret = new ArrayList<Reserva>();
@@ -88,14 +81,11 @@ public class Habitacion {
 		return ret;
 	}
 
-	public void reservar(Rango unRango, UsuarioPasajero unUsuario) {
-		Double monto = this.calcularMonto(unRango);
-		Reserva reserva = new Reserva(unRango,monto,unUsuario);
-		this.getReservas().add(reserva);
-		//unUsuario.agregarHabitacionReservada(this);  ---> ya no se le carga al usuario
+	public void agregarReserva(Reserva unaReserva) {
+		this.getReservas().add(unaReserva);
 	}
 
-	private Double calcularMonto(Rango unRango){
+	public Double calcularMonto(Rango unRango){
 		Double ret = 0.0;
 		for (Precio precio : this.getPrecios()) {
 			if(unRango.intercepta(precio.getRango())){
@@ -165,5 +155,13 @@ public class Habitacion {
 
 	public void setPrecios(List<Precio> precios) {
 		this.preciosPorFechas = precios;
+	}
+
+	public String getNombreONumero() {
+		return nombreONumero;
+	}
+
+	public void setNombreONumero(String nombreONumero) {
+		this.nombreONumero = nombreONumero;
 	}
 }

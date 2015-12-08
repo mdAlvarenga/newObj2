@@ -130,4 +130,10 @@ public class Hotel {
 		return this.hotelero;
 	}
 
+	public void agregarReservaEnHabitacion(Habitacion unaHabitacion,
+			Reserva unaReserva) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

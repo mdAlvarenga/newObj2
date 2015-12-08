@@ -2,14 +2,16 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
 import org.joda.time.DateTime;
 
+import clasesSinTest.BodyMailBuilder;
 import clasesSinTest.Ciudad;
 import clasesSinTest.UsuarioHotelero;
 import clasesSinTest.UsuarioPasajero;
 
-public class GestorConsulta {
+public class GestorConsulta extends Observable{
 	protected List<Reserva> reservas;
 	protected List<Hotel> hoteles;
 	
@@ -105,10 +107,20 @@ public class GestorConsulta {
 		return resul;
 	}
 
-	public void agregarReserva(Reserva unaReserva) {
+	public void agregarReserva(Reserva unaReserva, Habitacion unaHabitacion, Hotel unHotel) {
+		//ACA ME PARECE QUE DEBERIA VERIFICAR QUE SE PUEDA RESERVAR
 		this.getReservas().add(unaReserva);
+		for(Hotel h: this.getHoteles()){
+			if (h.equals(unHotel)){
+				h.agregarReservaEnHabitacion(unaHabitacion, unaReserva);
+			}
+		}
+		BodyMailBuilder body = new BodyMailBuilder();
+		body.buildBodyMail(unaReserva, unaHabitacion, unHotel);
+		setChanged();
+		notifyObservers(body);
 	}
-
+	
 	public void agregarHotel(Hotel unHotel) {
 		this.getHoteles().add(unHotel);		
 	}

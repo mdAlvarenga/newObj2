@@ -1,4 +1,4 @@
-package marcosTest;
+package algunoTesteeFiltrosYtodasLasVariantesDeLaManeraQueGusteJAJA;
 
 import static org.junit.Assert.assertEquals;
 
@@ -24,100 +24,8 @@ import model.Precio;
 import model.Rango;
 import model.Reserva;
 
-
 public class FiltroBusquedaTest extends FiltroBusquedaSetUp{
 	
-	private FiltroBusqueda sutBuscador;
-	private Hotel hotel1;
-	private Hotel hotel2;
-	private Habitacion hab1;
-	private Habitacion hab2;
-	private Habitacion hab3;
-	private Habitacion hab4;
-	
-	private List<Hotel> resultado;
-	private List<Hotel> listaDeHoteles;
-	
-	private List<Habitacion> listaDeHabitacionesHotel1;
-	private List<Habitacion> listaDeHabitacionesHotel2;
-	
-	private List<FiltroBusqueda> listaDeFiltros;
-	
-	private FiltroBusqueda filtroNombreHotel;
-	private FiltroBusqueda filtroCiudadHotel;
-	private FiltroBusqueda filtroCantidadHuespedes;
-	private FiltroBusqueda filtroRango;
-	
-	private Rango rango;
-	private DateTime fechaDesde;
-	private DateTime fechaHasta;
-	
-	private UsuarioPasajero pasajero;
-	private Ciudad quilmes;
-	private Ciudad bernal;
-	private Ciudad wilde;
-	private Ciudad avellaneda;
-	private Rango otroRango;
-	private Rango nuevoRango;
-	private Rango qRango;
-	private Rango eRango;
-	private Rango wRango;
-	@Before
-	public void setUp(){
-		quilmes = new Ciudad("Quilmes", "Argentina");
-		bernal = new Ciudad("Bernal", "Argentina");
-		avellaneda = new Ciudad("Avellaneda", "Argentina");
-		wilde = new Ciudad("Wilde", "Argentina");
-		this.pasajero = new UsuarioPasajero(null, null, null, null, 4);
-		
-		this.hotel1 = new Hotel("AAA", quilmes, new ArrayList<Habitacion>(), 
-				new ArrayList<Servicio>(), "unaCategoria", new DateTime(), new DateTime());
-		
-		this.hotel2 = new Hotel("BBB", bernal, new ArrayList<Habitacion>(), 
-				new ArrayList<Servicio>(), "unaCategoria", new DateTime(), new DateTime());
-		
-		this.hab1 = new Habitacion(1, "simple", new ArrayList<Servicio>(), 
-				new ArrayList<Reserva>(), new ArrayList<Precio>());
-		
-		this.hab2 = new Habitacion(2, "simple", new ArrayList<Servicio>(), 
-				new ArrayList<Reserva>(), new ArrayList<Precio>());
-		
-		this.hab3 = new Habitacion(3, "simple", new ArrayList<Servicio>(), 
-				new ArrayList<Reserva>(), new ArrayList<Precio>());
-		
-		this.hab4 = new Habitacion(4, "simple", new ArrayList<Servicio>(), 
-				new ArrayList<Reserva>(), new ArrayList<Precio>());
-
-		//se crean reservas en todas las habitaciones para el mismo rango
-		this.fechaDesde = new DateTime("2015-09-09");
-		this.fechaHasta = new DateTime("2015-09-30");
-		this.rango = new Rango(fechaDesde,fechaHasta);
-		this.hab1.reservar(rango, this.pasajero);
-		this.hab2.reservar(rango, this.pasajero);
-		this.hab3.reservar(rango, this.pasajero);	
-		this.hab4.reservar(rango, this.pasajero);
-		
-		//se arman listas de habitaciones
-		this.listaDeHabitacionesHotel1 = new ArrayList<Habitacion>();
-		this.listaDeHabitacionesHotel1.add(hab1);
-		this.listaDeHabitacionesHotel1.add(hab2);
-		
-		this.listaDeHabitacionesHotel2 = new ArrayList<Habitacion>();
-		this.listaDeHabitacionesHotel2.add(hab3);
-		this.listaDeHabitacionesHotel2.add(hab4);
-		
-		//se agregan habitaciones a hoteles
-		this.hotel1.setHabitaciones(this.listaDeHabitacionesHotel1);
-		this.hotel1.setHabitaciones(this.listaDeHabitacionesHotel2);
-		
-		this.listaDeHoteles = new ArrayList<Hotel>();
-		
-		this.listaDeHoteles.add(this.hotel1);
-		this.listaDeHoteles.add(this.hotel2);
-
-		this.listaDeFiltros = new ArrayList<FiltroBusqueda>();
-		
-	}
 	
 	/**
 	 * Busqueda simple SOLO por nombre de hotel

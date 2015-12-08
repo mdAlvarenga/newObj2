@@ -71,12 +71,12 @@ public class Rango {
 	}
 	
 	//Getters and Setters
-	private DateTime getFechaHasta() {
+	public DateTime getFechaHasta() {
 
 		return this.fechaHasta;
 	}
 
-	private DateTime getFechaDesde() {
+	public DateTime getFechaDesde() {
 		return this.fechaDesde;
 	}
 	

@@ -93,8 +93,8 @@ public class SistemaHoteleroTest extends SistemaHoteleroSetUp{
 	
 	@Test
 	public void cuandoAgregoUnaReservaElSizeDeLaListaDeReservasMeRetorna3() {
-		this.sutSistemaHotelero.agregarReserva(this.tercerReserva);
-		verify(this.gestor).agregarReserva(this.tercerReserva);
+		this.sutSistemaHotelero.agregarReserva(this.tercerReserva,habitacionBianchi,hotelBoca);
+		verify(this.gestor).agregarReserva(this.tercerReserva,habitacionBianchi,hotelBoca);
 	}
 
 	@Test
