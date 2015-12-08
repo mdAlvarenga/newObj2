@@ -1,4 +1,4 @@
-package model;
+package clasesSinTest;
 
 public abstract class Usuario {
 	protected String nombre;

@@ -3,6 +3,10 @@ package model;
 import java.util.Observable;
 import java.util.Observer;
 
+import clasesSinTest.Correo;
+import clasesSinTest.IServidor;
+import clasesSinTest.Usuario;
+
 public class GestorCorreo implements Observer{
 	private IServidor servidor;
 

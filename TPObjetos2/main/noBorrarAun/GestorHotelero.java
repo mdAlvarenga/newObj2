@@ -1,4 +1,4 @@
-package gestorSegunMarcos;
+package noBorrarAun;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,6 +6,8 @@ import java.util.List;
 import model.*;
 
 import org.joda.time.DateTime;
+
+import clasesSinTest.UsuarioHotelero;
 
 public class GestorHotelero extends GestorDeReservas{
 

@@ -1,4 +1,4 @@
-package modelTest;
+package noBorrarAunTest;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
@@ -13,15 +13,15 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-import model.GestorConsultas;
+import clasesSinTest.IServidor;
+import clasesSinTest.Usuario;
+import clasesSinTest.UsuarioHotelero;
+import clasesSinTest.UsuarioPasajero;
+import model.GestorConsulta;
 import model.Habitacion;
 import model.Hotel;
-import model.IServidor;
 import model.Reserva;
 import model.SistemaHotelero;
-import model.Usuario;
-import model.UsuarioHotelero;
-import model.UsuarioPasajero;
 
 public class GestorReservaHoteleroTest {
 	
@@ -82,7 +82,7 @@ public class GestorReservaHoteleroTest {
 		when(hotel1.getHotelero()).thenReturn(this.bruno);
 		when(hotel2.getHotelero()).thenReturn(this.bruno);
 		
-		GestorConsultas gestor = new GestorConsultas(listReservas, listHotel);
+		GestorConsulta gestor = new GestorConsulta(listReservas, listHotel);
 		this.sh = new SistemaHotelero(users, gestor);
 
 	}

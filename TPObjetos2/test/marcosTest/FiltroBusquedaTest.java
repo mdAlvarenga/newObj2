@@ -10,6 +10,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import clasesSinTest.Ciudad;
+import clasesSinTest.Servicio;
+import clasesSinTest.UsuarioPasajero;
 import model.FiltroBusqueda;
 import model.FiltroCantidadHuespedes;
 import model.FiltroCiudadHotel;
@@ -21,8 +23,6 @@ import model.Hotel;
 import model.Precio;
 import model.Rango;
 import model.Reserva;
-import model.Servicio;
-import model.UsuarioPasajero;
 
 
 public class FiltroBusquedaTest {

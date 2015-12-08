@@ -1,23 +1,38 @@
-package gestorSegunMarcos;
+package model;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Habitacion;
-import model.Hotel;
-import model.Reserva;
-import model.UsuarioPasajero;
-
 import org.joda.time.DateTime;
 
 import clasesSinTest.Ciudad;
+import clasesSinTest.UsuarioPasajero;
 
-public class GestorPasajero extends GestorDeReservas {
-
-	public GestorPasajero(List<Reserva> res, List<Hotel> hs) {
-		super(res, hs);
+public class GestorConsulta {
+	protected List<Reserva> reservas;
+	protected List<Hotel> hoteles;
+	
+	public List<Reserva> getReservas() {
+		return reservas;
 	}
 
+	public void setReservas(List<Reserva> reservas) {
+		this.reservas = reservas;
+	}
+
+	public List<Hotel> getHoteles() {
+		return hoteles;
+	}
+
+	public void setHoteles(List<Hotel> hoteles) {
+		this.hoteles = hoteles;
+	}
+	
+	public GestorConsulta(List<Reserva> res, List<Hotel> hs){
+		this.reservas = res;
+		this.hoteles = hs;
+	}
+	
 	/**
 	 * Para un pasajero en particular retorna todas las reservas que estan cargadas en el sistema
 	 * (parte del enunciado "Administracion de pasajeros")
@@ -87,6 +102,14 @@ public class GestorPasajero extends GestorDeReservas {
 				resul.add(r);
 		}
 		return resul;
+	}
+
+	public void agregarReserva(Reserva unaReserva) {
+		this.getReservas().add(unaReserva);
+	}
+
+	public void agregarHotel(Hotel unHotel) {
+		this.getHoteles().add(unHotel);		
 	}
 
 }

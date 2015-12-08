@@ -1,4 +1,4 @@
-package modelTest;
+package mariuTest;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -8,9 +8,9 @@ import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
 
+import clasesSinTest.UsuarioPasajero;
 import model.Rango;
 import model.Reserva;
-import model.UsuarioPasajero;
 
 public class ReservaTest {
 

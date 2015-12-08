@@ -1,4 +1,4 @@
-package model;
+package clasesSinTest;
 
 public class UsuarioHotelero extends Usuario{
 	private String cuit;

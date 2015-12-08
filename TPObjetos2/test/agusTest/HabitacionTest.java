@@ -1,4 +1,4 @@
-package modelTest;
+package agusTest;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -9,13 +9,13 @@ import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
 
+import clasesSinTest.Servicio;
+import clasesSinTest.UsuarioPasajero;
 import model.Habitacion;
 import model.Hotel;
 import model.Precio;
 import model.Rango;
 import model.Reserva;
-import model.Servicio;
-import model.UsuarioPasajero;
 
 public class HabitacionTest {
 	

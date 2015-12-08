@@ -4,14 +4,17 @@ import java.util.List;
 import java.util.Observable;
 
 import clasesSinTest.Ciudad;
+import clasesSinTest.Usuario;
+import clasesSinTest.UsuarioHotelero;
+import clasesSinTest.UsuarioPasajero;
 
 public class SistemaHotelero extends Observable{
 	private List<Usuario> listaDeUsuarios; 
-	private GestorConsultas gestor;
+	private GestorConsulta gestor;
 	//private GestorCorreo gestorCorreo;
 	
 	
-	public SistemaHotelero(List<Usuario> listaDeUsuarios, GestorConsultas gestor) {
+	public SistemaHotelero(List<Usuario> listaDeUsuarios, GestorConsulta gestor) {
 		this.setUsuarios(listaDeUsuarios);
 		//this.setGestorCorreo(gestorCorreo);
 		this.setGestor(gestor); 
@@ -74,11 +77,11 @@ public class SistemaHotelero extends Observable{
 	}
 */
 
-	public GestorConsultas getGestor() {
+	public GestorConsulta getGestor() {
 		return gestor;
 	}
 
-	public void setGestor(GestorConsultas gestor) {
+	public void setGestor(GestorConsulta gestor) {
 		this.gestor = gestor;
 	}
 	

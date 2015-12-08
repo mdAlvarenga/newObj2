@@ -5,6 +5,8 @@ import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
 
+import noBorrarAun.*;
+
 import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,20 +15,19 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import clasesSinTest.Ciudad;
+import clasesSinTest.IServidor;
+import clasesSinTest.Servicio;
+import clasesSinTest.Usuario;
+import clasesSinTest.UsuarioHotelero;
+import clasesSinTest.UsuarioPasajero;
 import model.FiltroBusqueda;
-import model.GestorConsultas;
+import model.GestorConsulta;
 import model.Habitacion;
 import model.Hotel;
-import model.IServidor;
 import model.Precio;
 import model.Rango;
 import model.Reserva;
-import model.Servicio;
 import model.SistemaHotelero;
-import model.Usuario;
-import model.UsuarioHotelero;
-import model.UsuarioPasajero;
-import gestorSegunMarcos.*;
 
 //////////////////////////////
 //import model.SistemaHotelero;
@@ -80,7 +81,7 @@ public class SistemaHoteleroTest {
 	@Mock Ciudad paris;
 	@Mock Ciudad rosario;
 	
-	@Mock GestorConsultas gestor;
+	@Mock GestorConsulta gestor;
 
 	@Before
 	public void setUp(){

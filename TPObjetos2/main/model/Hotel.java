@@ -6,6 +6,8 @@ import java.util.List;
 import org.joda.time.DateTime;
 
 import clasesSinTest.Ciudad;
+import clasesSinTest.Servicio;
+import clasesSinTest.UsuarioHotelero;
 
 public class Hotel {
 	/*CONSIDERACIONES DE LA CLASE:
