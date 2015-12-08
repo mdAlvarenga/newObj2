@@ -17,7 +17,7 @@ Marcos:
 		y no pude hacer todo lo que quise. 
 		MARI --> ahi lo tunie, creo que ya esta reflejando lo que queremos
 		
-		RECUERDENME(a travez del UML) como habiamos quedado si el hotel tenia a su dueï¿½o o un hotelero
+		RECUERDENME(a travez del UML) como habiamos quedado si el hotel tenia a su duenio o un hotelero
 		tiene una lista de hoteles.
 		MARI --> el hotel conoce su duenio. Ya lo puse en el diagrama
 		
@@ -31,8 +31,25 @@ Marcos:
 		 de los hoteleros
 		MARCOS --> Incluso puede pasarse a el mismo al Gestor, y que le gestor le saque lo que necesite jaja 
 		 	   --> Antes de RESERVAR, hay que verificar si se puede reservar(para "manejar" la concurrencia.)
+
 		 	   --> Y Repito algo, no era que la RESERVA tenia habitaciones? asi estaba en la foto del
 		 	   --> diagrama que vimos en clases!! 
 		 	   --> y que la habitacion conocia a su hotel? y que el hotel a su duenio?
-		detallecito--> en el uml dice que hotel tiene pais, eso mandalo a la ciudad.		 	   
+		MARI (LUNES 7) --> NOOOOOOO, esta mal esa flecha en el diagrama del viernes! 
+		¿como la reserva va a tener habitaciones?, no tiene sentido
+		
+		detallecito--> en el uml dice que hotel tiene pais, eso mandalo a la ciudad. 
+		MARI (LUNES 7) --> listo, ya lo cambie en el diagrama y en el codigo
+		
+		MARI(LUNES 7) --> sugiero poner getters y setters SOLO a lo que hace falta y no meterselo a todo porque
+		el porcentaje que codigo que esta testeado se nos va a la mierda y no nos vamos a poner a testear gets y sets
+		
+		MARI(LUNES 7) --> hay que desarrollar que el hotel tenga una lista de formas de pago. Creo que con que haga
+		metodo que se pueda agregar y quitar alguna forma ya estaríamos cubiertos.
+		Esta hecha la estructura que me salio por tdd pero no le encuentro comportamiento para testear... ¿alguna idea?
+		se me ocurre ver si la tarjeta esta vencida, pero creo que ya nos estamos yendo de enunciado al pedo
+		
+		
+		
+		
 		

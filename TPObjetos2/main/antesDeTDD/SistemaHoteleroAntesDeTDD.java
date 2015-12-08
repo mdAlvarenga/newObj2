@@ -92,7 +92,7 @@ public class SistemaHoteleroAntesDeTDD {
 	
 	private void enviarCorreo(String to, String subject, String body){
 		Correo correo = new Correo(to,subject,body);
-		this.getServidor().enviar(correo);
+		this.getServidor().enviarCorreo(correo);
 	}
 
 	//Getters and Setters

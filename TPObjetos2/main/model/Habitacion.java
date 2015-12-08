@@ -88,7 +88,7 @@ public class Habitacion {
 		Double monto = this.calcularMonto(unRango);
 		Reserva reserva = new Reserva(unRango,monto,unUsuario);
 		this.getReservas().add(reserva);
-		unUsuario.agregarHabitacionReservada(this);
+		//unUsuario.agregarHabitacionReservada(this);  ---> ya no se le carga al usuario
 	}
 
 	private Double calcularMonto(Rango unRango){

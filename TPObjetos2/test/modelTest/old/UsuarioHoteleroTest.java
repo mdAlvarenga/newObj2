@@ -19,7 +19,7 @@ import model.UsuarioHotelero;
 import model.UsuarioPasajero;
 
 public class UsuarioHoteleroTest {
-
+/*
 	private UsuarioPasajero usuarioPasajero;
 	private DateTime fechaDesde;
 	private DateTime fechaHasta;
@@ -105,5 +105,5 @@ public class UsuarioHoteleroTest {
 		
 		assertEquals(this.usuarioHotelero.reservasDentroDeNDiasFuturos(4).size(), 2);
 	}
-	
+	*/
 }

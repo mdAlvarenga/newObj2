@@ -1,7 +1,5 @@
 package model;
 
-import java.util.List;
-
 public abstract class Usuario {
 	protected String nombre;
 	protected String apellido;
@@ -14,8 +12,6 @@ public abstract class Usuario {
 		this.setNombre(unNombre);
 		this.setTelefono(unTelefono);
 	}
-	
-	abstract public List<Reserva> reservasFuturas();
 	
 	//Getters and Setters
 	public String getNombre() {

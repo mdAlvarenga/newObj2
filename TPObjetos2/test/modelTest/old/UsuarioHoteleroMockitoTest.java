@@ -17,7 +17,7 @@
 	import model.UsuarioHotelero;
 
 	public class UsuarioHoteleroMockitoTest {
-
+/*
 		private UsuarioHotelero usuario;
 		private Reserva mockReserva1;
 		private Reserva mockReserva2;
@@ -62,7 +62,7 @@
 			when(mockHabitacion2.reservasFuturasDelUsuario(usuario)).thenReturn(listaDeMockReservas4);
 			when(mockHabitacion2.reservasDeUnaCiudadDelUsuario(unaCiudad, usuario)).thenReturn(listaDeMockReservas4);
 			when(mockHabitacion2.ciudadDelHotelDondeEstas()).thenReturn("QUILMES");
-	*/	
+	
 
 			mockHotel1 = Mockito.mock(Hotel.class);
 			when(mockHotel1.reservasDentroDeFecha(hoy)).thenReturn(listaDeMockReservas1);
@@ -90,6 +90,6 @@
 			
 			assertEquals(usuario.reservasDentroDeNDiasFuturos(4).size(), 1);
 		}
-		
+		*/
 	}
 

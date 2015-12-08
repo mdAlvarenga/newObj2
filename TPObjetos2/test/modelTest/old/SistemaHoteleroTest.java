@@ -1,7 +1,7 @@
-package modelTest;
+package modelTest.old;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 
@@ -12,7 +12,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-import model.Ciudad;
 import model.FiltroBusqueda;
 import model.Habitacion;
 import model.Hotel;
@@ -21,13 +20,14 @@ import model.Precio;
 import model.Rango;
 import model.Reserva;
 import model.Servicio;
+
 import model.Usuario;
 import model.UsuarioHotelero;
 import model.UsuarioPasajero;
-import gestorSegunMarcos.*;
+//import gestorSegunMarcos.*;
 
 //////////////////////////////
-//import model.SistemaHotelero;
+import model.SistemaHotelero;
 public class SistemaHoteleroTest {
 
 	private SistemaHotelero sutSistemaHotelero;
@@ -46,10 +46,6 @@ public class SistemaHoteleroTest {
 	private ArrayList<Reserva> listaDeReservas;
 	private ArrayList<Habitacion> listaHabitacionesPrimerFiltro;
 	private ArrayList<Habitacion> listaHabitacionesSegundoFiltro;
-	private ArrayList<Reserva> primerasReservas;
-	private ArrayList<Reserva> todasReservas;
-	private ArrayList<Reserva> reservasFuturas;
-	private ArrayList<Ciudad> ciudadesVisitoMari;
 	
 	@Mock UsuarioPasajero pasajeroMarcos;
 	@Mock UsuarioPasajero pasajeroAgustin;
@@ -74,11 +70,8 @@ public class SistemaHoteleroTest {
 	@Mock Reserva tercerReserva;
 	@Mock FiltroBusqueda primerFiltro;
 	@Mock FiltroBusqueda segundoFiltro;
-	@Mock Ciudad madrid;
-	@Mock Ciudad paris;
-	@Mock Ciudad rosario;
 	
-	@Mock GestorConsultas gestor;
+	//@Mock GestorConsultas gestor;
 
 	@Before
 	public void setUp(){
@@ -116,51 +109,13 @@ public class SistemaHoteleroTest {
 		listaHabitacionesSegundoFiltro = new ArrayList<Habitacion>();
 		listaHabitacionesSegundoFiltro.add(habitacionColonia17);
 		
-		primerasReservas = new ArrayList<Reserva>();
-		todasReservas = new ArrayList<Reserva>();
-		reservasFuturas = new ArrayList<Reserva>();
-		ciudadesVisitoMari = new ArrayList<Ciudad>();
-		
-		
-		//sutSistemaHotelero = new SistemaHotelero(listaDeHoteles, listaDeUsuarios, listaDeReservas, servidor);
-		sutSistemaHotelero = new SistemaHotelero(listaDeUsuarios, gestor);
-		
+		sutSistemaHotelero = new SistemaHotelero(listaDeHoteles, listaDeUsuarios, listaDeReservas, servidor);
+		// 	sutSistemaHotelero = new SistemaHotelero(listaDeUsuarios, servidor, gestor);
+		//listaDeHoteles listaDeReservas
 		//hotelBoca = Mockito.mock(Hotel.class);
 		
 		//verify(mockedList, times(2)).add("twice");
-		
 	}
-	
-	@Test
-	public void cuandoReservo() {	
-		when(gestor.todasReservasFuturasDePasajero(pasajeroAgustin)).thenReturn(reservasFuturas);
-		assertEquals(sutSistemaHotelero.todasReservasFuturasDePasajero(pasajeroAgustin),reservasFuturas);
-	}
-	
-	@Test
-	public void cuandoPidoTodasReservasFuturasDeAgusMeRetornaReservasFuturas() {	
-		when(gestor.todasReservasFuturasDePasajero(pasajeroAgustin)).thenReturn(reservasFuturas);
-		assertEquals(sutSistemaHotelero.todasReservasFuturasDePasajero(pasajeroAgustin),reservasFuturas);
-	}
-	
-	@Test
-	public void cuandoPidoTodasLasCiudadesDondeReservoMariMeRetornaCiudadesVisitoMari() {	
-		when(gestor.ciudadesDondePasajeroTieneReserva(pasajeraMari)).thenReturn(ciudadesVisitoMari);
-		assertEquals(sutSistemaHotelero.ciudadesConReservaDePasajero(pasajeraMari),ciudadesVisitoMari);
-	}
-	
-	@Test
-	public void cuandoPidoTodasReservasDeUsuarioMeRetornaTodasReservas() {	
-		when(gestor.todasReservasDePasajero(pasajeraMari)).thenReturn(todasReservas);
-		assertEquals(sutSistemaHotelero.todasReservasDePasajero(pasajeraMari),todasReservas);
-	}
-	
-	@Test
-	public void cuandoBuscoReservasDeUsuarioPorCiudadMeRetornaPrimerasReservas() {	
-		when(gestor.reservaDePasajeroParaCiudad(pasajeroAgustin, madrid)).thenReturn(primerasReservas);
-		assertEquals(sutSistemaHotelero.reservaDePasajeroParaCiudad(pasajeroAgustin, madrid),primerasReservas);
-	}
-	
 	
 	@Test
 	public void cuandoBuscoHabitacionesEnLosHotelesFiltradosDelPrimerFiltroMeRetornaListaHabitaciones1() {	
@@ -178,39 +133,35 @@ public class SistemaHoteleroTest {
 	@Test
 	public void cuandoBuscoHotelesConElSegundoFiltroRetornaLista2() {
 		when(segundoFiltro.buscar(listaDeHoteles)).thenReturn(listaHotelesSegundoFiltro);
-		when(gestor.getHoteles()).thenReturn(listaDeHoteles);	
 		assertEquals(sutSistemaHotelero.buscarHotelesPorFiltros(segundoFiltro),listaHotelesSegundoFiltro);
 	}
 	
 	@Test
 	public void cuandoBuscoHotelesConElPrimerFiltroRetornaLista1() {
 		when(primerFiltro.buscar(listaDeHoteles)).thenReturn(listaHotelesPrimerFiltro);
-		when(gestor.getHoteles()).thenReturn(listaDeHoteles);
 		assertEquals(sutSistemaHotelero.buscarHotelesPorFiltros(primerFiltro),listaHotelesPrimerFiltro);
 	}
 	
 	@Test
 	public void cuandoPidoElSizeDeLaListaDeReservasMeRetorna2() {
-		when(gestor.getReservas()).thenReturn(listaDeReservas);
-		assertEquals(sutSistemaHotelero.getGestor().getReservas().size(),2);
+		assertEquals(sutSistemaHotelero.getListaDeReservas().size(),2);
 	}
 	
 	@Test
 	public void cuandoAgregoUnaReservaElSizeDeLaListaDeReservasMeRetorna3() {
 		sutSistemaHotelero.agregarReserva(tercerReserva);
-		verify(gestor).agregarReserva(tercerReserva);
+		assertEquals(sutSistemaHotelero.getListaDeReservas().size(),3);
 	}
 
 	@Test
 	public void cuandoPidoElSizeDeLaListaDeHotelesMeRetorna1() {
-		when(gestor.getHoteles()).thenReturn(listaDeHoteles);
-		assertEquals(sutSistemaHotelero.getGestor().getHoteles().size(),1);
+		assertEquals(sutSistemaHotelero.getListaDeHoteles().size(),1);
 	}
 	
 	@Test
 	public void cuandoAgregoUnHotelElSizeDeLaListaDeHotelesMeRetorna2() {
 		sutSistemaHotelero.agregarHotel(hotelBoca);
-		verify(gestor).agregarHotel(hotelBoca);
+		assertEquals(sutSistemaHotelero.getListaDeHoteles().size(),2);
 	}
 	
 	@Test
@@ -223,10 +174,60 @@ public class SistemaHoteleroTest {
 		sutSistemaHotelero.agregarUsuario(pasajeroMarcos);
 		assertEquals(sutSistemaHotelero.getListaDeUsuarios().size(),3);
 	}
-
+	
 	/*@Test
+	public void agregarHotelTest() {
+		this.sh.agregarHotel(hotel2);
+		assertEquals(this.sh.getHoteles().size(),2);
+	}
+
+	@Test
+	public void buscarHotelesFiltradosTest() {
+		this.filtroNombreHotel = new FiltroNombreHotel("AAA");
+		assertEquals(this.sh.buscarHotelesFiltrados(this.filtroNombreHotel).size(),1);
+		
+	}
+	
+
+	@Test
+	public void buscarHabitacionesFiltradasTest() {
+		
+		this.filtroNombreHotel = new FiltroNombreHotel("AAA");
+		assertEquals(this.sh.buscarHabitacionesFiltradas(this.filtroNombreHotel,this.listaDeHoteles).size(),1);
+
+	}
+	
+	@Test
+	public void reservarTest() {
+		
+		// el pasajero 1 tiene 2 reservas
+		assertEquals(this.pasajero1.todasLasReservas().size(),2);
+		
+		//el mismo usuario realiza otra reserva
+		DateTime fechaDesde = new DateTime(2016,10,9,0,0);
+		DateTime fechaHasta = new DateTime(2016,10,30,0,0);	
+		Rango rango = new Rango(fechaDesde, fechaHasta);
+		this.hab1.reservar(rango, this.pasajero1);
+		
+		// ahora deberia tener 3 reservas
+		assertEquals(this.pasajero1.todasLasReservas().size(),3);
+	}
+
+	@Test
 	public void enviarCorreoTest() {
 		fail("Not yet implemented");
 	}*/
 
+	/*
+	 * listaDeHabitacionesHotelBoca = new ArrayList<Habitacion>();
+		listaDeHabitacionesHotelColonial = new ArrayList<Habitacion>();
+		
+		listaDeHabitacionesHotelBoca.add(habitacionBianchi);
+		listaDeHabitacionesHotelBoca.add(habitacionPalermo);
+		listaDeHabitacionesHotelBoca.add(habitacionTevez);
+		listaDeHabitacionesHotelColonial.add(habitacionColonia10);
+		listaDeHabitacionesHotelColonial.add(habitacionColonia17);
+		listaDeHabitacionesHotelColonial.add(habitacionColonia20);
+
+	 */
 }

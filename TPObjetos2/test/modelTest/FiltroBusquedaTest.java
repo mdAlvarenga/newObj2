@@ -9,8 +9,8 @@ import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
 
-import antesDeTDD.FiltroBusquedaAntesTDD;
 import model.Ciudad;
+import model.FiltroBusqueda;
 import model.FiltroCantidadHuespedes;
 import model.FiltroCiudadHotel;
 import model.FiltroCompuesto;
@@ -27,7 +27,7 @@ import model.UsuarioPasajero;
 
 public class FiltroBusquedaTest {
 	
-	private FiltroBusquedaAntesTDD sutBuscador;
+	private FiltroBusqueda sutBuscador;
 	private Hotel hotel1;
 	private Hotel hotel2;
 	private Habitacion hab1;
@@ -41,12 +41,12 @@ public class FiltroBusquedaTest {
 	private List<Habitacion> listaDeHabitacionesHotel1;
 	private List<Habitacion> listaDeHabitacionesHotel2;
 	
-	private List<FiltroBusquedaAntesTDD> listaDeFiltros;
+	private List<FiltroBusqueda> listaDeFiltros;
 	
-	private FiltroBusquedaAntesTDD filtroNombreHotel;
-	private FiltroBusquedaAntesTDD filtroCiudadHotel;
-	private FiltroBusquedaAntesTDD filtroCantidadHuespedes;
-	private FiltroBusquedaAntesTDD filtroRango;
+	private FiltroBusqueda filtroNombreHotel;
+	private FiltroBusqueda filtroCiudadHotel;
+	private FiltroBusqueda filtroCantidadHuespedes;
+	private FiltroBusqueda filtroRango;
 	
 	private Rango rango;
 	private DateTime fechaDesde;
@@ -115,7 +115,7 @@ public class FiltroBusquedaTest {
 		this.listaDeHoteles.add(this.hotel1);
 		this.listaDeHoteles.add(this.hotel2);
 
-		this.listaDeFiltros = new ArrayList<FiltroBusquedaAntesTDD>();
+		this.listaDeFiltros = new ArrayList<FiltroBusqueda>();
 		
 	}
 	

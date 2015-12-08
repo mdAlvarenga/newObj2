@@ -1,6 +1,7 @@
 package gestorSegunMarcos;
 
 import java.util.List;
+import java.util.Observable;
 
 import model.Ciudad;
 import model.FiltroBusqueda;
@@ -11,20 +12,23 @@ import model.Reserva;
 import model.Usuario;
 import model.UsuarioPasajero;
 
-public class SistemaHotelero {
+public class SistemaHotelero extends Observable{
 	private List<Usuario> listaDeUsuarios; 
-	private IServidor servidor;
 	private GestorConsultas gestor;
+	//private GestorCorreo gestorCorreo;
 	
 	
-	public SistemaHotelero(List<Usuario> listaDeUsuarios, IServidor servidor, GestorConsultas gestor) {
+	public SistemaHotelero(List<Usuario> listaDeUsuarios, GestorConsultas gestor) {
 		this.setUsuarios(listaDeUsuarios);
-		this.setServidor(servidor);
+		//this.setGestorCorreo(gestorCorreo);
 		this.setGestor(gestor); 
 	}
 
 	public void agregarReserva(Reserva unaReserva) {
 		this.getGestor().agregarReserva(unaReserva);
+		setChanged();
+		notifyObservers(this);
+		//Aca debe haber tipo un observer con el mail asi envia los mails correspondientes.
 	}
 
 	public void agregarHotel(Hotel unHotel) {
@@ -71,16 +75,16 @@ public class SistemaHotelero {
 		return listaDeUsuarios;
 	}
 
-	public IServidor getServidor() {
-		return servidor;
-	}
-
 	private void setUsuarios(List<Usuario> listaDeUsuarios) {
 		this.listaDeUsuarios = listaDeUsuarios;
 	}
 
-	private void setServidor(IServidor servidor) {
-		this.servidor = servidor;
+	/*public GestorCorreo getGestorCorreo() {
+		return gestorCorreo;
 	}
+	
+	private void setGestorCorreo(GestorCorreo gestorCorreo) {
+		this.gestorCorreo = gestorCorreo;
+	}*/
 
 }

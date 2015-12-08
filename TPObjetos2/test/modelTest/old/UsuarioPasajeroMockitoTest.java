@@ -16,7 +16,7 @@ import model.UsuarioPasajero;
 
 
 public class UsuarioPasajeroMockitoTest {
-
+/*
 	private UsuarioPasajero usuario;
 	private String unaCiudad;
 	private Habitacion mockHabitacion1;
@@ -97,6 +97,6 @@ public class UsuarioPasajeroMockitoTest {
 		verify(mockHabitacion2, times(1)).cancelaSiPodes(mockReserva1);
 		verify(mockHabitacion1, times(1)).cancelaSiPodes(mockReserva1);
 	}
-	
+	*/
 	// FALTA LA MODIFICACION DE LA RESERVA
 }
