@@ -1,4 +1,4 @@
-package algunoTesteeFiltrosYtodasLasVariantesDeLaManeraQueGusteJAJA;
+package mariuTest;
 
 import static org.junit.Assert.assertEquals;
 
