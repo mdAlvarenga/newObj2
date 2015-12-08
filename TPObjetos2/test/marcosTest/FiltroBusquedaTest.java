@@ -25,7 +25,7 @@ import model.Rango;
 import model.Reserva;
 
 
-public class FiltroBusquedaTest {
+public class FiltroBusquedaTest extends FiltroBusquedaSetUp{
 	
 	private FiltroBusqueda sutBuscador;
 	private Hotel hotel1;

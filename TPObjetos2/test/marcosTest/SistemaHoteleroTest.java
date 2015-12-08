@@ -6,110 +6,117 @@ import static org.mockito.Mockito.when;
 
 import org.junit.Test;
 
-public class SistemaHoteleroTest extends SistemaHoteleroAbstractTest{
+public class SistemaHoteleroTest extends SistemaHoteleroSetUp{
 	
 	@Test
 	public void cuandoPidoReservasConInicioEnNDiasDeLaHoteleraGilMeRetornaReservasFuturasEnNDiasHotelero() {	
-		when(gestor.ReservasInicioEnNFuturosDiasHotelero(hoteleraGil, 3)).thenReturn(reservasFuturasEnNDiasHotelero);
-		assertEquals(sutSistemaHotelero.ReservasInicioEnNFuturosDiasHotelero(hoteleraGil, 3),reservasFuturasEnNDiasHotelero);
+		when(this.gestor.ReservasInicioEnNFuturosDiasHotelero(this.hoteleraGil, 3))
+				.thenReturn(this.reservasFuturasEnNDiasHotelero);
+		assertEquals(this.sutSistemaHotelero
+						.ReservasInicioEnNFuturosDiasHotelero(this.hoteleraGil, 3),this.reservasFuturasEnNDiasHotelero);
 	}
 	
 	@Test
 	public void cuandoPidoTodasLasReservasFuturasDeLosHotelesDeGilMeRetornareservasFuturasHotelero() {	
-		when(gestor.ReservasFuturasDeHotelero(hoteleraGil)).thenReturn(reservasFuturasHotelero);
-		assertEquals(sutSistemaHotelero.ReservasFuturasDeHotelero(hoteleraGil),reservasFuturasHotelero);
+		when(this.gestor.ReservasFuturasDeHotelero(this.hoteleraGil)).thenReturn(this.reservasFuturasHotelero);
+		assertEquals(this.sutSistemaHotelero.ReservasFuturasDeHotelero(this.hoteleraGil),this.reservasFuturasHotelero);
 	}
 	
 	@Test
 	public void cuandoPidoTodasLasReservasActualesDeLosHotelesDeSmithMeRetornareservasActualesHotelero() {	
-		when(gestor.ReservasActualesDeHotelero(hoteleroSmith)).thenReturn(reservasActualesHotelero);
-		assertEquals(sutSistemaHotelero.todasReservasActualesDeHotelero(hoteleroSmith),reservasActualesHotelero);
+		when(this.gestor.ReservasActualesDeHotelero(this.hoteleroSmith)).thenReturn(this.reservasActualesHotelero);
+		assertEquals(this.sutSistemaHotelero
+						.todasReservasActualesDeHotelero(this.hoteleroSmith),this.reservasActualesHotelero);
 	}
 	
 	@Test
 	public void cuandoPidoTodasReservasFuturasDeAgusMeRetornaReservasFuturas() {	
-		when(gestor.todasReservasFuturasDePasajero(pasajeroAgustin)).thenReturn(reservasFuturas);
-		assertEquals(sutSistemaHotelero.todasReservasFuturasDePasajero(pasajeroAgustin),reservasFuturas);
+		when(this.gestor.todasReservasFuturasDePasajero(this.pasajeroAgustin)).thenReturn(this.reservasFuturas);
+		assertEquals(this.sutSistemaHotelero.todasReservasFuturasDePasajero(this.pasajeroAgustin),this.reservasFuturas);
 	}
 	
 	@Test
 	public void cuandoPidoTodasLasCiudadesDondeReservoMariMeRetornaCiudadesVisitoMari() {	
-		when(gestor.ciudadesDondePasajeroTieneReserva(pasajeraMari)).thenReturn(ciudadesVisitoMari);
-		assertEquals(sutSistemaHotelero.ciudadesConReservaDePasajero(pasajeraMari),ciudadesVisitoMari);
+		when(this.gestor.ciudadesDondePasajeroTieneReserva(this.pasajeraMari)).thenReturn(this.ciudadesVisitoMari);
+		assertEquals(this.sutSistemaHotelero.ciudadesConReservaDePasajero(this.pasajeraMari),this.ciudadesVisitoMari);
 	}
 	
 	@Test
 	public void cuandoPidoTodasReservasDeUsuarioMeRetornaTodasReservas() {	
-		when(gestor.todasReservasDePasajero(pasajeraMari)).thenReturn(todasReservas);
-		assertEquals(sutSistemaHotelero.todasReservasDePasajero(pasajeraMari),todasReservas);
+		when(this.gestor.todasReservasDePasajero(this.pasajeraMari)).thenReturn(this.todasReservas);
+		assertEquals(this.sutSistemaHotelero.todasReservasDePasajero(this.pasajeraMari),this.todasReservas);
 	}
 	
 	@Test
 	public void cuandoBuscoReservasDeUsuarioPorCiudadMeRetornaPrimerasReservas() {	
-		when(gestor.reservaDePasajeroParaCiudad(pasajeroAgustin, madrid)).thenReturn(primerasReservas);
-		assertEquals(sutSistemaHotelero.reservaDePasajeroParaCiudad(pasajeroAgustin, madrid),primerasReservas);
+		when(this.gestor.reservaDePasajeroParaCiudad(this.pasajeroAgustin,this.madrid))
+				.thenReturn(this.primerasReservas);
+		assertEquals(this.sutSistemaHotelero
+						.reservaDePasajeroParaCiudad(this.pasajeroAgustin, this.madrid),this.primerasReservas);
 	}
 	
 	
 	@Test
 	public void cuandoBuscoHabitacionesEnLosHotelesFiltradosDelPrimerFiltroMeRetornaListaHabitaciones1() {	
-		when(primerFiltro.buscarHabitaciones(hotelBoca)).thenReturn(listaHabitacionesPrimerFiltro);
-		assertEquals(sutSistemaHotelero.filtrarHabitaciones(primerFiltro, hotelBoca),listaHabitacionesPrimerFiltro);
+		when(this.primerFiltro.buscarHabitaciones(this.hotelBoca)).thenReturn(this.listaHabitacionesPrimerFiltro);
+		assertEquals(this.sutSistemaHotelero
+						.filtrarHabitaciones(this.primerFiltro,this.hotelBoca),this.listaHabitacionesPrimerFiltro);
 	}
 	
 	@Test
 	public void cuandoBuscoHabitacionesEnLosHotelesDelSegundoFiltroMeRetornaListaHabitaciones2() {
-		when(segundoFiltro.buscarHabitaciones(hotelColonial)).thenReturn(listaHabitacionesSegundoFiltro);
-		assertEquals(sutSistemaHotelero
-						.filtrarHabitaciones(segundoFiltro,hotelColonial),listaHabitacionesSegundoFiltro);
+		when(this.segundoFiltro.buscarHabitaciones(this.hotelColonial)).thenReturn(this.listaHabitacionesSegundoFiltro);
+		assertEquals(this.sutSistemaHotelero
+						.filtrarHabitaciones(this.segundoFiltro,this.hotelColonial),this.listaHabitacionesSegundoFiltro);
 	}
 	
 	@Test
 	public void cuandoBuscoHotelesConElSegundoFiltroRetornaLista2() {
-		when(segundoFiltro.buscar(listaDeHoteles)).thenReturn(listaHotelesSegundoFiltro);
-		when(gestor.getHoteles()).thenReturn(listaDeHoteles);	
-		assertEquals(sutSistemaHotelero.buscarHotelesPorFiltros(segundoFiltro),listaHotelesSegundoFiltro);
+		when(this.segundoFiltro.buscar(this.listaDeHoteles)).thenReturn(this.listaHotelesSegundoFiltro);
+		when(this.gestor.getHoteles()).thenReturn(this.listaDeHoteles);	
+		assertEquals(this.sutSistemaHotelero.buscarHotelesPorFiltros(this.segundoFiltro)
+																		,this.listaHotelesSegundoFiltro);
 	}
 	
 	@Test
 	public void cuandoBuscoHotelesConElPrimerFiltroRetornaLista1() {
-		when(primerFiltro.buscar(listaDeHoteles)).thenReturn(listaHotelesPrimerFiltro);
-		when(gestor.getHoteles()).thenReturn(listaDeHoteles);
-		assertEquals(sutSistemaHotelero.buscarHotelesPorFiltros(primerFiltro),listaHotelesPrimerFiltro);
+		when(this.primerFiltro.buscar(this.listaDeHoteles)).thenReturn(this.listaHotelesPrimerFiltro);
+		when(this.gestor.getHoteles()).thenReturn(this.listaDeHoteles);
+		assertEquals(this.sutSistemaHotelero.buscarHotelesPorFiltros(this.primerFiltro),this.listaHotelesPrimerFiltro);
 	}
 	
 	@Test
 	public void cuandoPidoElSizeDeLaListaDeReservasMeRetorna2() {
-		when(gestor.getReservas()).thenReturn(listaDeReservas);
-		assertEquals(sutSistemaHotelero.getGestor().getReservas().size(),2);
+		when(this.gestor.getReservas()).thenReturn(this.listaDeReservas);
+		assertEquals(this.sutSistemaHotelero.getGestor().getReservas().size(),2);
 	}
 	
 	@Test
 	public void cuandoAgregoUnaReservaElSizeDeLaListaDeReservasMeRetorna3() {
-		sutSistemaHotelero.agregarReserva(tercerReserva);
-		verify(gestor).agregarReserva(tercerReserva);
+		this.sutSistemaHotelero.agregarReserva(this.tercerReserva);
+		verify(this.gestor).agregarReserva(this.tercerReserva);
 	}
 
 	@Test
 	public void cuandoPidoElSizeDeLaListaDeHotelesMeRetorna1() {
-		when(gestor.getHoteles()).thenReturn(listaDeHoteles);
-		assertEquals(sutSistemaHotelero.getGestor().getHoteles().size(),1);
+		when(this.gestor.getHoteles()).thenReturn(this.listaDeHoteles);
+		assertEquals(this.sutSistemaHotelero.getGestor().getHoteles().size(),1);
 	}
 	
 	@Test
 	public void cuandoAgregoUnHotelElSizeDeLaListaDeHotelesMeRetorna2() {
-		sutSistemaHotelero.agregarHotel(hotelBoca);
-		verify(gestor).agregarHotel(hotelBoca);
+		this.sutSistemaHotelero.agregarHotel(this.hotelBoca);
+		verify(this.gestor).agregarHotel(this.hotelBoca);
 	}
 	
 	@Test
 	public void cuandoPidoElSizeDeLaListaDeUsuariosMeRetorna2() {
-		assertEquals(sutSistemaHotelero.getListaDeUsuarios().size(),2);
+		assertEquals(this.sutSistemaHotelero.getListaDeUsuarios().size(),2);
 	}
 	
 	@Test
 	public void cuandoAgregoUnUsuarioElSizeDeLaListaDeUsuariosMeRetorna3() {
-		sutSistemaHotelero.agregarUsuario(pasajeroMarcos);
-		assertEquals(sutSistemaHotelero.getListaDeUsuarios().size(),3);
+		this.sutSistemaHotelero.agregarUsuario(this.pasajeroMarcos);
+		assertEquals(this.sutSistemaHotelero.getListaDeUsuarios().size(),3);
 	}
 }

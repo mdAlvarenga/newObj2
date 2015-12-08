@@ -1,5 +1,5 @@
 package marcosTest;
 
-public class GestorConsultaTest {
+public class GestorConsultaTest extends GestorConsultaSetUp{
 
 }

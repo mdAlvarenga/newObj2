@@ -1,5 +1,5 @@
 package marcosTest;
 
-public class GestorCorreoTest {
+public class GestorCorreoTest extends GestorCorreoSetUp{
 
 }
