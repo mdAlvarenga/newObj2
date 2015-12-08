@@ -1,5 +1,6 @@
-package model;
+package clasesSinTest;
 
 public interface FormaDePago {
 
 }
+

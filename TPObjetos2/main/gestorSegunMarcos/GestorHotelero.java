@@ -1,7 +1,9 @@
-package model;
+package gestorSegunMarcos;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import model.*;
 
 import org.joda.time.DateTime;
 
@@ -63,3 +65,4 @@ public class GestorHotelero extends GestorDeReservas{
 		return res;
 	}
 }
+

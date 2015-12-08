@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.joda.time.DateTime;
 
+import clasesSinTest.Ciudad;
+
 public class Hotel {
 	/*CONSIDERACIONES DE LA CLASE:
 	 *		Dudas con formas de pago. No hay necesidad de hacerlas clases, pero por otro lado, 

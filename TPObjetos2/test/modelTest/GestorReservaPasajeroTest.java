@@ -13,7 +13,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-import model.Ciudad;
+import clasesSinTest.Ciudad;
+import model.GestorConsultas;
 import model.Habitacion;
 import model.Hotel;
 import model.IServidor;
@@ -94,9 +95,9 @@ public class GestorReservaPasajeroTest {
 		
 		
 		when(habitacion1.reservasDelUsuario(this.felipe)).thenReturn(this.listReservas);
-		
-		
-		this.sh = new SistemaHotelero(listHotel, users, listReservas, server);
+		GestorConsultas gestor = Mockito.mock(GestorConsultas.class);
+		 
+		this.sh = new SistemaHotelero(users, gestor);
 
 	}
 

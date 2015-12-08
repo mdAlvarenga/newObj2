@@ -1,4 +1,4 @@
-package modelTest;
+package marcosTest;
 
 import static org.junit.Assert.assertEquals;
 
@@ -9,7 +9,7 @@ import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
 
-import model.Ciudad;
+import clasesSinTest.Ciudad;
 import model.FiltroBusqueda;
 import model.FiltroCantidadHuespedes;
 import model.FiltroCiudadHotel;
@@ -64,10 +64,10 @@ public class FiltroBusquedaTest {
 	private Rango wRango;
 	@Before
 	public void setUp(){
-		quilmes = new Ciudad("Quilmes");
-		bernal = new Ciudad("Bernal");
-		avellaneda = new Ciudad("Avellaneda");
-		wilde = new Ciudad("Wilde");
+		quilmes = new Ciudad("Quilmes", "Argentina");
+		bernal = new Ciudad("Bernal", "Argentina");
+		avellaneda = new Ciudad("Avellaneda", "Argentina");
+		wilde = new Ciudad("Wilde", "Argentina");
 		this.pasajero = new UsuarioPasajero(null, null, null, null, 4);
 		
 		this.hotel1 = new Hotel("AAA", quilmes, new ArrayList<Habitacion>(), 

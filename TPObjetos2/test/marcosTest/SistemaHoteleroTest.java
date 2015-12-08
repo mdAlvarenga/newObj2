@@ -1,4 +1,4 @@
-package modelTest;
+package marcosTest;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
@@ -12,8 +12,9 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-import model.Ciudad;
+import clasesSinTest.Ciudad;
 import model.FiltroBusqueda;
+import model.GestorConsultas;
 import model.Habitacion;
 import model.Hotel;
 import model.IServidor;
@@ -21,6 +22,7 @@ import model.Precio;
 import model.Rango;
 import model.Reserva;
 import model.Servicio;
+import model.SistemaHotelero;
 import model.Usuario;
 import model.UsuarioHotelero;
 import model.UsuarioPasajero;

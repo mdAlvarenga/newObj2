@@ -1,15 +1,14 @@
-package model;
+package clasesSinTest;
 
-public class Banco {
+public class Marca {
 
 	private String nombre;
 
-	public Banco(String unNombre) {
+	public Marca(String unNombre) {
 		this.nombre = unNombre;
 	}
 
 	String getNombre() {
 		return nombre;
 	}
-
 }

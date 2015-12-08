@@ -1,6 +1,9 @@
-package model;
+package gestorSegunMarcos;
 
 import java.util.List;
+
+import model.Hotel;
+import model.Reserva;
 
 public class GestorDeReservas {
 	

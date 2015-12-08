@@ -3,6 +3,8 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import clasesSinTest.Ciudad;
+
 public class FiltroCiudadHotel extends FiltroBusqueda{
 	private Ciudad ciudadABuscar;
 	

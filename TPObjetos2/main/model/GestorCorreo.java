@@ -1,14 +1,7 @@
-package gestorSegunMarcos;
+package model;
 
 import java.util.Observable;
 import java.util.Observer;
-
-import model.Correo;
-import model.Habitacion;
-import model.IServidor;
-import model.Rango;
-import model.Usuario;
-import model.UsuarioPasajero;
 
 public class GestorCorreo implements Observer{
 	private IServidor servidor;

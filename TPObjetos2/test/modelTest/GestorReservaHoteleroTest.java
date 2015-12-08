@@ -13,6 +13,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
+import model.GestorConsultas;
 import model.Habitacion;
 import model.Hotel;
 import model.IServidor;
@@ -81,7 +82,8 @@ public class GestorReservaHoteleroTest {
 		when(hotel1.getHotelero()).thenReturn(this.bruno);
 		when(hotel2.getHotelero()).thenReturn(this.bruno);
 		
-		this.sh = new SistemaHotelero(listHotel, users, listReservas, server);
+		GestorConsultas gestor = new GestorConsultas(listReservas, listHotel);
+		this.sh = new SistemaHotelero(users, gestor);
 
 	}
 
