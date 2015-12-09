@@ -6,10 +6,9 @@ import java.util.Observable;
 
 import org.joda.time.DateTime;
 
-import clasesSinTest.BodyMailBuilder;
-import clasesSinTest.Ciudad;
-import clasesSinTest.UsuarioHotelero;
-import clasesSinTest.UsuarioPasajero;
+import clasesPorCompletitud.Ciudad;
+import clasesPorCompletitud.UsuarioHotelero;
+import clasesPorCompletitud.UsuarioPasajero;
 
 public class GestorConsulta extends Observable{
 	protected List<Reserva> reservas;
@@ -19,16 +18,8 @@ public class GestorConsulta extends Observable{
 		return reservas;
 	}
 
-	public void setReservas(List<Reserva> reservas) {
-		this.reservas = reservas;
-	}
-
 	public List<Hotel> getHoteles() {
 		return hoteles;
-	}
-
-	public void setHoteles(List<Hotel> hoteles) {
-		this.hoteles = hoteles;
 	}
 	
 	public GestorConsulta(List<Reserva> res, List<Hotel> hs){
@@ -113,12 +104,12 @@ public class GestorConsulta extends Observable{
 		//ACA ME PARECE QUE DEBERIA VERIFICAR QUE SE PUEDA RESERVAR
 		this.getReservas().add(unaReserva);
 		for(Hotel h: this.getHoteles()){
-			if (h.equals(unHotel)){
+			boolean igual = h.equals(unHotel); 
+			if (igual){
 				h.agregarReservaEnHabitacion(unaHabitacion, unaReserva);
 			}
 		}
-		BodyMailBuilder body = new BodyMailBuilder();
-		//body.buildBodyMail(unaReserva, unaHabitacion, unHotel);
+		BodyMailBuilder body = new BodyMailBuilder(unaReserva, unaHabitacion, unHotel);
 		setChanged();
 		notifyObservers(body);
 	}
@@ -127,22 +118,53 @@ public class GestorConsulta extends Observable{
 		this.getHoteles().add(unHotel);		
 	}
 
+	/**
+	 * Busca una lista de reservas donde los pasajeros se encuentren en el hotel actualmente
+	 * (parte del enunciado "Administracion de Hoteles")
+	 * @param unPasajero
+	 * @return listado de reservas
+	 */
 	public List<Reserva> ReservasActualesDeHotelero(UsuarioHotelero unHotelero) {
-		// TODO Auto-generated method stub
-		return null;
+		DateTime hoy = new DateTime();
+		List<Reserva> reservasActuales = new ArrayList<Reserva>();
+		for(Hotel hotel:this.getHoteles()){
+			if (hotel.getHotelero().equals(unHotelero))
+				reservasActuales.addAll(hotel.reservasDentroDeFecha(hoy));
+		}
+		return reservasActuales;
 	}
 
+	/**
+	 * Se buscan fechas de ingreso que sean posteriores a la fecha actual
+	 * (parte del enunciado "Administracion de Hoteles")
+	 * @param unHotelero
+	 * @return lista de reservas
+	 */
 	public List<Reserva> ReservasFuturasDeHotelero(UsuarioHotelero unHotelero) {
-		// TODO Auto-generated method stub
-		return null;
+		DateTime hoy = new DateTime();
+		List<Reserva> reservasFuturas = new ArrayList<Reserva>();
+		for(Hotel hotel:this.getHoteles()){
+			if (hotel.getHotelero().equals(unHotelero))
+				reservasFuturas.addAll(hotel.reservasConFechaMayorA(hoy));
+		}
+		return reservasFuturas;
 	}
 	
-	public List<Reserva> ReservasInicioEnNFuturosDiasHotelero(
-			UsuarioHotelero unHotelero, int i) {
-		// TODO Auto-generated method stub
-		return null;
+	/**
+	 * Se busca y devuelve las reservas realizadas en los hoteles
+	 * (parte del enunciado "Administracion de Hoteles")
+	 * @param unHotelero
+	 * @param i 
+	 * @return lista de reservas
+	 */
+	public List<Reserva> ReservasInicioEnNFuturosDiasHotelero(UsuarioHotelero unHotelero, int nDias){
+		List<Reserva> reservasInicioEnNDias = new ArrayList<Reserva>();
+		DateTime hoy = new DateTime().toDateTime();
+		DateTime fechaFutura = hoy.plusDays(nDias);
+		for(Hotel hotel:this.getHoteles()){
+			if (hotel.getHotelero().equals(unHotelero))
+				reservasInicioEnNDias.addAll(hotel.reservasConFechaMayorA(fechaFutura));
+		}
+		return reservasInicioEnNDias;
 	}
-
-	
-
 }

@@ -2,10 +2,10 @@ package model;
 
 import java.util.List;
 
-import clasesSinTest.Ciudad;
-import clasesSinTest.Usuario;
-import clasesSinTest.UsuarioHotelero;
-import clasesSinTest.UsuarioPasajero;
+import clasesPorCompletitud.Ciudad;
+import clasesPorCompletitud.Usuario;
+import clasesPorCompletitud.UsuarioHotelero;
+import clasesPorCompletitud.UsuarioPasajero;
 
 public class SistemaHotelero{
 	private List<Usuario> listaDeUsuarios; 

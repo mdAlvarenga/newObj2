@@ -2,7 +2,7 @@ package model;
 
 import org.joda.time.DateTime;
 
-import clasesSinTest.Usuario;
+import clasesPorCompletitud.Usuario;
 import model.Rango;
 
 public class Reserva {

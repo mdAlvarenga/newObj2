@@ -1,4 +1,4 @@
-package clasesSinTest;
+package clasesPorCompletitud;
 
 
 public interface IServidor {

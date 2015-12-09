@@ -2,7 +2,7 @@ package model;
 
 public class Categoria {
 
-	private Integer cantidadDeEstrellas;
+	private int cantidadDeEstrellas;
 
 	public Categoria(Integer unaCantidadDeEstrellas) {
 		cantidadDeEstrellas = unaCantidadDeEstrellas;

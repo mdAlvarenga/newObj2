@@ -11,9 +11,9 @@ import org.junit.Test;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-import clasesSinTest.Ciudad;
-import clasesSinTest.Servicio;
-import clasesSinTest.UsuarioHotelero;
+import clasesPorCompletitud.Ciudad;
+import clasesPorCompletitud.Servicio;
+import clasesPorCompletitud.UsuarioHotelero;
 import model.Categoria;
 import model.Direccion;
 import model.Habitacion;

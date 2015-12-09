@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-import clasesSinTest.Ciudad;
+import clasesPorCompletitud.Ciudad;
 
 public class FiltroCiudadHotel extends FiltroBusqueda{
 	private Ciudad ciudadABuscar;

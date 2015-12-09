@@ -5,25 +5,21 @@ import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.joda.time.DateTime;
+import org.junit.Before;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+
+import clasesPorCompletitud.Ciudad;
+import clasesPorCompletitud.Usuario;
+import clasesPorCompletitud.UsuarioHotelero;
+import clasesPorCompletitud.UsuarioPasajero;
 import model.GestorConsulta;
 import model.GestorCorreo;
 import model.Habitacion;
 import model.Hotel;
 import model.Rango;
 import model.Reserva;
-import model.SistemaHotelero;
-
-import org.joda.time.DateTime;
-import org.junit.Before;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
-
-import clasesSinTest.Ciudad;
-import clasesSinTest.IServidor;
-import clasesSinTest.Usuario;
-import clasesSinTest.UsuarioHotelero;
-import clasesSinTest.UsuarioPasajero;
 
 public class GestorConsultaSetUp {
 	protected GestorConsulta sutGestor;
@@ -116,28 +112,6 @@ public class GestorConsultaSetUp {
 		when(this.hotelIntercontinental.getCiudad()).thenReturn(this.newYork);
 		when(this.hotelParis.getCiudad()).thenReturn(this.paris);
 		when(this.hotelRosario.getCiudad()).thenReturn(this.rosario);
-	
-		fechaDesdeReserva1Agus = new DateTime("2015-05-05"); 
-		fechaHastaReserva1Agus = new DateTime("2015-05-10");
-		fechaDesdeReserva2Agus = new DateTime("2015-07-14");
-		fechaHastaReserva2Agus = new DateTime("2015-07-30");
-		fechaDesdeReserva3Agus = new DateTime("2015-08-20");
-		fechaHastaReserva3Agus = new DateTime("2015-09-20");
-		fechaDesdeReserva1Mari = new DateTime("2015-12-15");
-		fechaHastaReserva1Mari = new DateTime("2016-02-15");
-		fechaDesdeReserva2Mari = new DateTime("2015-04-15");
-		fechaHastaReserva2Mari = new DateTime("2015-05-30");
-		
-		when(this.rangoReserva1Agus.getFechaDesde()).thenReturn(this.fechaDesdeReserva1Agus);
-		when(this.rangoReserva1Agus.getFechaHasta()).thenReturn(this.fechaHastaReserva1Agus);
-		when(this.rangoReserva2Agus.getFechaDesde()).thenReturn(this.fechaDesdeReserva2Agus);
-		when(this.rangoReserva2Agus.getFechaHasta()).thenReturn(this.fechaHastaReserva2Agus);
-		when(this.rangoReserva3Agus.getFechaDesde()).thenReturn(this.fechaDesdeReserva3Agus);
-		when(this.rangoReserva3Agus.getFechaHasta()).thenReturn(this.fechaHastaReserva3Agus);
-		when(this.rangoReserva1Mari.getFechaDesde()).thenReturn(this.fechaDesdeReserva1Mari);
-		when(this.rangoReserva1Mari.getFechaHasta()).thenReturn(this.fechaHastaReserva1Mari);
-		when(this.rangoReserva2Mari.getFechaDesde()).thenReturn(this.fechaDesdeReserva2Mari);
-		when(this.rangoReserva2Mari.getFechaHasta()).thenReturn(this.fechaHastaReserva2Mari);
 		
 		when(this.resAgus1.getUsuarioQueReserva()).thenReturn(this.pasajeroAgustin);
 		when(this.resAgus2.getUsuarioQueReserva()).thenReturn(this.pasajeroAgustin);
@@ -201,10 +175,14 @@ public class GestorConsultaSetUp {
 		when(this.hotelParis.getHabitaciones()).thenReturn(this.habitacionesParis);
 		when(this.hotelRosario.getHabitaciones()).thenReturn(this.habitacionesRosario);
 		
-		when(this.hotelColonial.getHabitaciones()).thenReturn(this.habitacionesColonial);
-		when(this.hotelIntercontinental.getHabitaciones()).thenReturn(this.habitacionesIntercontinental);
-		when(this.hotelParis.getHabitaciones()).thenReturn(this.habitacionesParis);
-		when(this.hotelRosario.getHabitaciones()).thenReturn(this.habitacionesRosario);
+		when(this.hotelBoca.getHotelero()).thenReturn(hoteleroSmith);
+		when(this.hotelColonial.getHotelero()).thenReturn(hoteleroSmith);
+		when(this.hotelIntercontinental.getHotelero()).thenReturn(hoteleraGil);
+		when(this.hotelParis.getHotelero()).thenReturn(hoteleraGil);
+		when(this.hotelRosario.getHotelero()).thenReturn(hoteleraGil);
+		
+		when(this.hotelRosario.reservasDentroDeFecha(hoy)).thenReturn(reservasMariHabRosario1);
+		when(this.hotelParis.reservasDentroDeFecha(hoy)).thenReturn(reservasMariHabParis2);	
 		
 		listaReservas.add(resAgus1);
 		listaReservas.add(resAgus2);

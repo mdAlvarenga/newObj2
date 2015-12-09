@@ -13,11 +13,11 @@ import org.junit.Before;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import clasesSinTest.Ciudad;
-import clasesSinTest.IServidor;
-import clasesSinTest.Usuario;
-import clasesSinTest.UsuarioHotelero;
-import clasesSinTest.UsuarioPasajero;
+import clasesPorCompletitud.Ciudad;
+import clasesPorCompletitud.IServidor;
+import clasesPorCompletitud.Usuario;
+import clasesPorCompletitud.UsuarioHotelero;
+import clasesPorCompletitud.UsuarioPasajero;
 
 public abstract class SistemaHoteleroSetUp {
 

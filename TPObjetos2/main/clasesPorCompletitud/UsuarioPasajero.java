@@ -1,4 +1,6 @@
-package clasesSinTest;
+package clasesPorCompletitud;
+
+import model.Telefono;
 
 public class UsuarioPasajero extends Usuario {
 	/*
@@ -9,7 +11,7 @@ public class UsuarioPasajero extends Usuario {
 	
 	//private String datosTarjetaDeCredito; //Modelar las formas d pago y la marca de la tarjeta
 
-	public UsuarioPasajero(String unNombre, String unApellido, String unMail, String unTelefono,
+	public UsuarioPasajero(String unNombre, String unApellido, String unMail, Telefono unTelefono,
 							int dni){	
 		super(unNombre, unApellido, unMail, unTelefono);
 		this.setDni(dni);

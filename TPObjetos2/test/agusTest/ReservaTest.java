@@ -8,7 +8,7 @@ import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
 
-import clasesSinTest.UsuarioPasajero;
+import clasesPorCompletitud.UsuarioPasajero;
 import model.Rango;
 import model.Reserva;
 

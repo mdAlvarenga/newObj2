@@ -9,9 +9,9 @@ import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
 
-import clasesSinTest.Ciudad;
-import clasesSinTest.Servicio;
-import clasesSinTest.UsuarioPasajero;
+import clasesPorCompletitud.Ciudad;
+import clasesPorCompletitud.Servicio;
+import clasesPorCompletitud.UsuarioPasajero;
 import model.FiltroBusqueda;
 import model.FiltroCantidadHuespedes;
 import model.FiltroCiudadHotel;

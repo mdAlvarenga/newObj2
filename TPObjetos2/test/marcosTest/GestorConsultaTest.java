@@ -3,17 +3,51 @@ package marcosTest;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.times;
 
+import org.joda.time.DateTime;
 import org.junit.Test;
 
-public class GestorConsultaTest extends GestorConsultaSetUp{
-//public void agregarReserva(Reserva unaReserva, Habitacion unaHabitacion, Hotel unHotel);	
+public class GestorConsultaTest extends GestorConsultaSetUp{		
+	
 	@Test 
-	public void cuandoAgregoUnaReservaElSizeDeLasReservasCambiaA7(){
-		//verify(hotelBoca).agregarReservaEnHabitacion(habitacionBoca2, nuevaReserva);
-		sutGestor.agregarReserva(nuevaReserva, habitacionBoca2, hotelBoca);
-		assertEquals(sutGestor.getReservas().size(),7);
+	public void 
+		verificaTantoLlamadasComoNoLlamadasAMetodosDeDistintosHotelesCuandoReservoParaNFuturosDias(){
 		
+		sutGestor.ReservasInicioEnNFuturosDiasHotelero(hoteleraGil, 5);
+		DateTime fechaComparacion= hoy.plusDays(5);
+		verify(hotelParis).reservasConFechaMayorA(fechaComparacion);
+		verify(hotelIntercontinental).reservasConFechaMayorA(fechaComparacion);
+		verify(hotelRosario).reservasConFechaMayorA(fechaComparacion);
+		verify(hotelBoca, times(0)).reservasConFechaMayorA(fechaComparacion);
+		verify(hotelColonial, times(0)).reservasConFechaMayorA(fechaComparacion);
+	}
+	
+	@Test 
+	public void cuandoPidoLasReservasFuturasDelHoteleroSmithVerificaLlamadoAMetodoDeHotel2Veces(){
+		sutGestor.ReservasFuturasDeHotelero(hoteleroSmith);
+		verify(hotelBoca).reservasConFechaMayorA(hoy);
+		verify(hotelColonial).reservasConFechaMayorA(hoy);
+	}
+	
+	@Test 
+	public void cuandoPidoLasReservasActualesDeLaHoteleraGilVerificaLlamadoAMetodoDeHotel2Veces(){
+		sutGestor.ReservasActualesDeHotelero(hoteleraGil);
+		verify(hotelRosario).reservasDentroDeFecha(hoy);
+		verify(hotelParis).reservasDentroDeFecha(hoy);
+	}
+
+	@Test 
+	public void cuandoAgregoUnHotelElSizeDeLosHotelesCambiaA6(){
+		sutGestor.agregarHotel(nuevoHotel);
+		assertEquals(sutGestor.getHoteles().size(),6);	
+	}
+	
+	@Test 
+	public void agregoUnaReservaElSizeDeLasReservasCambiaA7SeVerificaElLlamadoAUnaFuncionEnHotel(){
+		sutGestor.agregarReserva(nuevaReserva, habitacionBoca2, hotelBoca);
+		verify(hotelBoca).agregarReservaEnHabitacion(habitacionBoca2, nuevaReserva);
+		assertEquals(sutGestor.getReservas().size(),7);	
 	}
 	
 	@Test //Si falla es por el tema del instante de tiempo que testea cuando instancia un DateTime 
@@ -42,6 +76,11 @@ public class GestorConsultaTest extends GestorConsultaSetUp{
 	}
 	
 	@Test
+	public void cuandoPidoSizeDeListaDeHotelesMeRetorna5() {	
+		assertEquals(this.sutGestor.getHoteles().size(), 5);					
+	}
+	
+	@Test
 	public void cuandoPidoSizeDeListaReservasMeRetorna6() {	
 		assertEquals(this.sutGestor.getReservas().size(), 6);					
 	}
@@ -58,23 +97,3 @@ public class GestorConsultaTest extends GestorConsultaSetUp{
 
 
 }
-
-/*
-
-public void agregarHotel(Hotel unHotel);
-public List<Reserva> ReservasActualesDeHotelero(UsuarioHotelero unHotelero);
-public List<Reserva> ReservasFuturasDeHotelero(UsuarioHotelero unHotelero);
-public List<Reserva> ReservasInicioEnNFuturosDiasHotelero(UsuarioHotelero unHotelero, int i);
-*/
-
-/*
-when(hotelBoca.getCiudad()).thenReturn(this.puntaCana);
-when(hotelColonial.getCiudad()).thenReturn(this.florianopolis);
-when(this.res1.getUsuarioQueReserva()).thenReturn(pasajeraMariu);
-when(this.res1.fechaDeReservaPosteriorA(DateTime.now())).thenReturn(true);
-when(this.res2.getUsuarioQueReserva()).thenReturn(pasajeroAgustin);
-when(this.res2.fechaDeReservaPosteriorA(DateTime.now())).thenReturn(false);
-when(hotelBoca.getHabitaciones()).thenReturn(this.listhabitaciones);
-when(hotelColonial.getHabitaciones()).thenReturn(this.listhabitaciones);
-when(habitacionTevez.reservasDelUsuario(this.pasajeraMariu)).thenReturn(this.listaReservas);
-*/

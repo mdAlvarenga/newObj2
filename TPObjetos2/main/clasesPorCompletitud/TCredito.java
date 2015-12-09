@@ -1,4 +1,4 @@
-package clasesSinTest;
+package clasesPorCompletitud;
 
 import org.joda.time.DateTime;
 
