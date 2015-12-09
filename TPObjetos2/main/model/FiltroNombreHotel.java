@@ -21,7 +21,7 @@ public class FiltroNombreHotel extends FiltroBusqueda{
 		List<Hotel> res = new ArrayList<Hotel>();
 	
 		for (Hotel h : hoteles) {
-			if (h.getNombreHotel().equalsIgnoreCase(this.getNombreDeHotelABuscar())){
+			if (h.getNombre().equalsIgnoreCase(this.getNombreDeHotelABuscar())){
 				res.add(h);
 			}
 		}

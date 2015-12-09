@@ -10,38 +10,54 @@ import clasesSinTest.Servicio;
 import clasesSinTest.UsuarioHotelero;
 
 public class Hotel {
-	/*CONSIDERACIONES DE LA CLASE:
-	 *		Dudas con formas de pago. No hay necesidad de hacerlas clases, pero por otro lado, 
-	 *			seria mucho mas entendible y escalable el sistema. 
-	 **/
 	private String nombreHotel;
 	private Ciudad ciudad;
 	private List<Habitacion> habitaciones;
 	private List<Servicio> servicios;
-	private String categoria;
+	private Categoria categoria;
 	private DateTime checkIn;
 	private DateTime checkOut;
 	private UsuarioHotelero hotelero;
+	private Pais pais;
+	private Direccion direccion;
+	private Telefono telefono;
+	private Mail mail;
+	private List<MedioDePago> mediosDePago;
 	
-	public Hotel(String unNombre, Ciudad unaCiudad, List<Habitacion> habitaciones, 
-					List<Servicio> servicios, String unaCategoria, DateTime checkIn, DateTime checkOut) {
+	public Hotel(String unNombreDeHotel, Ciudad unaCiudad, List<Habitacion> unasHabitaciones, 
+				 List<Servicio> unosServicios, Categoria unaCategoria, DateTime unCheckIn, 
+				 DateTime unCheckOut, UsuarioHotelero unHotelero, Pais unPais,
+				 Direccion unaDireccion, Telefono unTelefono, Mail unMail, 
+				 List<MedioDePago> unosMediosDePago) {
+
+		// INICIALIZO LISTAS
+		habitaciones = new ArrayList<Habitacion>();
+		servicios = new ArrayList<Servicio>();
+		mediosDePago = new ArrayList<MedioDePago>();
 		
-		this.setNombreHotel(unNombre);
-		this.setCiudad(unaCiudad);
-		this.setHabitaciones(habitaciones);
-		this.setServicios(servicios);
-		this.setCategoria(unaCategoria);
-		this.setCheckIn(checkIn);
-		this.setCheckOut(checkOut);		
+		// INICIALIZO VARIABLES DE INSTANCIA
+		nombreHotel = unNombreDeHotel;
+		ciudad = unaCiudad;
+		habitaciones.addAll(unasHabitaciones);
+		servicios.addAll(unosServicios);
+		categoria = unaCategoria;
+		checkIn = unCheckIn;
+		checkOut = unCheckOut;
+		hotelero = unHotelero;
+		pais = unPais;
+		direccion = unaDireccion;
+		telefono = unTelefono;
+		mail = unMail;
+		mediosDePago.addAll(unosMediosDePago);				
 	}
 	
 	public List<Reserva> reservasDentroDeFecha(DateTime unaFecha) {
 
 		List<Reserva> reservas = new ArrayList<Reserva>();
 		Rango unDiaEnRango = new Rango(unaFecha, unaFecha);
-		for(Habitacion h: this.habitaciones){
-			if (!h.disponibilidadPara(unDiaEnRango)){
-				reservas.add(h.getReservaParaFecha(unaFecha));
+		for(Habitacion habitacion: habitaciones){
+			if (!habitacion.disponibilidadPara(unDiaEnRango)){
+				reservas.add(habitacion.getReservaParaFecha(unaFecha));
 			}
 		}
 		return reservas;
@@ -65,75 +81,65 @@ public class Hotel {
 		return ret;
 	}
 
-	//Getters and setters
-	public String getNombreHotel() {
+	//Getters
+	public String getNombre() {
 		return nombreHotel;
-	}
-
-	public void setNombreHotel(String nombreHotel) {
-		this.nombreHotel = nombreHotel;
 	}
 
 	public Ciudad getCiudad() {
 		return ciudad;
 	}
 
-	public void setCiudad(Ciudad unaCiudad) {
-		this.ciudad = unaCiudad;
-	}
-
 	public List<Habitacion> getHabitaciones() {
 		return habitaciones;
 	}
 	
-	public void setHabitaciones(List<Habitacion> habitaciones) {
-		this.habitaciones = habitaciones;
-	}
-
 	public List<Servicio> getServicios() {
 		return servicios;
 	}
 
-	public void setServicios(List<Servicio> servicios) {
-		this.servicios = servicios;
-	}
-
-	public String getCategoria() {
+	public Categoria getCategoria() {
 		return categoria;
 	}
 	
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
-	}
-
 	public DateTime getCheckIn() {
 		return checkIn;
-	}
-
-	public void setCheckIn(DateTime checkIn) {
-		this.checkIn = checkIn;
 	}
 
 	public DateTime getCheckOut() {
 		return checkOut;
 	}
 
-	public void setCheckOut(DateTime checkOut) {
-		this.checkOut = checkOut;
+	public Pais getPais() {
+		return pais;
 	}
 
+	public Direccion getDireccion() {
+		return direccion;
+	}
+
+	public Telefono getTelefono() {
+		return telefono;
+	}
+
+	public Mail getMail() {
+		return mail;
+	}
+
+	public List<MedioDePago> getMediosDePago() {
+		return mediosDePago;
+	}	
+	
+	public UsuarioHotelero getHotelero() {
+		return this.hotelero;
+	}
+	
 	public String nombreCiudad() {
 		return this.getCiudad().getNombre();
 	}
 
-	public UsuarioHotelero getHotelero() {
-		return this.hotelero;
-	}
-
 	public void agregarReservaEnHabitacion(Habitacion unaHabitacion,
-			Reserva unaReserva) {
-		// TODO Auto-generated method stub
-		
+			Reserva unaReserva) {		
 	}
-
+	
 }
