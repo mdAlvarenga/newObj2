@@ -20,8 +20,6 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import clasesSinTest.Ciudad;
-import clasesSinTest.Servicio;
-import clasesSinTest.UsuarioPasajero;
 
 public abstract class FiltroBusquedaSetUp {
 	
@@ -39,26 +37,22 @@ public abstract class FiltroBusquedaSetUp {
 	protected List<Hotel> listaDeHoteles;
 	
 	protected List<Habitacion> listaDeHabitacionesHotel1;
-//	private List<Habitacion> listaDeHabitacionesHotel2;
-//	
+	protected List<Habitacion> listaDeHabitacionesHotel2;
+	
 	protected List<FiltroBusqueda> listaDeFiltros;
-//	
+	
 	protected FiltroBusqueda sutBuscador;
 	protected FiltroBusqueda filtroNombreHotel;
 	protected FiltroBusqueda filtroCiudadHotel;
 	protected  FiltroBusqueda filtroCantidadHuespedes;
-//	private FiltroBusqueda filtroRango;
-//	
-//	@Mock private Rango rango;
+	protected FiltroBusqueda filtroRango;
+	
+	@Mock protected Rango rango;
 //	@Mock private Rango otroRango;
 //	@Mock private Rango nuevoRango;
 //	@Mock private DateTime fechaDesde;
 //	@Mock private DateTime fechaHasta;
 //	
-
-
-	
-	
 	@Before
 	public void setUp(){
 		
@@ -73,32 +67,36 @@ public abstract class FiltroBusquedaSetUp {
 		this.quilmes = Mockito.mock(Ciudad.class);
 		this.avellaneda = Mockito.mock(Ciudad.class);
 		
+		this.rango = Mockito.mock(Rango.class);
+		
 		this.listaDeHoteles = new ArrayList<Hotel>();
 		this.resultado = new ArrayList<Hotel>();
 		this.listaDeFiltros = new ArrayList<FiltroBusqueda>();
 		this.listaDeHabitacionesHotel1 = new ArrayList<Habitacion>() ;
+		this.listaDeHabitacionesHotel2 = new ArrayList<Habitacion>() ;
 		
 		when(this.hotel1.getNombre()).thenReturn("hotel1");
 		when(this.hotel2.getNombre()).thenReturn("hotel2");
 		
 		when(this.hotel1.nombreCiudad()).thenReturn("avellaneda");
 		when(this.avellaneda.getNombre()).thenReturn("avellaneda");
-
 		when(this.hotel2.nombreCiudad()).thenReturn("quilmes");
 		when(this.quilmes.getNombre()).thenReturn("quilmes");
-		
 		when(this.hotel3.nombreCiudad()).thenReturn("quilmes");
 		
 		when(this.hotel1.tieneHabitacionQueCumpleCapacidad(2)).thenReturn(true);
 		when(this.hotel2.tieneHabitacionQueCumpleCapacidad(2)).thenReturn(false);
 		when(this.hotel2.tieneHabitacionQueCumpleCapacidad(1)).thenReturn(true);
 		when(this.hotel3.tieneHabitacionQueCumpleCapacidad(2)).thenReturn(true);
-		
-		
 		when(this.hotel1.getHabitaciones()).thenReturn(this.listaDeHabitacionesHotel1);
 		when(this.hab1.getCapacidadMaxima()).thenReturn(2);
 		when(this.hab2.getCapacidadMaxima()).thenReturn(3);
 		when(this.hab3.getCapacidadMaxima()).thenReturn(1);
+		
+		when(this.hotel2.getHabitaciones()).thenReturn(this.listaDeHabitacionesHotel2);
+		when(this.hab1.disponibilidadPara(this.rango)).thenReturn(true);
+		when(this.hab2.disponibilidadPara(this.rango)).thenReturn(false);
+		when(this.hab3.disponibilidadPara(this.rango)).thenReturn(false);
 
 	}
 }
