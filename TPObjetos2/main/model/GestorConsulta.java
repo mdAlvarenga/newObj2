@@ -44,7 +44,7 @@ public class GestorConsulta extends Observable{
 	 */
 	public List<Reserva> todasReservasDePasajero(UsuarioPasajero unUsuario) {
 		List<Reserva> resul = new ArrayList<Reserva>();
-		for(Reserva r: this.reservas){
+		for(Reserva r: this.getReservas()){
 			if (r.getUsuarioQueReserva().equals(unUsuario))
 				resul.add(r);
 		}
@@ -60,7 +60,7 @@ public class GestorConsulta extends Observable{
 	 */
 	public List<Reserva> reservaDePasajeroParaCiudad(UsuarioPasajero unPasajero, Ciudad unaCiudad) {
 		List<Reserva> resul = new ArrayList<Reserva>();
-		for(Hotel h: this.hoteles){
+		for(Hotel h: this.getHoteles()){
 			if (h.getCiudad().equals(unaCiudad)){
 				resul.addAll(this.buscarReservas(unPasajero, h.getHabitaciones()));
 			}
@@ -99,9 +99,10 @@ public class GestorConsulta extends Observable{
 	 */
 	public List<Reserva> todasReservasFuturasDePasajero(UsuarioPasajero unPasajero) {
 		List<Reserva> resul = new ArrayList<Reserva>();
-		DateTime hoy = new DateTime();
-		for(Reserva r: this.reservas){
-			if (r.getUsuarioQueReserva().equals(unPasajero) && r.fechaDeReservaPosteriorA(hoy))
+		for(Reserva r: this.getReservas()){
+			boolean esUsuario = r.getUsuarioQueReserva().equals(unPasajero);
+			boolean reservaEsPosterior = r.fechaDeReservaPosteriorA(DateTime.now());
+			if ( esUsuario && reservaEsPosterior)
 				resul.add(r);
 		}
 		return resul;
