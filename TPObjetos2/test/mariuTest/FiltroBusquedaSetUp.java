@@ -5,21 +5,16 @@ import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.FiltroBusqueda;
-import model.FiltroCompuesto;
-import model.Habitacion;
-import model.Hotel;
-import model.Precio;
-import model.Rango;
-import model.Reserva;
-
-import org.joda.time.DateTime;
 import org.junit.Before;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import clasesSinTest.Ciudad;
+import model.FiltroBusqueda;
+import model.Habitacion;
+import model.Hotel;
+import model.Rango;
 
 public abstract class FiltroBusquedaSetUp {
 	
@@ -31,28 +26,21 @@ public abstract class FiltroBusquedaSetUp {
 	@Mock protected Habitacion hab3;
 	@Mock protected Ciudad quilmes;
 	@Mock protected Ciudad avellaneda;
-	
+	@Mock protected Rango rango;
+
 	protected List<Hotel> resultado;
 	protected List<Habitacion> resultadoHab;
-	protected List<Hotel> listaDeHoteles;
-	
+	protected List<Hotel> listaDeHoteles;	
 	protected List<Habitacion> listaDeHabitacionesHotel1;
 	protected List<Habitacion> listaDeHabitacionesHotel2;
-	
-	protected List<FiltroBusqueda> listaDeFiltros;
-	
+
+	protected List<FiltroBusqueda> listaDeFiltros;	
 	protected FiltroBusqueda sutBuscador;
 	protected FiltroBusqueda filtroNombreHotel;
 	protected FiltroBusqueda filtroCiudadHotel;
 	protected  FiltroBusqueda filtroCantidadHuespedes;
 	protected FiltroBusqueda filtroRango;
 	
-	@Mock protected Rango rango;
-//	@Mock private Rango otroRango;
-//	@Mock private Rango nuevoRango;
-//	@Mock private DateTime fechaDesde;
-//	@Mock private DateTime fechaHasta;
-//	
 	@Before
 	public void setUp(){
 		
