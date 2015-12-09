@@ -7,7 +7,7 @@ import org.junit.Test;
 import model.FiltroCiudadHotel;
 import model.FiltroCompuesto;
 
-public class FiltroCiudadHotelTest extends FiltroBusquedaTest {
+public class FiltroCiudadHotelTest extends FiltroBusquedaSetUp {
 
 	/**
 	 * Caso de test: 0 hoteles
