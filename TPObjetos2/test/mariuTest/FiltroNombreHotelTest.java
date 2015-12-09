@@ -112,7 +112,7 @@ public class FiltroNombreHotelTest extends FiltroBusquedaSetUp{
 	@Test
 	public void testFiltroDosHotelesAmbosConNombreBuscado() {
 		
-		when(this.hotel3.getNombreHotel()).thenReturn("hotel1");
+		when(this.hotel3.getNombre()).thenReturn("hotel1");
 		
 		this.listaDeHoteles.add(hotel1);
 		this.listaDeHoteles.add(hotel2);

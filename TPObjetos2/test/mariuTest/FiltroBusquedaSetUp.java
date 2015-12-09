@@ -30,16 +30,15 @@ public abstract class FiltroBusquedaSetUp {
 	@Mock protected Hotel hotel3;
 	@Mock protected Habitacion hab1;
 	@Mock protected Habitacion hab2;
+	@Mock protected Habitacion hab3;
 	@Mock protected Ciudad quilmes;
 	@Mock protected Ciudad avellaneda;
 	
-	//@Mock private Habitacion hab3;
-	//@Mock private Habitacion hab4;
-	
 	protected List<Hotel> resultado;
+	protected List<Habitacion> resultadoHab;
 	protected List<Hotel> listaDeHoteles;
-//	
-//	private List<Habitacion> listaDeHabitacionesHotel1;
+	
+	protected List<Habitacion> listaDeHabitacionesHotel1;
 //	private List<Habitacion> listaDeHabitacionesHotel2;
 //	
 	protected List<FiltroBusqueda> listaDeFiltros;
@@ -47,7 +46,7 @@ public abstract class FiltroBusquedaSetUp {
 	protected FiltroBusqueda sutBuscador;
 	protected FiltroBusqueda filtroNombreHotel;
 	protected FiltroBusqueda filtroCiudadHotel;
-//	private FiltroBusqueda filtroCantidadHuespedes;
+	protected  FiltroBusqueda filtroCantidadHuespedes;
 //	private FiltroBusqueda filtroRango;
 //	
 //	@Mock private Rango rango;
@@ -77,9 +76,10 @@ public abstract class FiltroBusquedaSetUp {
 		this.listaDeHoteles = new ArrayList<Hotel>();
 		this.resultado = new ArrayList<Hotel>();
 		this.listaDeFiltros = new ArrayList<FiltroBusqueda>();
+		this.listaDeHabitacionesHotel1 = new ArrayList<Habitacion>() ;
 		
-		when(this.hotel1.getNombreHotel()).thenReturn("hotel1");
-		when(this.hotel2.getNombreHotel()).thenReturn("hotel2");
+		when(this.hotel1.getNombre()).thenReturn("hotel1");
+		when(this.hotel2.getNombre()).thenReturn("hotel2");
 		
 		when(this.hotel1.nombreCiudad()).thenReturn("avellaneda");
 		when(this.avellaneda.getNombre()).thenReturn("avellaneda");
@@ -88,6 +88,17 @@ public abstract class FiltroBusquedaSetUp {
 		when(this.quilmes.getNombre()).thenReturn("quilmes");
 		
 		when(this.hotel3.nombreCiudad()).thenReturn("quilmes");
+		
+		when(this.hotel1.tieneHabitacionQueCumpleCapacidad(2)).thenReturn(true);
+		when(this.hotel2.tieneHabitacionQueCumpleCapacidad(2)).thenReturn(false);
+		when(this.hotel2.tieneHabitacionQueCumpleCapacidad(1)).thenReturn(true);
+		when(this.hotel3.tieneHabitacionQueCumpleCapacidad(2)).thenReturn(true);
+		
+		
+		when(this.hotel1.getHabitaciones()).thenReturn(this.listaDeHabitacionesHotel1);
+		when(this.hab1.getCapacidadMaxima()).thenReturn(2);
+		when(this.hab2.getCapacidadMaxima()).thenReturn(3);
+		when(this.hab3.getCapacidadMaxima()).thenReturn(1);
 
 	}
 }
