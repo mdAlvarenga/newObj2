@@ -21,7 +21,7 @@ public class BodyMailBuilder {
 		String fechaDesde = unaReserva.getRangoDeReserva().getFechaDesde().toString();
 		String fechaHasta = unaReserva.getRangoDeReserva().getFechaHasta().toString();
 		String costo = unaReserva.getImporteDeReserva().toString();
-		String nombreHotel = unHotel.getNombreHotel();
+		String nombreHotel = unHotel.getNombre();
 		String ciudadHotel = unHotel.nombreCiudad();
 		String numeroHabitacion = unaHabitacion.getNombreONumero();
 		String categoria = unHotel.getCategoria();

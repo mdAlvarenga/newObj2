@@ -9,9 +9,9 @@ public class Rango {
 	private DateTime fechaDesde;
 	private DateTime fechaHasta;
 
-	public Rango(DateTime fechaDesde, DateTime fechaHasta) {
-		this.setFechaDesde(fechaDesde);
-		this.setFechaHasta(fechaHasta);
+	public Rango(DateTime unaFechaDesde, DateTime unaFechaHasta) {
+		fechaDesde = unaFechaDesde;
+		fechaHasta = unaFechaHasta;
 	}
 
 	public boolean intercepta(Rango unRango) {
@@ -28,41 +28,58 @@ public class Rango {
 		 * Sin todos los feos if, no se me ocurrio otra manera mas elegante.
 		 * retorna la cantidad de dias que interceptan unRango y this(Rango)
 		 */
-		if (unRango.getFechaDesde().isAfter(this.getFechaHasta()) || 
-				unRango.getFechaHasta().isBefore(this.getFechaDesde())){
+	
+		if(this.intercepta(unRango)){
+			int ret;
+			ret = this.cantidadDeDiasQueInterceptanPorFechaDesdeMenorYFechaHastaMenor(unRango);
+			ret += this.cantidadDeDiasQueInterceptanPorFechaDesdeMayorYFechaHastaMenor(unRango);
+			ret += this.cantidadDeDiasQueInterceptanPorFechaDesdeMayorYFechaHastaMayor(unRango);
+			ret += this.cantidadDeDiasQueInterceptanPorFechaDesdeMenorYFechaHastaMayor(unRango);
+			return ret;
+		}
+		else{
 			return 0;
 		}
+	}
+	
+	public int cantidadDeDiasQueInterceptanPorFechaDesdeMenorYFechaHastaMenor(Rango unRango){
+		return this.evaluarCondicionYRetornarCantidadDeDias((unRango.getFechaDesde().isBefore(fechaDesde)),
+															(unRango.getFechaHasta().isBefore(fechaHasta)),
+															 fechaDesde,
+															 unRango.getFechaHasta());
+	}
 
-		if (unRango.getFechaDesde().isAfter(this.getFechaDesde()) & 
-				unRango.getFechaHasta().isBefore(this.getFechaHasta())){
-			Days d = Days.daysBetween(unRango.getFechaDesde(),unRango.getFechaHasta());
-			return d.getDays();
+	public int cantidadDeDiasQueInterceptanPorFechaDesdeMayorYFechaHastaMenor(Rango unRango){
+		return this.evaluarCondicionYRetornarCantidadDeDias((unRango.getFechaDesde().isAfter(fechaDesde)),
+															(unRango.getFechaHasta().isBefore(fechaHasta)),
+															 unRango.getFechaDesde(),
+															 unRango.getFechaHasta());
+	}
+
+	public int cantidadDeDiasQueInterceptanPorFechaDesdeMayorYFechaHastaMayor(Rango unRango){
+		return this.evaluarCondicionYRetornarCantidadDeDias((unRango.getFechaDesde().isAfter(fechaDesde)),
+															(unRango.getFechaHasta().isAfter(fechaHasta)),
+															fechaHasta, 
+															 unRango.getFechaHasta());
+	}
+	
+	public int cantidadDeDiasQueInterceptanPorFechaDesdeMenorYFechaHastaMayor(Rango unRango){
+		return this.evaluarCondicionYRetornarCantidadDeDias((unRango.getFechaDesde().isBefore(fechaDesde)),
+													 		(unRango.getFechaHasta().isAfter(fechaHasta)),
+													 		 fechaDesde,
+													 		 fechaHasta);
+	}
+	
+	public int evaluarCondicionYRetornarCantidadDeDias(Boolean b1, Boolean b2, DateTime unaFechaDesde, DateTime unaFechaHasta){
+		if(b1&&b2){
+			return this.diasQueInterceptan(unaFechaDesde, unaFechaHasta);
 		}
-		
-		if (unRango.getFechaDesde().isBefore(this.getFechaHasta()) & 
-				unRango.getFechaHasta().isAfter(this.getFechaHasta())){
-			Days d = Days.daysBetween(unRango.getFechaDesde(),this.getFechaHasta());
-			return d.getDays();
-		}
-		
-		if (unRango.getFechaDesde().isBefore(this.getFechaHasta()) & 
-				unRango.getFechaHasta().isAfter(this.getFechaHasta())){
-			Days d = Days.daysBetween(unRango.getFechaDesde(),this.getFechaHasta());
-			return d.getDays();
-		}
-		
-		if (unRango.getFechaDesde().isBefore(this.getFechaDesde()) & 
-				unRango.getFechaHasta().isAfter(this.getFechaDesde())){
-			Days d = Days.daysBetween(this.getFechaDesde(),unRango.getFechaHasta());
-			return d.getDays();
-		}
-		
-		//unRango = i f
-		//this = ix fx
-		// <   isBefore
-		// >   isAfter
-		//i > fx or f< ix  entonces fuera del rango. o sea 0.
 		return 0;
+	}
+	
+	public int diasQueInterceptan(DateTime unaFechaDesde, DateTime unaFechaHasta){
+		Days diasQueInterceptan= Days.daysBetween(unaFechaDesde, unaFechaHasta);
+		return diasQueInterceptan.getDays();		
 	}
 	
 	public boolean fechaDeReservaPosteriorA(DateTime unaFecha) {
@@ -70,21 +87,11 @@ public class Rango {
 		return this.getFechaDesde().isAfter(unaFecha);
 	}
 	
-	//Getters and Setters
 	public DateTime getFechaHasta() {
-
 		return this.fechaHasta;
 	}
 
 	public DateTime getFechaDesde() {
 		return this.fechaDesde;
-	}
-	
-	public void setFechaDesde(DateTime fechaDesde) {
-		this.fechaDesde = fechaDesde;
-	}
-
-	public void setFechaHasta(DateTime fechaHasta) {
-		this.fechaHasta = fechaHasta;
 	}
 }

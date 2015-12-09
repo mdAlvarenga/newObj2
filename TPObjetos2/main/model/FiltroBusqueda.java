@@ -4,7 +4,7 @@ import java.util.List;
 
 public abstract class FiltroBusqueda {
 
-	public List<Habitacion> buscarHabitaciones(Hotel hotelBoca) {
+	public List<Habitacion> buscarHabitaciones(Hotel unHotel) {
 		return null;
 	}
 
