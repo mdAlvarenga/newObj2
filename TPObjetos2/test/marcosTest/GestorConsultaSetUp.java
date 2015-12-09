@@ -138,8 +138,8 @@ public class GestorConsultaSetUp {
 		when(this.resMari1.getUsuarioQueReserva()).thenReturn(this.pasajeraMariu);
 		when(this.resMari2.getUsuarioQueReserva()).thenReturn(this.pasajeraMariu);
 		when(this.resFutura.getUsuarioQueReserva()).thenReturn(this.pasajeraMariu);
-		
-		when(this.resFutura.fechaDeReservaPosteriorA(DateTime.now())).thenReturn(true);
+		DateTime hoy = DateTime.now();
+		when(this.resFutura.fechaDeReservaPosteriorA(hoy)).thenReturn(true);
 	
 		ciudadesAgus = new ArrayList<Ciudad>();
 		ciudadesMariu = new ArrayList<Ciudad>();

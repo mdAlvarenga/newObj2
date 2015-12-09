@@ -99,9 +99,10 @@ public class GestorConsulta extends Observable{
 	 */
 	public List<Reserva> todasReservasFuturasDePasajero(UsuarioPasajero unPasajero) {
 		List<Reserva> resul = new ArrayList<Reserva>();
+		DateTime hoy = DateTime.now();
 		for(Reserva r: this.getReservas()){
 			boolean esUsuario = r.getUsuarioQueReserva().equals(unPasajero);
-			boolean reservaEsPosterior = r.fechaDeReservaPosteriorA(DateTime.now());
+			boolean reservaEsPosterior = r.fechaDeReservaPosteriorA(hoy);
 			if ( esUsuario && reservaEsPosterior)
 				resul.add(r);
 		}
