@@ -24,7 +24,7 @@ public class BodyMailBuilder {
 		String nombreHotel = unHotel.getNombre();
 		String ciudadHotel = unHotel.nombreCiudad();
 		String numeroHabitacion = unaHabitacion.getNombreONumero();
-		String categoria = unHotel.getCategoria();
+		int categoria = unHotel.getCategoria().getCantidadEstrellas();
 		String checkIn = unHotel.getCheckIn().toString();
 		String checkOut = unHotel.getCheckOut().toString();
 		

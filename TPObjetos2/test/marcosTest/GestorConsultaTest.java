@@ -2,12 +2,21 @@ package marcosTest;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.verify;
 
 import org.junit.Test;
 
 public class GestorConsultaTest extends GestorConsultaSetUp{
-	
+//public void agregarReserva(Reserva unaReserva, Habitacion unaHabitacion, Hotel unHotel);	
 	@Test 
+	public void cuandoAgregoUnaReservaElSizeDeLasReservasCambiaA7(){
+		//verify(hotelBoca).agregarReservaEnHabitacion(habitacionBoca2, nuevaReserva);
+		sutGestor.agregarReserva(nuevaReserva, habitacionBoca2, hotelBoca);
+		assertEquals(sutGestor.getReservas().size(),7);
+		
+	}
+	
+	@Test //Si falla es por el tema del instante de tiempo que testea cuando instancia un DateTime 
 	public void cuandoPidoLasReservasFuturasDeMariuMeRetornaUnaListaConUnaReservaFutura(){
 		assertTrue(sutGestor.todasReservasFuturasDePasajero(pasajeraMariu).contains(resFutura));
 	}
@@ -52,9 +61,6 @@ public class GestorConsultaTest extends GestorConsultaSetUp{
 
 /*
 
-
-
-public void agregarReserva(Reserva unaReserva, Habitacion unaHabitacion, Hotel unHotel);
 public void agregarHotel(Hotel unHotel);
 public List<Reserva> ReservasActualesDeHotelero(UsuarioHotelero unHotelero);
 public List<Reserva> ReservasFuturasDeHotelero(UsuarioHotelero unHotelero);

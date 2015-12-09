@@ -21,8 +21,7 @@ public class Reserva {
 		return this.getRangoDeReserva().intercepta(unRangoConsulta);
 	}
 
-	public boolean fechaDeReservaPosteriorA(DateTime unaFecha) {
-		
+	public boolean fechaDeReservaPosteriorA(DateTime unaFecha) { 
 		return this.getRangoDeReserva().fechaDeReservaPosteriorA(unaFecha);
 	}
 	

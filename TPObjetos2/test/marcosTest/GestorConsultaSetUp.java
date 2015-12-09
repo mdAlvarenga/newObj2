@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.GestorConsulta;
+import model.GestorCorreo;
 import model.Habitacion;
 import model.Hotel;
 import model.Rango;
@@ -96,7 +97,13 @@ public class GestorConsultaSetUp {
 	protected ArrayList<Reserva> reservasAgusHabCol1;
 	protected ArrayList<Reserva> reservasMariHabParis2;
 	protected List<Reserva> reservasMariHabRosario1;
+	protected DateTime hoy;
 
+	@Mock protected Reserva nuevaReserva;
+	@Mock protected Habitacion nuevaHabitacion;
+	@Mock protected Hotel nuevoHotel;
+	@Mock protected GestorCorreo gestorCorreo;
+	
 	@Before
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
@@ -138,7 +145,7 @@ public class GestorConsultaSetUp {
 		when(this.resMari1.getUsuarioQueReserva()).thenReturn(this.pasajeraMariu);
 		when(this.resMari2.getUsuarioQueReserva()).thenReturn(this.pasajeraMariu);
 		when(this.resFutura.getUsuarioQueReserva()).thenReturn(this.pasajeraMariu);
-		DateTime hoy = DateTime.now();
+		hoy = new DateTime();
 		when(this.resFutura.fechaDeReservaPosteriorA(hoy)).thenReturn(true);
 	
 		ciudadesAgus = new ArrayList<Ciudad>();
@@ -213,5 +220,6 @@ public class GestorConsultaSetUp {
 		listaHoteles.add(hotelRosario);
 		
 		sutGestor = new GestorConsulta(listaReservas, listaHoteles);
+		sutGestor.addObserver(gestorCorreo);
 	}
 }

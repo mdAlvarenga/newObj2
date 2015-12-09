@@ -8,7 +8,7 @@ public class Categoria {
 		cantidadDeEstrellas = unaCantidadDeEstrellas;
 	}
 
-	public Object getCantidadEstrellas() {
+	public int getCantidadEstrellas() {
 		return cantidadDeEstrellas;
 	}
 

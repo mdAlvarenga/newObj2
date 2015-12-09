@@ -99,7 +99,7 @@ public class GestorConsulta extends Observable{
 	 */
 	public List<Reserva> todasReservasFuturasDePasajero(UsuarioPasajero unPasajero) {
 		List<Reserva> resul = new ArrayList<Reserva>();
-		DateTime hoy = DateTime.now();
+		DateTime hoy = new DateTime();
 		for(Reserva r: this.getReservas()){
 			boolean esUsuario = r.getUsuarioQueReserva().equals(unPasajero);
 			boolean reservaEsPosterior = r.fechaDeReservaPosteriorA(hoy);
@@ -118,7 +118,7 @@ public class GestorConsulta extends Observable{
 			}
 		}
 		BodyMailBuilder body = new BodyMailBuilder();
-		body.buildBodyMail(unaReserva, unaHabitacion, unHotel);
+		//body.buildBodyMail(unaReserva, unaHabitacion, unHotel);
 		setChanged();
 		notifyObservers(body);
 	}
