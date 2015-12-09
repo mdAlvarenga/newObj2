@@ -1,9 +1,13 @@
 package marcosTest;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.when;
+import model.Hotel;
 
 import org.joda.time.DateTime;
 import org.junit.Test;
@@ -44,7 +48,23 @@ public class GestorConsultaTest extends GestorConsultaSetUp{
 	}
 	
 	@Test 
+	public void cuandoBuscoUnHotelEsteNoExisteEnElSistema(){
+		assertNull("No Existe el Hotel",sutGestor.buscarHotel(hotelKansas));	
+	}
+	
+	@Test 
+	public void cuandoIntentoagregarUnaReservaNoSePuedePorqueNoHayDisponibilidadParaLaFecha(){
+		when(this.hotelBoca.habitacionNoTieneReservaEnFecha(habitacionBoca2, reservaQueFalla))
+				 											.thenReturn(false);
+		sutGestor.agregarReserva(reservaQueFalla, habitacionBoca2, hotelBoca);
+		verify(hotelBoca, never()).agregarReservaEnHabitacion(habitacionBoca2, nuevaReserva);
+		
+	}
+	
+	@Test 
 	public void agregoUnaReservaElSizeDeLasReservasCambiaA7SeVerificaElLlamadoAUnaFuncionEnHotel(){
+		when(this.hotelBoca.habitacionNoTieneReservaEnFecha(habitacionBoca2, nuevaReserva))
+															.thenReturn(true);
 		sutGestor.agregarReserva(nuevaReserva, habitacionBoca2, hotelBoca);
 		verify(hotelBoca).agregarReservaEnHabitacion(habitacionBoca2, nuevaReserva);
 		assertEquals(sutGestor.getReservas().size(),7);	

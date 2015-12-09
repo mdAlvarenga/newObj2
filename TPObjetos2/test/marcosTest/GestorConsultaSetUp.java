@@ -57,6 +57,7 @@ public class GestorConsultaSetUp {
 	@Mock protected Hotel hotelIntercontinental;
 	@Mock protected Hotel hotelRosario;
 	@Mock protected Hotel hotelParis;
+	@Mock protected Hotel hotelKansas;
 	
 	@Mock protected Habitacion habitacionBoca1;
 	@Mock protected Habitacion habitacionBoca2;
@@ -87,6 +88,7 @@ public class GestorConsultaSetUp {
 	@Mock protected Reserva resMari1;
 	@Mock protected Reserva resMari2;
 	@Mock protected Reserva resFutura;
+	@Mock protected Reserva reservaQueFalla;
 	
 	protected List<Reserva> reservasAgusHabBoca1;
 	protected ArrayList<Reserva> reservasAgusHabParis1;
@@ -104,9 +106,26 @@ public class GestorConsultaSetUp {
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
 		
+		hoy = new DateTime();
 		listaReservas = new ArrayList<Reserva>();
 		users = new ArrayList<Usuario>();
 		listaHoteles = new ArrayList<Hotel>();
+		
+		reservasAgusHabBoca1 = new ArrayList<Reserva>();
+		reservasAgusHabParis1 = new ArrayList<Reserva>();
+		reservasAgusHabCol1 = new ArrayList<Reserva>();
+		reservasMariHabRosario1 = new ArrayList<Reserva>();
+		reservasMariHabParis2 = new ArrayList<Reserva>();
+		
+		ciudadesAgus = new ArrayList<Ciudad>();
+		ciudadesMariu = new ArrayList<Ciudad>();
+		
+		habitacionesBoca = new ArrayList<Habitacion>();
+		habitacionesColonial = new ArrayList<Habitacion>();
+		habitacionesIntercontinental = new ArrayList<Habitacion>();
+		habitacionesParis = new ArrayList<Habitacion>();
+		habitacionesRosario = new ArrayList<Habitacion>();
+		
 		when(this.hotelBoca.getCiudad()).thenReturn(this.buenosAires);
 		when(this.hotelColonial.getCiudad()).thenReturn(this.cordoba);
 		when(this.hotelIntercontinental.getCiudad()).thenReturn(this.newYork);
@@ -119,49 +138,8 @@ public class GestorConsultaSetUp {
 		when(this.resMari1.getUsuarioQueReserva()).thenReturn(this.pasajeraMariu);
 		when(this.resMari2.getUsuarioQueReserva()).thenReturn(this.pasajeraMariu);
 		when(this.resFutura.getUsuarioQueReserva()).thenReturn(this.pasajeraMariu);
-		hoy = new DateTime();
+		
 		when(this.resFutura.fechaDeReservaPosteriorA(hoy)).thenReturn(true);
-	
-		ciudadesAgus = new ArrayList<Ciudad>();
-		ciudadesMariu = new ArrayList<Ciudad>();
-		
-		ciudadesAgus.add(buenosAires);
-		ciudadesAgus.add(cordoba);
-		ciudadesAgus.add(paris);
-		ciudadesMariu.add(paris);
-		ciudadesMariu.add(rosario);
-		
-		habitacionesBoca = new ArrayList<Habitacion>();
-		habitacionesColonial = new ArrayList<Habitacion>();
-		habitacionesIntercontinental = new ArrayList<Habitacion>();
-		habitacionesParis = new ArrayList<Habitacion>();
-		habitacionesRosario = new ArrayList<Habitacion>();
-		
-		habitacionesBoca.add(habitacionBoca1);
-		habitacionesBoca.add(habitacionBoca2);
-		habitacionesColonial.add(habitacionColonia1);
-		habitacionesColonial.add(habitacionColonia2);
-		habitacionesIntercontinental.add(habitacionInter1);
-		habitacionesIntercontinental.add(habitacionInter2);
-		habitacionesParis.add(habitacionParis1);
-		habitacionesParis.add(habitacionParis2);
-		habitacionesRosario.add(habitacionRosario1);
-		habitacionesRosario.add(habitacionRosario2);
-		
-		reservasAgusHabBoca1 = new ArrayList<Reserva>();
-		reservasAgusHabBoca1.add(resAgus2);
-		
-		reservasAgusHabParis1 = new ArrayList<Reserva>();
-		reservasAgusHabParis1.add(resAgus1);
-		
-		reservasAgusHabCol1 = new ArrayList<Reserva>();
-		reservasAgusHabCol1.add(resAgus3);
-		
-		reservasMariHabRosario1 = new ArrayList<Reserva>();
-		reservasMariHabRosario1.add(resMari1);
-		
-		reservasMariHabParis2 = new ArrayList<Reserva>();
-		reservasMariHabParis2.add(resMari2);
 		
 		when(this.habitacionBoca1.reservasDelUsuario(pasajeroAgustin)).thenReturn(reservasAgusHabBoca1);
 		when(this.habitacionParis1.reservasDelUsuario(pasajeroAgustin)).thenReturn(reservasAgusHabParis1);
@@ -183,6 +161,33 @@ public class GestorConsultaSetUp {
 		
 		when(this.hotelRosario.reservasDentroDeFecha(hoy)).thenReturn(reservasMariHabRosario1);
 		when(this.hotelParis.reservasDentroDeFecha(hoy)).thenReturn(reservasMariHabParis2);	
+				
+		ciudadesAgus.add(buenosAires);
+		ciudadesAgus.add(cordoba);
+		ciudadesAgus.add(paris);
+		ciudadesMariu.add(paris);
+		ciudadesMariu.add(rosario);
+				
+		habitacionesBoca.add(habitacionBoca1);
+		habitacionesBoca.add(habitacionBoca2);
+		habitacionesColonial.add(habitacionColonia1);
+		habitacionesColonial.add(habitacionColonia2);
+		habitacionesIntercontinental.add(habitacionInter1);
+		habitacionesIntercontinental.add(habitacionInter2);
+		habitacionesParis.add(habitacionParis1);
+		habitacionesParis.add(habitacionParis2);
+		habitacionesRosario.add(habitacionRosario1);
+		habitacionesRosario.add(habitacionRosario2);
+		
+		reservasAgusHabBoca1.add(resAgus2);
+		
+		reservasAgusHabParis1.add(resAgus1);
+		
+		reservasAgusHabCol1.add(resAgus3);
+		
+		reservasMariHabRosario1.add(resMari1);
+		
+		reservasMariHabParis2.add(resMari2);
 		
 		listaReservas.add(resAgus1);
 		listaReservas.add(resAgus2);

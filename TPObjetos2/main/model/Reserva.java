@@ -49,9 +49,5 @@ public class Reserva {
 	public void setUsuarioQueReserva(Usuario usuarioQueReserva) {
 		this.usuarioQueReserva = usuarioQueReserva;
 	}
-	
-	public String imprimirFecha(){
-		return this.getImporteDeReserva().toString();
-	}
 
 }

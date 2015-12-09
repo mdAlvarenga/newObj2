@@ -101,19 +101,30 @@ public class GestorConsulta extends Observable{
 	}
 
 	public void agregarReserva(Reserva unaReserva, Habitacion unaHabitacion, Hotel unHotel) {
-		//ACA ME PARECE QUE DEBERIA VERIFICAR QUE SE PUEDA RESERVAR
-		this.getReservas().add(unaReserva);
-		for(Hotel h: this.getHoteles()){
-			boolean igual = h.equals(unHotel); 
-			if (igual){
-				h.agregarReservaEnHabitacion(unaHabitacion, unaReserva);
-			}
+		//Aca PODRIA ir una excepcion de si no esta el hotel, pero supongamos que esta todo perfecto.
+		//Lo mismo que no me convence el else...
+		Hotel hotel = this.buscarHotel(unHotel);
+		if(hotel.habitacionNoTieneReservaEnFecha(unaHabitacion, unaReserva)){
+			hotel.agregarReservaEnHabitacion(unaHabitacion, unaReserva);
+			this.getReservas().add(unaReserva);
+			BodyMailBuilder body = new BodyMailBuilder(unaReserva, unaHabitacion, unHotel);
+			setChanged();
+			notifyObservers(body);
+		}else{
+			System.out.println("La habitacion no se encuentra disponible en esa fecha.\n "
+					+ "Por favor verifique los datos ingresados");
 		}
-		BodyMailBuilder body = new BodyMailBuilder(unaReserva, unaHabitacion, unHotel);
-		setChanged();
-		notifyObservers(body);
 	}
 	
+	public Hotel buscarHotel(Hotel unHotel) {
+		for(Hotel h: this.getHoteles()){
+			boolean igual = h.equals(unHotel); 
+			if (igual)
+				return h;
+		}
+		return null;
+	}
+
 	public void agregarHotel(Hotel unHotel) {
 		this.getHoteles().add(unHotel);		
 	}
