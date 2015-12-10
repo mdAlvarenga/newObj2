@@ -31,28 +31,27 @@ public class Hotel {
 				 List<MedioDePago> unosMediosDePago) {
 
 		// INICIALIZO LISTAS
-		habitaciones = new ArrayList<Habitacion>();
-		servicios = new ArrayList<Servicio>();
-		mediosDePago = new ArrayList<MedioDePago>();
+		habitaciones	= new ArrayList<Habitacion>();
+		servicios 		= new ArrayList<Servicio>();
+		mediosDePago 	= new ArrayList<MedioDePago>();
 		
 		// INICIALIZO VARIABLES DE INSTANCIA
-		nombreHotel = unNombreDeHotel;
-		ciudad = unaCiudad;
+		mediosDePago.addAll(unosMediosDePago);		
 		habitaciones.addAll(unasHabitaciones);
 		servicios.addAll(unosServicios);
-		categoria = unaCategoria;
-		checkIn = unCheckIn;
-		checkOut = unCheckOut;
-		hotelero = unHotelero;
-		pais = unPais;
-		direccion = unaDireccion;
-		telefono = unTelefono;
-		mail = unMail;
-		mediosDePago.addAll(unosMediosDePago);				
+		nombreHotel = unNombreDeHotel;
+		ciudad 		= unaCiudad;
+		categoria 	= unaCategoria;
+		checkIn 	= unCheckIn;
+		checkOut 	= unCheckOut;
+		hotelero 	= unHotelero;
+		pais 		= unPais;
+		direccion 	= unaDireccion;
+		telefono 	= unTelefono;
+		mail 		= unMail;
 	}
 	
-	public List<Reserva> reservasDentroDeFecha(DateTime unaFecha) {
-
+	public List<Reserva> reservasDentroDeFecha(DateTime unaFecha){
 		List<Reserva> reservas = new ArrayList<Reserva>();
 		Rango unDiaEnRango = new Rango(unaFecha, unaFecha);
 		for(Habitacion habitacion: habitaciones){
@@ -74,12 +73,19 @@ public class Hotel {
 	}
 
 	public boolean tieneHabitacionQueCumpleCapacidad(int unaCapacidad) {
-		boolean ret = false;
-		for (Habitacion hab : this.getHabitaciones()) {
-			ret = ret || (hab.getCapacidadMaxima() >= unaCapacidad); 
+		boolean tieneHabitacionQueCumpleCapacidad = false;
+		for (Habitacion habitacion : this.getHabitaciones()) {
+			tieneHabitacionQueCumpleCapacidad = tieneHabitacionQueCumpleCapacidad || 
+			(habitacion.getCapacidadMaxima() >= unaCapacidad); 
 		}
-		return ret;
+		return tieneHabitacionQueCumpleCapacidad;
 	}
+	
+	public boolean habitacionNoTieneReservaEnFecha(Habitacion unaHabitacion,Reserva unaReserva) {
+		//ya sabes agus, aca recorres las habitaciones y me retornas si NO ESTA RESERVADA, true :D
+		// TODO Auto-generated method stub
+		return false;
+	}	
 
 	//Getters
 	public String getNombre() {
@@ -140,12 +146,6 @@ public class Hotel {
 
 	public void agregarReservaEnHabitacion(Habitacion unaHabitacion,
 			Reserva unaReserva) {		
-	}
-
-	public boolean habitacionNoTieneReservaEnFecha(Habitacion unaHabitacion,Reserva unaReserva) {
-		//ya sabes agus, aca recorres las habitaciones y me retornas si NO ESTA RESERVADA, true :D
-		// TODO Auto-generated method stub
-		return false;
 	}
 	
 }
