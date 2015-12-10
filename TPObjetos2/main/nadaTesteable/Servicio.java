@@ -7,9 +7,9 @@ public class Servicio {
 	private Double precio;
 	
 	public Servicio(String nom, String des, double precio){
-		this.nombre = nom;
-		this.descripcion = des;
-		this.precio = precio;
+		this.setNombre(nom);
+		this.setDescripcion(des);
+		this.setPrecio(precio);
 	}
 
 	//Getters and Setters

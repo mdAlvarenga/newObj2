@@ -23,4 +23,16 @@ public class Correo {
 	public void setTo(final String to) {
 	    this.to = to;
 	}
+	
+	public String getBody() {
+	    return this.body ;
+	}
+	  
+	public String getSubject() {
+	    return this.subject; 
+	}
+	  
+	public String getTo() {
+	    return this.to ;
+	}
 }

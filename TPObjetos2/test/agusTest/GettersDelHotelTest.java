@@ -1,6 +1,7 @@
 package agusTest;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,6 @@ import model.Hotel;
 import nadaTesteable.Categoria;
 import nadaTesteable.Ciudad;
 import nadaTesteable.Direccion;
-import nadaTesteable.Mail;
 import nadaTesteable.MedioDePago;
 import nadaTesteable.Pais;
 import nadaTesteable.Servicio;
@@ -33,7 +33,7 @@ public class GettersDelHotelTest {
 	private Pais mockPais;
 	private Direccion mockDireccion;
 	private Telefono mockTelefono;
-	private Mail mockMail;
+	private String mockMail;
 	private DateTime mockCheckOut;
 	private List<MedioDePago> mockListMediosDePago;
 	private List<Habitacion> mockListHabitaicones;

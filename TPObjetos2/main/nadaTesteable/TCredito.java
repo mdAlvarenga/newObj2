@@ -18,23 +18,23 @@ public class TCredito implements IFormaDePago {
 		this.codigoseguridad = unCodSeguridad;
 	}
 
-	int getNumero() {
+	public int getNumero() {
 		return numero;
 	}
 
-	Banco getBanco() {
+	public Banco getBanco() {
 		return banco;
 	}
 
-	DateTime getFvencimiento() {
+	public DateTime getFvencimiento() {
 		return fvencimiento;
 	}
 
-	Marca getMarca() {
+	public Marca getMarca() {
 		return marca;
 	}
 
-	int getCodigoseguridad() {
+	public int getCodigoseguridad() {
 		return codigoseguridad;
 	}
 

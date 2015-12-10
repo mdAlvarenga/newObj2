@@ -5,7 +5,7 @@ import org.joda.time.DateTime;
 public class TDebito implements IFormaDePago {
 
 	private Banco banco;
-	private Object numero;
+	private int numero;
 	private DateTime fvencimiento;
 	private int codigoseguridad;
 
@@ -16,19 +16,19 @@ public class TDebito implements IFormaDePago {
 		this.codigoseguridad = unCodSeguridad;
 	}
 
-	Banco getBanco() {
+	public Banco getBanco() {
 		return banco;
 	}
 
-	Object getNumero() {
+	public int getNumero() {
 		return numero;
 	}
 
-	DateTime getFvencimiento() {
+	public DateTime getFvencimiento() {
 		return fvencimiento;
 	}
 
-	int getCodigoseguridad() {
+	public int getCodigoseguridad() {
 		return codigoseguridad;
 	}
 }

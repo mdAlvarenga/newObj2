@@ -8,7 +8,6 @@ import org.joda.time.DateTime;
 import nadaTesteable.Categoria;
 import nadaTesteable.Ciudad;
 import nadaTesteable.Direccion;
-import nadaTesteable.Mail;
 import nadaTesteable.MedioDePago;
 import nadaTesteable.Pais;
 import nadaTesteable.Servicio;
@@ -27,13 +26,13 @@ public class Hotel {
 	private Pais pais;
 	private Direccion direccion;
 	private Telefono telefono;
-	private Mail mail;
+	private String mail;
 	private List<MedioDePago> mediosDePago;
 	
 	public Hotel(String unNombreDeHotel, Ciudad unaCiudad, List<Habitacion> unasHabitaciones, 
 				 List<Servicio> unosServicios, Categoria unaCategoria, DateTime unCheckIn, 
 				 DateTime unCheckOut, UsuarioHotelero unHotelero, Pais unPais,
-				 Direccion unaDireccion, Telefono unTelefono, Mail unMail, 
+				 Direccion unaDireccion, Telefono unTelefono, String unMail, 
 				 List<MedioDePago> unosMediosDePago) {
 
 		// INICIALIZO LISTAS
@@ -128,7 +127,7 @@ public class Hotel {
 		return telefono;
 	}
 
-	public Mail getMail() {
+	public String getMail() {
 		return mail;
 	}
 
