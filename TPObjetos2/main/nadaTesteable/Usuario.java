@@ -1,6 +1,4 @@
-package clasesPorCompletitud;
-
-import model.Telefono;
+package nadaTesteable;
 
 public abstract class Usuario {
 	protected String nombre;

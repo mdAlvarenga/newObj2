@@ -5,9 +5,15 @@ import java.util.List;
 
 import org.joda.time.DateTime;
 
-import clasesPorCompletitud.Ciudad;
-import clasesPorCompletitud.Servicio;
-import clasesPorCompletitud.UsuarioHotelero;
+import nadaTesteable.Categoria;
+import nadaTesteable.Ciudad;
+import nadaTesteable.Direccion;
+import nadaTesteable.Mail;
+import nadaTesteable.MedioDePago;
+import nadaTesteable.Pais;
+import nadaTesteable.Servicio;
+import nadaTesteable.Telefono;
+import nadaTesteable.UsuarioHotelero;
 
 public class Hotel {
 	private String nombreHotel;

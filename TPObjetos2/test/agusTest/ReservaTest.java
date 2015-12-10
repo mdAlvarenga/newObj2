@@ -8,9 +8,9 @@ import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
 
-import clasesPorCompletitud.UsuarioPasajero;
 import model.Rango;
 import model.Reserva;
+import nadaTesteable.UsuarioPasajero;
 
 public class ReservaTest {
 

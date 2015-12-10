@@ -1,4 +1,4 @@
-package clasesPorCompletitud;
+package nadaTesteable;
 
 public class Efectivo implements FormaDePago {
 

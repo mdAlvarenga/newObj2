@@ -10,16 +10,16 @@ import org.junit.Before;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import clasesPorCompletitud.Ciudad;
-import clasesPorCompletitud.Usuario;
-import clasesPorCompletitud.UsuarioHotelero;
-import clasesPorCompletitud.UsuarioPasajero;
 import model.GestorConsulta;
 import model.GestorCorreo;
 import model.Habitacion;
 import model.Hotel;
 import model.Rango;
 import model.Reserva;
+import nadaTesteable.Ciudad;
+import nadaTesteable.Usuario;
+import nadaTesteable.UsuarioHotelero;
+import nadaTesteable.UsuarioPasajero;
 
 public class GestorConsultaSetUp {
 	protected GestorConsulta sutGestor;
@@ -54,7 +54,6 @@ public class GestorConsultaSetUp {
 	@Mock protected Hotel hotelIntercontinental;
 	@Mock protected Hotel hotelRosario;
 	@Mock protected Hotel hotelParis;
-	@Mock protected Hotel hotelKansas;
 	
 	@Mock protected Habitacion habitacionBoca1;
 	@Mock protected Habitacion habitacionBoca2;
@@ -116,11 +115,26 @@ public class GestorConsultaSetUp {
 		habitacionesParis = new ArrayList<Habitacion>();
 		habitacionesRosario = new ArrayList<Habitacion>();
 		
+		when(this.hotelRosario.reservasDentroDeFecha(hoy)).thenReturn(reservasMariHabRosario1);
+		when(this.hotelParis.reservasDentroDeFecha(hoy)).thenReturn(reservasMariHabParis2);
+		
 		when(this.hotelBoca.getCiudad()).thenReturn(this.buenosAires);
 		when(this.hotelColonial.getCiudad()).thenReturn(this.cordoba);
 		when(this.hotelIntercontinental.getCiudad()).thenReturn(this.newYork);
 		when(this.hotelParis.getCiudad()).thenReturn(this.paris);
 		when(this.hotelRosario.getCiudad()).thenReturn(this.rosario);
+		
+		when(this.hotelBoca.getHabitaciones()).thenReturn(this.habitacionesBoca);
+		when(this.hotelColonial.getHabitaciones()).thenReturn(this.habitacionesColonial);
+		when(this.hotelIntercontinental.getHabitaciones()).thenReturn(this.habitacionesIntercontinental);
+		when(this.hotelParis.getHabitaciones()).thenReturn(this.habitacionesParis);
+		when(this.hotelRosario.getHabitaciones()).thenReturn(this.habitacionesRosario);
+		
+		when(this.hotelBoca.getHotelero()).thenReturn(hoteleroSmith);
+		when(this.hotelColonial.getHotelero()).thenReturn(hoteleroSmith);
+		when(this.hotelIntercontinental.getHotelero()).thenReturn(hoteleraGil);
+		when(this.hotelParis.getHotelero()).thenReturn(hoteleraGil);
+		when(this.hotelRosario.getHotelero()).thenReturn(hoteleraGil);
 		
 		when(this.resAgus1.getUsuarioQueReserva()).thenReturn(this.pasajeroAgustin);
 		when(this.resAgus2.getUsuarioQueReserva()).thenReturn(this.pasajeroAgustin);
@@ -136,22 +150,7 @@ public class GestorConsultaSetUp {
 		when(this.habitacionColonia1.reservasDelUsuario(pasajeroAgustin)).thenReturn(reservasAgusHabCol1);
 		when(this.habitacionRosario1.reservasDelUsuario(pasajeraMariu)).thenReturn(reservasMariHabRosario1);
 		when(this.habitacionParis2.reservasDelUsuario(pasajeraMariu)).thenReturn(reservasMariHabParis2);
-		
-		when(this.hotelBoca.getHabitaciones()).thenReturn(this.habitacionesBoca);
-		when(this.hotelColonial.getHabitaciones()).thenReturn(this.habitacionesColonial);
-		when(this.hotelIntercontinental.getHabitaciones()).thenReturn(this.habitacionesIntercontinental);
-		when(this.hotelParis.getHabitaciones()).thenReturn(this.habitacionesParis);
-		when(this.hotelRosario.getHabitaciones()).thenReturn(this.habitacionesRosario);
-		
-		when(this.hotelBoca.getHotelero()).thenReturn(hoteleroSmith);
-		when(this.hotelColonial.getHotelero()).thenReturn(hoteleroSmith);
-		when(this.hotelIntercontinental.getHotelero()).thenReturn(hoteleraGil);
-		when(this.hotelParis.getHotelero()).thenReturn(hoteleraGil);
-		when(this.hotelRosario.getHotelero()).thenReturn(hoteleraGil);
-		
-		when(this.hotelRosario.reservasDentroDeFecha(hoy)).thenReturn(reservasMariHabRosario1);
-		when(this.hotelParis.reservasDentroDeFecha(hoy)).thenReturn(reservasMariHabParis2);	
-				
+						
 		ciudadesAgus.add(buenosAires);
 		ciudadesAgus.add(cordoba);
 		ciudadesAgus.add(paris);

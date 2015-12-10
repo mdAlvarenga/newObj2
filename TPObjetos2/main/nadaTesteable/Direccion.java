@@ -1,4 +1,4 @@
-package model;
+package nadaTesteable;
 
 import java.util.ArrayList;
 import java.util.List;

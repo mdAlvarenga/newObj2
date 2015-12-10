@@ -9,16 +9,16 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import clasesPorCompletitud.Ciudad;
-import clasesPorCompletitud.UsuarioHotelero;
-import clasesPorCompletitud.UsuarioPasajero;
 import model.BodyMailBuilder;
-import model.Categoria;
 import model.Habitacion;
 import model.Hotel;
 import model.Rango;
 import model.Reserva;
-import model.Telefono;
+import nadaTesteable.Categoria;
+import nadaTesteable.Ciudad;
+import nadaTesteable.Telefono;
+import nadaTesteable.UsuarioHotelero;
+import nadaTesteable.UsuarioPasajero;
 
 public class BodyMailBuilderTest {
 	protected BodyMailBuilder sutBodyMailBuilder;

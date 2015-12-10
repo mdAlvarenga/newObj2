@@ -1,11 +1,11 @@
-package agusTest;
+package otrosTests;
 
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import model.Direccion;
+import nadaTesteable.Direccion;
 
 public class DireccionTest {
 	

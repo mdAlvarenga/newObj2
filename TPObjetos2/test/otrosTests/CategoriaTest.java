@@ -1,10 +1,10 @@
-package agusTest;
+package otrosTests;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import model.Categoria;
+import nadaTesteable.Categoria;
 
 public class CategoriaTest {
 	

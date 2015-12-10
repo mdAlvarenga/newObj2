@@ -1,11 +1,11 @@
-package agusTest;
+package otrosTests;
 
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import model.Pais;
+import nadaTesteable.Pais;
 
 public class PaisTest {
 

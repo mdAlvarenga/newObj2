@@ -1,11 +1,11 @@
-package agusTest;
+package otrosTests;
 
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import model.Telefono;
+import nadaTesteable.Telefono;
 
 public class TelefonoTest {
 
