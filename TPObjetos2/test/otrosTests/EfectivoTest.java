@@ -16,12 +16,12 @@ public class EfectivoTest {
 	
 	@Before
 	public void setUp(){
-		MockitoAnnotations.initMocks(this);
-		efectivo = new Efectivo(moneda);
+		
+		this.efectivo = new Efectivo(this.moneda);
 	}
 	
 	@Test
 	public void testeoLaCorrectaCreacionDelEfectivo(){
-		assertEquals(efectivo.getMoneda(), moneda);
+		assertEquals(this.efectivo.getMoneda(), this.moneda);
 	}
 }

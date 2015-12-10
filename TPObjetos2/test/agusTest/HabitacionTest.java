@@ -19,7 +19,7 @@ import nadaTesteable.UsuarioPasajero;
 
 public class HabitacionTest {
 	
-	private Habitacion habitacion;
+/*	private Habitacion habitacion;
 	private String ciudad;
 	private UsuarioPasajero usuario;
 	private String otraCiudad;
@@ -110,5 +110,5 @@ public class HabitacionTest {
 		
 		assertEquals(habitacion.ciudadDelHotelDondeEstas(), this.ciudad);
 		assertEquals(habitacion2.ciudadDelHotelDondeEstas(), this.otraCiudad);
-	}
+	}*/
 }
