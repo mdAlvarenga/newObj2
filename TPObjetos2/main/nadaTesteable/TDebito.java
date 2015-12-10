@@ -2,7 +2,7 @@ package nadaTesteable;
 
 import org.joda.time.DateTime;
 
-public class TDebito implements FormaDePago {
+public class TDebito implements IFormaDePago {
 
 	private Banco banco;
 	private Object numero;

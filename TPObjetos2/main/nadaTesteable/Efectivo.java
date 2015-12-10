@@ -1,6 +1,6 @@
 package nadaTesteable;
 
-public class Efectivo implements FormaDePago {
+public class Efectivo implements IFormaDePago {
 
 	private IMoneda moneda;
 
