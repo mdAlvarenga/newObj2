@@ -23,16 +23,6 @@ import model.Reserva;
 
 public class GestorConsultaSetUp {
 	protected GestorConsulta sutGestor;
-	protected DateTime fechaDesdeReserva1Agus;
-	protected DateTime fechaHastaReserva1Agus;
-	protected DateTime fechaDesdeReserva2Agus;
-	protected DateTime fechaHastaReserva2Agus;
-	protected DateTime fechaDesdeReserva3Agus;
-	protected DateTime fechaHastaReserva3Agus;
-	protected DateTime fechaDesdeReserva1Mari;
-	protected DateTime fechaHastaReserva1Mari;
-	protected DateTime fechaDesdeReserva2Mari;
-	protected DateTime fechaHastaReserva2Mari;
 	
 	protected List<Usuario> users;
 	protected List<Hotel> listaHoteles;
@@ -46,6 +36,13 @@ public class GestorConsultaSetUp {
 	
 	protected ArrayList<Ciudad> ciudadesMariu;
 	protected ArrayList<Ciudad> ciudadesAgus;
+	
+	protected List<Reserva> reservasAgusHabBoca1;
+	protected ArrayList<Reserva> reservasAgusHabParis1;
+	protected ArrayList<Reserva> reservasAgusHabCol1;
+	protected ArrayList<Reserva> reservasMariHabParis2;
+	protected List<Reserva> reservasMariHabRosario1;
+	protected DateTime hoy;
 		
 	@Mock protected UsuarioPasajero pasajeroAgustin;
 	@Mock protected UsuarioPasajero pasajeraMariu;
@@ -90,13 +87,6 @@ public class GestorConsultaSetUp {
 	@Mock protected Reserva resFutura;
 	@Mock protected Reserva reservaQueFalla;
 	
-	protected List<Reserva> reservasAgusHabBoca1;
-	protected ArrayList<Reserva> reservasAgusHabParis1;
-	protected ArrayList<Reserva> reservasAgusHabCol1;
-	protected ArrayList<Reserva> reservasMariHabParis2;
-	protected List<Reserva> reservasMariHabRosario1;
-	protected DateTime hoy;
-
 	@Mock protected Reserva nuevaReserva;
 	@Mock protected Habitacion nuevaHabitacion;
 	@Mock protected Hotel nuevoHotel;
@@ -105,8 +95,8 @@ public class GestorConsultaSetUp {
 	@Before
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
-		
-		hoy = new DateTime();
+		String format = new DateTime().toString("yyyy-MM-dd");
+		hoy = new DateTime(format);
 		listaReservas = new ArrayList<Reserva>();
 		users = new ArrayList<Usuario>();
 		listaHoteles = new ArrayList<Hotel>();

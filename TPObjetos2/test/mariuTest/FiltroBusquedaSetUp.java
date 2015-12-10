@@ -21,12 +21,14 @@ public abstract class FiltroBusquedaSetUp {
 	@Mock protected Hotel hotel1;
 	@Mock protected Hotel hotel2;
 	@Mock protected Hotel hotel3;
+	@Mock protected Hotel hotel4;
 	@Mock protected Habitacion hab1;
 	@Mock protected Habitacion hab2;
 	@Mock protected Habitacion hab3;
 	@Mock protected Ciudad quilmes;
 	@Mock protected Ciudad avellaneda;
 	@Mock protected Rango rango;
+	@Mock protected Rango otroRango;
 
 	protected List<Hotel> resultado;
 	protected List<Habitacion> resultadoHab;
@@ -48,6 +50,7 @@ public abstract class FiltroBusquedaSetUp {
 		this.hotel1 = Mockito.mock(Hotel.class);
 		this.hotel2 = Mockito.mock(Hotel.class);
 		this.hotel3 = Mockito.mock(Hotel.class);
+		this.hotel4 = Mockito.mock(Hotel.class);
 		
 		this.hab1 = Mockito.mock(Habitacion.class);
 		this.hab2 = Mockito.mock(Habitacion.class);
@@ -56,6 +59,7 @@ public abstract class FiltroBusquedaSetUp {
 		this.avellaneda = Mockito.mock(Ciudad.class);
 		
 		this.rango = Mockito.mock(Rango.class);
+		this.otroRango = Mockito.mock(Rango.class);
 		
 		this.listaDeHoteles = new ArrayList<Hotel>();
 		this.resultado = new ArrayList<Hotel>();
@@ -71,6 +75,7 @@ public abstract class FiltroBusquedaSetUp {
 		when(this.hotel2.nombreCiudad()).thenReturn("quilmes");
 		when(this.quilmes.getNombre()).thenReturn("quilmes");
 		when(this.hotel3.nombreCiudad()).thenReturn("quilmes");
+
 		
 		when(this.hotel1.tieneHabitacionQueCumpleCapacidad(2)).thenReturn(true);
 		when(this.hotel2.tieneHabitacionQueCumpleCapacidad(2)).thenReturn(false);
@@ -83,8 +88,14 @@ public abstract class FiltroBusquedaSetUp {
 		
 		when(this.hotel2.getHabitaciones()).thenReturn(this.listaDeHabitacionesHotel2);
 		when(this.hab1.disponibilidadPara(this.rango)).thenReturn(true);
+		when(this.hab1.disponibilidadPara(this.otroRango)).thenReturn(false);
 		when(this.hab2.disponibilidadPara(this.rango)).thenReturn(false);
 		when(this.hab3.disponibilidadPara(this.rango)).thenReturn(false);
-
+		
+		when(this.hotel4.getNombre()).thenReturn("hotel1");
+		when(this.hotel4.nombreCiudad()).thenReturn("avellaneda");
+		when(this.hotel4.tieneHabitacionQueCumpleCapacidad(2)).thenReturn(true);
+		when(this.hotel4.getHabitaciones()).thenReturn(this.listaDeHabitacionesHotel1);
+		
 	}
 }
