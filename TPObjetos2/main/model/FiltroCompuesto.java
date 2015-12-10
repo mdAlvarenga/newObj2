@@ -14,20 +14,29 @@ public class FiltroCompuesto extends FiltroBusqueda{
 	
 	@Override
 	public List<Habitacion> buscarHabitaciones(Hotel hotel) {
-		List<Habitacion> ret = new ArrayList<Habitacion>();
+		Set<Habitacion> res = new HashSet<Habitacion>();
+		List<Habitacion> resultado = new ArrayList<Habitacion>();
+		
+		if (this.getListaDeFiltros().isEmpty())
+			return hotel.getHabitaciones();
+		
 		for (FiltroBusqueda f : this.getListaDeFiltros()) {
 			if (f.buscarHabitaciones(hotel).isEmpty()){
-				return new ArrayList<Habitacion>();
+				return resultado;
 			}
-			ret.addAll(f.buscarHabitaciones(hotel));
+			res.addAll(f.buscarHabitaciones(hotel));
 		}
-		return ret;
+		resultado.addAll(res);
+		return resultado;
 	}
 
 	@Override
 	public List<Hotel> buscar(List<Hotel> lHoteles) {
 		Set<Hotel> res = new HashSet<Hotel>();
 		List<Hotel> resultado = new ArrayList<Hotel>();
+		
+		if (this.getListaDeFiltros().isEmpty())
+			return lHoteles;		
 		
 		for (FiltroBusqueda f : this.getListaDeFiltros()) {
 			if (f.buscar(lHoteles).isEmpty()){

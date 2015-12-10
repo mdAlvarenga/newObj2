@@ -13,6 +13,15 @@ public class FiltroCiudadHotel extends FiltroBusqueda{
 	}
 	
 	@Override
+	public List<Habitacion> buscarHabitaciones(Hotel hotel) {
+		List<Habitacion> res = new ArrayList<Habitacion>();
+		if (hotel.nombreCiudad().equalsIgnoreCase(this.nombreCiudadABuscar())){
+			res.addAll(hotel.getHabitaciones());
+		}
+		return res;	
+	}
+	
+	@Override
 	public List<Hotel> buscar(List<Hotel> hoteles) {
 		List<Hotel> res = new ArrayList<Hotel>();
 		
