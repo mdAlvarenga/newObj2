@@ -90,7 +90,8 @@ public class GestorConsulta extends Observable{
 	 */
 	public List<Reserva> todasReservasFuturasDePasajero(UsuarioPasajero unPasajero) {
 		List<Reserva> resul = new ArrayList<Reserva>();
-		DateTime hoy = new DateTime();
+		String format = new DateTime().toString("yyyy-MM-dd");
+		DateTime hoy = new DateTime(format);
 		for(Reserva r: this.getReservas()){
 			boolean esUsuario = r.getUsuarioQueReserva().equals(unPasajero);
 			boolean reservaEsPosterior = r.fechaDeReservaPosteriorA(hoy);
@@ -104,7 +105,7 @@ public class GestorConsulta extends Observable{
 		//Aca PODRIA ir una excepcion de si no esta el hotel, pero supongamos que esta todo perfecto.
 		//Lo mismo que no me convence el else...
 		Hotel hotel = this.buscarHotel(unHotel);
-		if(hotel.habitacionNoTieneReservaEnFecha(unaHabitacion, unaReserva)){
+		if(hotel.habitacionNoTieneReservaEnFecha(unaHabitacion, unaReserva.getRangoDeReserva())){
 			hotel.agregarReservaEnHabitacion(unaHabitacion, unaReserva);
 			this.getReservas().add(unaReserva);
 			BodyMailBuilder body = new BodyMailBuilder(unaReserva, unaHabitacion, unHotel);
@@ -136,7 +137,8 @@ public class GestorConsulta extends Observable{
 	 * @return listado de reservas
 	 */
 	public List<Reserva> ReservasActualesDeHotelero(UsuarioHotelero unHotelero) {
-		DateTime hoy = new DateTime();
+		String format = new DateTime().toString("yyyy-MM-dd");
+		DateTime hoy = new DateTime(format);
 		List<Reserva> reservasActuales = new ArrayList<Reserva>();
 		for(Hotel hotel:this.getHoteles()){
 			if (hotel.getHotelero().equals(unHotelero))
@@ -152,7 +154,8 @@ public class GestorConsulta extends Observable{
 	 * @return lista de reservas
 	 */
 	public List<Reserva> ReservasFuturasDeHotelero(UsuarioHotelero unHotelero) {
-		DateTime hoy = new DateTime();
+		String format = new DateTime().toString("yyyy-MM-dd");
+		DateTime hoy = new DateTime(format);
 		List<Reserva> reservasFuturas = new ArrayList<Reserva>();
 		for(Hotel hotel:this.getHoteles()){
 			if (hotel.getHotelero().equals(unHotelero))
@@ -170,12 +173,13 @@ public class GestorConsulta extends Observable{
 	 */
 	public List<Reserva> ReservasInicioEnNFuturosDiasHotelero(UsuarioHotelero unHotelero, int nDias){
 		List<Reserva> reservasInicioEnNDias = new ArrayList<Reserva>();
-		DateTime hoy = new DateTime().toDateTime();
-		DateTime fechaFutura = hoy.plusDays(nDias);
+		String format = new DateTime().plusDays(nDias).toString("yyyy-MM-dd");
+		DateTime fechaFutura = new DateTime(format);
 		for(Hotel hotel:this.getHoteles()){
 			if (hotel.getHotelero().equals(unHotelero))
 				reservasInicioEnNDias.addAll(hotel.reservasConFechaMayorA(fechaFutura));
 		}
 		return reservasInicioEnNDias;
 	}
+
 }

@@ -3,11 +3,10 @@ package marcosTest;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import model.Hotel;
 
 import org.joda.time.DateTime;
 import org.junit.Test;
@@ -19,7 +18,8 @@ public class GestorConsultaTest extends GestorConsultaSetUp{
 		verificaTantoLlamadasComoNoLlamadasAMetodosDeDistintosHotelesCuandoReservoParaNFuturosDias(){
 		
 		sutGestor.ReservasInicioEnNFuturosDiasHotelero(hoteleraGil, 5);
-		DateTime fechaComparacion= hoy.plusDays(5);
+		String format = hoy.plusDays(5).toString("yyyy-MM-dd");
+		DateTime fechaComparacion= new DateTime(format);
 		verify(hotelParis).reservasConFechaMayorA(fechaComparacion);
 		verify(hotelIntercontinental).reservasConFechaMayorA(fechaComparacion);
 		verify(hotelRosario).reservasConFechaMayorA(fechaComparacion);
@@ -54,8 +54,8 @@ public class GestorConsultaTest extends GestorConsultaSetUp{
 	
 	@Test 
 	public void cuandoIntentoagregarUnaReservaNoSePuedePorqueNoHayDisponibilidadParaLaFecha(){
-		when(this.hotelBoca.habitacionNoTieneReservaEnFecha(habitacionBoca2, reservaQueFalla))
-				 											.thenReturn(false);
+		when(this.hotelBoca.habitacionNoTieneReservaEnFecha(habitacionBoca2, 
+						reservaQueFalla.getRangoDeReserva())).thenReturn(false);
 		sutGestor.agregarReserva(reservaQueFalla, habitacionBoca2, hotelBoca);
 		verify(hotelBoca, never()).agregarReservaEnHabitacion(habitacionBoca2, nuevaReserva);
 		
@@ -63,8 +63,8 @@ public class GestorConsultaTest extends GestorConsultaSetUp{
 	
 	@Test 
 	public void agregoUnaReservaElSizeDeLasReservasCambiaA7SeVerificaElLlamadoAUnaFuncionEnHotel(){
-		when(this.hotelBoca.habitacionNoTieneReservaEnFecha(habitacionBoca2, nuevaReserva))
-															.thenReturn(true);
+		when(this.hotelBoca.habitacionNoTieneReservaEnFecha(habitacionBoca2, 
+						nuevaReserva.getRangoDeReserva())).thenReturn(true);
 		sutGestor.agregarReserva(nuevaReserva, habitacionBoca2, hotelBoca);
 		verify(hotelBoca).agregarReservaEnHabitacion(habitacionBoca2, nuevaReserva);
 		assertEquals(sutGestor.getReservas().size(),7);	

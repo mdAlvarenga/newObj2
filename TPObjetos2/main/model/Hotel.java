@@ -142,7 +142,7 @@ public class Hotel {
 			Reserva unaReserva) {		
 	}
 
-	public boolean habitacionNoTieneReservaEnFecha(Habitacion unaHabitacion,Reserva unaReserva) {
+	public boolean habitacionNoTieneReservaEnFecha(Habitacion unaHabitacion,Rango unRango) {
 		//ya sabes agus, aca recorres las habitaciones y me retornas si NO ESTA RESERVADA, true :D
 		// TODO Auto-generated method stub
 		return false;
