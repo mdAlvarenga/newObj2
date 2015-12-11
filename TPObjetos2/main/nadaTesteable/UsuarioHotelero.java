@@ -1,6 +1,4 @@
-package clasesPorCompletitud;
-
-import model.Telefono;
+package nadaTesteable;
 
 public class UsuarioHotelero extends Usuario{
 	private String cuit;

@@ -1,11 +1,11 @@
-package clasesPorCompletitud;
+package nadaTesteable;
 
 public class Banco {
 
 	private String nombre;
 
 	public Banco(String unNombre) {
-		this.nombre = unNombre;
+		this.setNombre(unNombre);
 	}
 	
 	public void setNombre(String unNombre){

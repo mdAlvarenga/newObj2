@@ -10,11 +10,11 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-import clasesPorCompletitud.Ciudad;
 import model.FiltroBusqueda;
 import model.Habitacion;
 import model.Hotel;
 import model.Rango;
+import nadaTesteable.Ciudad;
 
 public abstract class FiltroBusquedaSetUp {
 	

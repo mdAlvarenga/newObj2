@@ -2,8 +2,8 @@ package model;
 
 import org.joda.time.DateTime;
 
-import clasesPorCompletitud.Usuario;
 import model.Rango;
+import nadaTesteable.Usuario;
 
 public class Reserva {
 	private Usuario usuarioQueReserva;

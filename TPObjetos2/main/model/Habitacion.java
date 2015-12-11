@@ -5,9 +5,9 @@ import java.util.List;
 
 import org.joda.time.DateTime;
 
-import clasesPorCompletitud.Servicio;
-import clasesPorCompletitud.Usuario;
-import clasesPorCompletitud.UsuarioPasajero;
+import nadaTesteable.Servicio;
+import nadaTesteable.Usuario;
+import nadaTesteable.UsuarioPasajero;
 
 public class Habitacion {
 	/*

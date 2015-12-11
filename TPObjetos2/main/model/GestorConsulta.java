@@ -6,9 +6,9 @@ import java.util.Observable;
 
 import org.joda.time.DateTime;
 
-import clasesPorCompletitud.Ciudad;
-import clasesPorCompletitud.UsuarioHotelero;
-import clasesPorCompletitud.UsuarioPasajero;
+import nadaTesteable.Ciudad;
+import nadaTesteable.UsuarioHotelero;
+import nadaTesteable.UsuarioPasajero;
 
 public class GestorConsulta extends Observable{
 	protected List<Reserva> reservas;
@@ -25,6 +25,25 @@ public class GestorConsulta extends Observable{
 	public GestorConsulta(List<Reserva> res, List<Hotel> hs){
 		this.reservas = res;
 		this.hoteles = hs;
+	}
+	
+	public void agregarReserva(Reserva unaReserva, Habitacion unaHabitacion, Hotel unHotel) {
+		//Aca PODRIA ir una excepcion de si no esta el hotel, pero supongamos que esta todo perfecto.
+		//Lo mismo que no me convence el else...
+		if(unaHabitacion.disponibilidadPara(unaReserva.getRangoDeReserva())){
+			for(Hotel h: this.getHoteles()){
+				boolean igual = h.equals(unHotel); 
+				if (igual)
+					h.agregarReservaEnHabitacion(unaHabitacion, unaReserva);
+			}
+			this.getReservas().add(unaReserva);
+			BodyMailBuilder body = new BodyMailBuilder(unaReserva, unaHabitacion, unHotel);
+			setChanged();
+			notifyObservers(body);
+		}else{
+			System.out.println("La habitacion no se encuentra disponible en esa fecha.\n "
+					+ "Por favor verifique los datos ingresados");
+		}
 	}
 	
 	/**
@@ -100,32 +119,7 @@ public class GestorConsulta extends Observable{
 		}
 		return resul;
 	}
-
-	public void agregarReserva(Reserva unaReserva, Habitacion unaHabitacion, Hotel unHotel) {
-		//Aca PODRIA ir una excepcion de si no esta el hotel, pero supongamos que esta todo perfecto.
-		//Lo mismo que no me convence el else...
-		Hotel hotel = this.buscarHotel(unHotel);
-		if(hotel.habitacionNoTieneReservaEnFecha(unaHabitacion, unaReserva.getRangoDeReserva())){
-			hotel.agregarReservaEnHabitacion(unaHabitacion, unaReserva);
-			this.getReservas().add(unaReserva);
-			BodyMailBuilder body = new BodyMailBuilder(unaReserva, unaHabitacion, unHotel);
-			setChanged();
-			notifyObservers(body);
-		}else{
-			System.out.println("La habitacion no se encuentra disponible en esa fecha.\n "
-					+ "Por favor verifique los datos ingresados");
-		}
-	}
 	
-	public Hotel buscarHotel(Hotel unHotel) {
-		for(Hotel h: this.getHoteles()){
-			boolean igual = h.equals(unHotel); 
-			if (igual)
-				return h;
-		}
-		return null;
-	}
-
 	public void agregarHotel(Hotel unHotel) {
 		this.getHoteles().add(unHotel);		
 	}

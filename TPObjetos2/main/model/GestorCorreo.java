@@ -3,8 +3,8 @@ package model;
 import java.util.Observable;
 import java.util.Observer;
 
-import clasesPorCompletitud.Correo;
-import clasesPorCompletitud.IServidor;
+import nadaTesteable.Correo;
+import nadaTesteable.IServidor;
 
 public class GestorCorreo implements Observer{
 	private IServidor servidor;
@@ -13,10 +13,9 @@ public class GestorCorreo implements Observer{
 		return servidor;
 	}
 
-	public void setServidor(IServidor servidor) {
+	public GestorCorreo(IServidor servidor){
 		this.servidor = servidor;
 	}
-
 	public void update(Observable arg0, Object arg1) {
 		String mailHotelero = ((BodyMailBuilder) arg1).mailHotelero();
 		String mailPasajero = ((BodyMailBuilder) arg1).mailPasajero();

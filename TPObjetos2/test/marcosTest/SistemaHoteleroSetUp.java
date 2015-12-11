@@ -8,16 +8,15 @@ import model.Habitacion;
 import model.Hotel;
 import model.Reserva;
 import model.SistemaHotelero;
+import nadaTesteable.Ciudad;
+import nadaTesteable.IServidor;
+import nadaTesteable.Usuario;
+import nadaTesteable.UsuarioHotelero;
+import nadaTesteable.UsuarioPasajero;
 
 import org.junit.Before;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-
-import clasesPorCompletitud.Ciudad;
-import clasesPorCompletitud.IServidor;
-import clasesPorCompletitud.Usuario;
-import clasesPorCompletitud.UsuarioHotelero;
-import clasesPorCompletitud.UsuarioPasajero;
 
 public abstract class SistemaHoteleroSetUp {
 

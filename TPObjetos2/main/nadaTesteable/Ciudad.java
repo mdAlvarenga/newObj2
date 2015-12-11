@@ -1,16 +1,16 @@
-package clasesPorCompletitud;
+package nadaTesteable;
 
 public class Ciudad {
 
 	private String nombreCiudad;
-	private String pais;
+	private Pais pais;
 
-	public Ciudad(String unNombre, String unPais) {
+	public Ciudad(String unNombre, Pais unPais) {
 		this.setNombreCiudad(unNombre);
 		this.setPais(unPais);
 	}
 
-	private void setPais(String unPais) {
+	private void setPais(Pais unPais) {
 		this.pais = unPais;
 		
 	}
@@ -25,7 +25,7 @@ public class Ciudad {
 	}
 
 
-	public String getPais() {
+	public Pais getPais() {
 		return this.pais;
 	}
 }

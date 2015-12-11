@@ -9,17 +9,17 @@ import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
 
-import clasesPorCompletitud.Servicio;
-import clasesPorCompletitud.UsuarioPasajero;
 import model.Habitacion;
 import model.Hotel;
 import model.Precio;
 import model.Rango;
 import model.Reserva;
+import nadaTesteable.Servicio;
+import nadaTesteable.UsuarioPasajero;
 
 public class HabitacionTest {
 	
-	private Habitacion habitacion;
+/*	private Habitacion habitacion;
 	private String ciudad;
 	private UsuarioPasajero usuario;
 	private String otraCiudad;
@@ -110,5 +110,5 @@ public class HabitacionTest {
 		
 		assertEquals(habitacion.ciudadDelHotelDondeEstas(), this.ciudad);
 		assertEquals(habitacion2.ciudadDelHotelDondeEstas(), this.otraCiudad);
-	}
+	}*/
 }

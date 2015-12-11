@@ -1,4 +1,4 @@
-package model;
+package nadaTesteable;
 
 public class Categoria {
 

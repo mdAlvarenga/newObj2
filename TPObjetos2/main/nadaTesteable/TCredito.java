@@ -1,8 +1,8 @@
-package clasesPorCompletitud;
+package nadaTesteable;
 
 import org.joda.time.DateTime;
 
-public class TCredito implements FormaDePago {
+public class TCredito implements IFormaDePago {
 
 	private int numero;
 	private Banco banco;
@@ -18,23 +18,23 @@ public class TCredito implements FormaDePago {
 		this.codigoseguridad = unCodSeguridad;
 	}
 
-	int getNumero() {
+	public int getNumero() {
 		return numero;
 	}
 
-	Banco getBanco() {
+	public Banco getBanco() {
 		return banco;
 	}
 
-	DateTime getFvencimiento() {
+	public DateTime getFvencimiento() {
 		return fvencimiento;
 	}
 
-	Marca getMarca() {
+	public Marca getMarca() {
 		return marca;
 	}
 
-	int getCodigoseguridad() {
+	public int getCodigoseguridad() {
 		return codigoseguridad;
 	}
 
