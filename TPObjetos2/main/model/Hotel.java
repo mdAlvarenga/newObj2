@@ -56,7 +56,7 @@ public class Hotel {
 		Rango unDiaEnRango = new Rango(unaFecha, unaFecha);
 		for(Habitacion habitacion: habitaciones){
 			if (!habitacion.disponibilidadPara(unDiaEnRango)){
-				reservas.add(habitacion.getReservaParaFecha(unaFecha));
+				reservas.add(habitacion.getReservasParaFecha(unaFecha));
 			}
 		}
 		return reservas;

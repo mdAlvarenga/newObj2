@@ -95,12 +95,10 @@ public class Habitacion {
 		return ret;
 	}
 	
-	public Reserva getReservaParaFecha(DateTime unaFecha){
+	public Reserva getReservasParaFecha(DateTime unaFecha){
 		
-		Reserva reservaFinal = null;
-		Rango rangoAConsultar = new Rango(unaFecha, unaFecha);
-		
-		for (Reserva r : this.getReservas()) {
+		Rango rangoAConsultar = new Rango(unaFecha, unaFecha);		
+		for (Reserva reserva : this.getReservas()) {
 			if (r.ocupadaEn(rangoAConsultar)){
 				reservaFinal = r;
 				break;
