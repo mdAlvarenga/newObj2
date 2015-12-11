@@ -4,17 +4,17 @@ import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
 
-import clasesPorCompletitud.Ciudad;
-import clasesPorCompletitud.Servicio;
-import clasesPorCompletitud.UsuarioHotelero;
-import model.Categoria;
-import model.Direccion;
 import model.Habitacion;
 import model.Hotel;
-import model.Mail;
-import model.MedioDePago;
-import model.Pais;
-import model.Telefono;
+import nadaTesteable.Categoria;
+import nadaTesteable.Ciudad;
+import nadaTesteable.Correo;
+import nadaTesteable.Direccion;
+import nadaTesteable.IFormaDePago;
+import nadaTesteable.Pais;
+import nadaTesteable.Servicio;
+import nadaTesteable.Telefono;
+import nadaTesteable.UsuarioHotelero;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
@@ -32,7 +32,7 @@ public class HotelTest {
 	private Habitacion habitacion4;
 	private List<Habitacion> mockListHabitaciones;
 	private List<Servicio> mockListServicios;
-	private List<MedioDePago> mockListMediosDePago;
+	private ArrayList<IFormaDePago> mockListFormasDePago;
 	
 	@Before
 	public void setUp(){
@@ -44,7 +44,7 @@ public class HotelTest {
 		
 		mockListHabitaciones = new ArrayList<Habitacion>();
 		mockListServicios = new ArrayList<Servicio>();
-		mockListMediosDePago = new ArrayList<MedioDePago>();
+		mockListFormasDePago = new ArrayList<IFormaDePago>();
 		
 		mockListHabitaciones.add(habitacion1);
 		mockListHabitaciones.add(habitacion2);
@@ -63,8 +63,8 @@ public class HotelTest {
 						  any(Pais.class), 
 						  any(Direccion.class), 
 						  any(Telefono.class), 
-						  any(Mail.class),
-						  mockListMediosDePago);
+						  any(Correo.class),
+						  mockListFormasDePago);
 	}
 
 	@Test

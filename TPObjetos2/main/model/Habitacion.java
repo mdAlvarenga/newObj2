@@ -7,7 +7,6 @@ import org.joda.time.DateTime;
 
 import nadaTesteable.Servicio;
 import nadaTesteable.Usuario;
-import nadaTesteable.UsuarioPasajero;
 
 public class Habitacion {
 	/*
@@ -19,31 +18,25 @@ public class Habitacion {
 	private List<Servicio> servicios;
 	private List<Reserva> reservas;
 	private List<Precio> preciosPorFechas;
+	private Boolean camaMatrimonial;
 	
-	public Habitacion(String numeroONombre, int unaCapacidad, String unaBase, List<Servicio> servicios, 
-						List<Reserva> reservas, List<Precio> precios) {
+	public Habitacion(String numeroONombre, int unaCapacidad, String unaBase, List<Servicio> unServicios, 
+						List<Reserva> unasReservas, List<Precio> unosPrecios, Boolean esCamaMatrimonial) {
 		
-		this.setCapacidadMaxima(unaCapacidad);
-		this.setBaseDobleOSimple(unaBase);
-		this.setServicios(servicios);
-		this.setReservas(reservas);
-		this.setPrecios(precios);
-		this.setNombreONumero(numeroONombre);
+		capacidadMaxima 	= unaCapacidad;
+		baseDoble 			= unaBase;
+		servicios 			= unServicios;
+		reservas 			= unasReservas;
+		preciosPorFechas 	= unosPrecios;
+		nombreONumero		= numeroONombre;
+		camaMatrimonial 	= esCamaMatrimonial;
 	}
-
+	
 	public boolean disponibilidadPara(Rango unRango) {
 		boolean ret = true;
 		for (Reserva r : this.getReservas()) {
 			ret = ret & !(r.ocupadaEn(unRango)); 
 		}
-		return ret;
-	}
-
-	public List<Reserva> reservasDeUnaCiudadDelUsuario(String unaCiudad, Usuario unUsuario) {
-		List<Reserva> ret = new ArrayList<Reserva>();
-		/*if (this.getHotelPertenece().getNombreCiudad().equals(unaCiudad)){
-			ret.addAll(this.reservasDelUsuario(unUsuario));
-		}*/
 		return ret;
 	}
 
@@ -95,52 +88,31 @@ public class Habitacion {
 		return ret;
 	}
 	
-	public Reserva getReservasParaFecha(DateTime unaFecha){
-		
+	public void getReservasParaFecha(DateTime unaFecha, List<Reserva> reservas){
 		Rango rangoAConsultar = new Rango(unaFecha, unaFecha);		
 		for (Reserva reserva : this.getReservas()) {
-			if (r.ocupadaEn(rangoAConsultar)){
-				reservaFinal = r;
-				break;
+			if (!reserva.ocupadaEn(rangoAConsultar)){
+				reservas.add(reserva);
 			}
 		}
-		return reservaFinal;
 	}
 	
-
-	// si la reserva no llega a existir, esto explota
 	public void cancelaSiPodes(Reserva unaReserva) {
 		this.reservas.remove(unaReserva);
 		
 	}
 	
-	//Getters and Setters
+	//Getters
 	public String getBaseDobleOSimple() {
 		return this.baseDoble;
-	}
-
-	public void setBaseDobleOSimple(String baseDobleOSimple) {
-		this.baseDoble = baseDobleOSimple;
 	}
 
 	public List<Servicio> getServicios() {
 		return this.servicios;
 	}
 
-	public void setServicios(List<Servicio> servicios) {
-		this.servicios = servicios;
-	}
-
 	public List<Reserva> getReservas() {
 		return this.reservas;
-	}
-
-	public void setReservas(List<Reserva> reservas) {
-		this.reservas = reservas;
-	}
-
-	public void setCapacidadMaxima(int capacidadMaxima) {
-		this.capacidadMaxima = capacidadMaxima;
 	}
 
 	public int getCapacidadMaxima() {
@@ -151,15 +123,11 @@ public class Habitacion {
 		return preciosPorFechas;
 	}
 
-	public void setPrecios(List<Precio> precios) {
-		this.preciosPorFechas = precios;
-	}
-
 	public String getNombreONumero() {
 		return nombreONumero;
 	}
-
-	public void setNombreONumero(String nombreONumero) {
-		this.nombreONumero = nombreONumero;
+	
+	public Boolean getCamaMatrimonial(){
+		return camaMatrimonial;
 	}
 }

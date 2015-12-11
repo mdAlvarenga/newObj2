@@ -16,8 +16,9 @@ import model.Habitacion;
 import model.Hotel;
 import nadaTesteable.Categoria;
 import nadaTesteable.Ciudad;
+import nadaTesteable.Correo;
 import nadaTesteable.Direccion;
-import nadaTesteable.MedioDePago;
+import nadaTesteable.IFormaDePago;
 import nadaTesteable.Pais;
 import nadaTesteable.Servicio;
 import nadaTesteable.Telefono;
@@ -33,11 +34,11 @@ public class GettersDelHotelTest {
 	private Pais mockPais;
 	private Direccion mockDireccion;
 	private Telefono mockTelefono;
-	private String mockMail;
+	private Correo mockMail;
 	private DateTime mockCheckOut;
-	private List<MedioDePago> mockListMediosDePago;
 	private List<Habitacion> mockListHabitaicones;
 	private UsuarioHotelero mockHotelero;
+	private ArrayList<IFormaDePago> mockListFormasDePago;
 
 	@Before
 	public void setUp(){
@@ -46,14 +47,14 @@ public class GettersDelHotelTest {
 		
 		// inicializo listas
 		mockListServicios = new ArrayList<Servicio>();
-		mockListMediosDePago = new ArrayList<MedioDePago>();
+		mockListFormasDePago = new ArrayList<IFormaDePago>();
 		mockListHabitaicones = new ArrayList<Habitacion>();
 		
 		// variables temporales necesarias
 		Servicio servicio1 = Mockito.any();
 		Servicio servicio2 = Mockito.any();
-		MedioDePago medio1 = Mockito.any();
-		MedioDePago medio2 = Mockito.any();
+		IFormaDePago medio1 = Mockito.any();
+		IFormaDePago medio2 = Mockito.any();
 		Habitacion habitacion1 = Mockito.any();
 		Habitacion habitacion2 = Mockito.any();
 		
@@ -68,8 +69,8 @@ public class GettersDelHotelTest {
 		mockTelefono = Mockito.any();
 		mockMail = Mockito.any();
 		mockCheckOut = Mockito.any();
-		mockListMediosDePago.add(medio1);
-		mockListMediosDePago.add(medio2);
+		mockListFormasDePago.add(medio1);
+		mockListFormasDePago.add(medio2);
 		mockListHabitaicones.add(habitacion1);
 		mockListHabitaicones.add(habitacion2);
 		mockHotelero = Mockito.any();		
@@ -77,7 +78,7 @@ public class GettersDelHotelTest {
 		hotel = new Hotel("HOTELTEST", mockCiudad, mockListHabitaicones, 
 						  mockListServicios, mockCategoria, mockCheckIn, 
 						  mockCheckIn, mockHotelero, mockPais, mockDireccion, 
-						  mockTelefono, mockMail, mockListMediosDePago);
+						  mockTelefono, mockMail, mockListFormasDePago);
 	}
 	@Test
 	public void testNombreHotel(){
@@ -131,7 +132,7 @@ public class GettersDelHotelTest {
 
 	@Test
 	public void testMediosDePagoHotel(){
-		assertEquals(hotel.getMediosDePago(), mockListMediosDePago);
+		assertEquals(hotel.getFormasDePago(), mockListFormasDePago);
 	}
 	
 	@Test

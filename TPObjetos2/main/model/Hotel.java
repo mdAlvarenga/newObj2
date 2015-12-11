@@ -7,8 +7,9 @@ import org.joda.time.DateTime;
 
 import nadaTesteable.Categoria;
 import nadaTesteable.Ciudad;
+import nadaTesteable.Correo;
 import nadaTesteable.Direccion;
-import nadaTesteable.MedioDePago;
+import nadaTesteable.IFormaDePago;
 import nadaTesteable.Pais;
 import nadaTesteable.Servicio;
 import nadaTesteable.Telefono;
@@ -26,22 +27,22 @@ public class Hotel {
 	private Pais pais;
 	private Direccion direccion;
 	private Telefono telefono;
-	private String mail;
-	private List<MedioDePago> mediosDePago;
+	private Correo mail;
+	private List<IFormaDePago> formasDePago;
 	
 	public Hotel(String unNombreDeHotel, Ciudad unaCiudad, List<Habitacion> unasHabitaciones, 
 				 List<Servicio> unosServicios, Categoria unaCategoria, DateTime unCheckIn, 
 				 DateTime unCheckOut, UsuarioHotelero unHotelero, Pais unPais,
-				 Direccion unaDireccion, Telefono unTelefono, String unMail, 
-				 List<MedioDePago> unosMediosDePago) {
+				 Direccion unaDireccion, Telefono unTelefono, Correo unMail, 
+				 List<IFormaDePago> unosMediosDePago) {
 
 		// INICIALIZO LISTAS
 		habitaciones	= new ArrayList<Habitacion>();
 		servicios 		= new ArrayList<Servicio>();
-		mediosDePago 	= new ArrayList<MedioDePago>();
+		formasDePago 	= new ArrayList<IFormaDePago>();
 		
 		// INICIALIZO VARIABLES DE INSTANCIA
-		mediosDePago.addAll(unosMediosDePago);		
+		formasDePago.addAll(unosMediosDePago);		
 		habitaciones.addAll(unasHabitaciones);
 		servicios.addAll(unosServicios);
 		nombreHotel = unNombreDeHotel;
@@ -127,12 +128,12 @@ public class Hotel {
 		return telefono;
 	}
 
-	public String getMail() {
+	public  Correo getMail() {
 		return mail;
 	}
 
-	public List<MedioDePago> getMediosDePago() {
-		return mediosDePago;
+	public List<IFormaDePago> getFormasDePago() {
+		return formasDePago;
 	}	
 	
 	public UsuarioHotelero getHotelero() {
@@ -146,11 +147,5 @@ public class Hotel {
 	public void agregarReservaEnHabitacion(Habitacion unaHabitacion,
 			Reserva unaReserva) {		
 	}
-	
-	public boolean habitacionNoTieneReservaEnFecha(Habitacion unaHabitacion,Rango unRango) {
-		//ya sabes agus, aca recorres las habitaciones y me retornas si NO ESTA RESERVADA, true :D
-		// TODO Auto-generated method stub
-		return false;
-	}
-	
+		
 }

@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.joda.time.DateTime;
 import org.junit.Before;
@@ -15,11 +16,12 @@ import model.Precio;
 import model.Rango;
 import model.Reserva;
 import nadaTesteable.Servicio;
+import nadaTesteable.Usuario;
 import nadaTesteable.UsuarioPasajero;
 
 public class HabitacionTest {
 	
-/*	private Habitacion habitacion;
+	private Habitacion habitacion;
 	private String ciudad;
 	private UsuarioPasajero usuario;
 	private String otraCiudad;
@@ -36,37 +38,12 @@ public class HabitacionTest {
 	private Rango ene_feb;
 	private Rango marzo_abril;
 	private Rango rango2;
+	private Rango rango1;
 	
 	
 	@Before
 	public void setUp(){
 		
-		this.usuario = new UsuarioPasajero(ciudad, ciudad, ciudad, ciudad, 3365);
-
-		this.fechaDesde_oct= new DateTime(2015,10,10,0,0);
-		this.fechaHasta_nov = new DateTime(2015,11,11,0,0);
-		
-		this.fechaDesde_ene = new DateTime(2015,01,10,0,0);
-		this.fechaHasta_feb = new DateTime(2015,02,11,0,0);
-		
-		this.fechaDesde_marzo = new DateTime(2016,03,10,0,0);
-		this.fechaHasta_abril = new DateTime(2016,04,11,0,0);
-		
-		oct_nov = new Rango(this.fechaDesde_oct, this.fechaHasta_nov);
-		ene_feb= new Rango(this.fechaDesde_ene, this.fechaHasta_feb);
-		marzo_abril= new Rango(this.fechaDesde_marzo,this.fechaHasta_abril);
-		
-		this.habitacion = new Habitacion(10, "simple", new ArrayList<Servicio>(), 
-				new ArrayList<Reserva>(), new ArrayList<Precio>());
-		
-		this.habitacion.reservar(this.oct_nov, this.usuario);
-		
-		this.habitacion.reservar(this.marzo_abril, this.usuario);
-		
-		this.habitacion2 = new Habitacion(10, "simple", new ArrayList<Servicio>(), 
-				new ArrayList<Reserva>(), new ArrayList<Precio>());
-		
-		this.habitacion2.reservar(this.ene_feb, this.usuario);
 		
 	}
 
@@ -87,13 +64,6 @@ public class HabitacionTest {
 	}
 	
 	@Test
-	public void testReservasDeUnaCiudadDelUsuario(){
-		
-		assertEquals(habitacion.reservasDeUnaCiudadDelUsuario(this.ciudad, this.usuario).size(), 2);
-		assertEquals(habitacion2.reservasDeUnaCiudadDelUsuario(this.otraCiudad, this.usuario).size(), 1);
-	}
-	
-	@Test
 	public void testReservasDelUsuario(){
 		
 		assertEquals(habitacion.reservasDelUsuario(this.usuario).size(), 2);
@@ -104,11 +74,38 @@ public class HabitacionTest {
 		
 		assertEquals(habitacion.reservasFuturasDelUsuario(this.usuario).size(), 1);
 	}
+
+	@Test	
+	public void testDisponibilidadPara(Rango unRango) {
+		assertTrue(habitacion.disponibilidadPara(rango1));
+	}
 	
 	@Test
-	public void testCiudadDelHotelDondeEstas(){
-		
-		assertEquals(habitacion.ciudadDelHotelDondeEstas(), this.ciudad);
-		assertEquals(habitacion2.ciudadDelHotelDondeEstas(), this.otraCiudad);
-	}*/
+	public void testReservasConFechaMayorA(){
+		assertEquals(habitacion.reservasConFechaMayorA(fechaHoy));
+	}
+	
+	@Test
+	public void testAgregarReserva(){
+		habitacion.agragarReserva(mockReservaAgregar);
+		assertEquals(habitacion.getReservas().size(), 5);
+		assertTrue(habitacion.getReservas().contains(mockReservaAgregar));
+	}
+
+	@Test
+	public void testCalcularUnMonto(){
+		assertEquals(habitacion.calcularMonto(rango1).intValue(), 100);
+	}
+	
+	@Test
+	public void testGetReservasParaFecha(){
+		habitacion.getReservasParaFecha(fecha1, mockListReservas);
+		assertTrue(mockListReservas.contains(mockReserva1));
+	}
+	
+	@Test
+	public void testCancelaSiPodes() {
+		habitacion.cancelaSiPodes(mockResva2);
+		assertFalse(habitacion.getReservas().contains(mockReserva2));
+	}
 }
