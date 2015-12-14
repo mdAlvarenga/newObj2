@@ -75,7 +75,7 @@ public class Habitacion {
 	}
 
 	public void agregarReserva(Reserva unaReserva) {
-		this.getReservas().add(unaReserva);
+		reservas.add(unaReserva);
 	}
 
 	public Double calcularMonto(Rango unRango){

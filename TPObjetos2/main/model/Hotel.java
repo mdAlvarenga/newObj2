@@ -59,11 +59,8 @@ public class Hotel {
 	
 	public List<Reserva> reservasDentroDeFecha(DateTime unaFecha){
 		List<Reserva> reservas = new ArrayList<Reserva>();
-		Rango unDiaEnRango = new Rango(unaFecha, unaFecha);
 		for(Habitacion habitacion: habitaciones){
-			if (!habitacion.disponibilidadPara(unDiaEnRango)){
-				reservas.add(habitacion.getReservasParaFecha(unaFecha));
-			}
+			habitacion.getReservasParaFecha(unaFecha, reservas);
 		}
 		return reservas;
 	}
