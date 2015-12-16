@@ -88,13 +88,15 @@ public class Habitacion {
 		return ret;
 	}
 	
-	public void getReservasParaFecha(DateTime unaFecha, List<Reserva> reservas){
-		Rango rangoAConsultar = new Rango(unaFecha, unaFecha);		
-		for (Reserva reserva : this.getReservas()) {
+	public List<Reserva> getReservasParaFecha(DateTime unaFecha){
+		Rango rangoAConsultar = new Rango(unaFecha, unaFecha);
+		List<Reserva> ret = new ArrayList<Reserva>();
+		for (Reserva reserva : this.reservas) {
 			if (!reserva.ocupadaEn(rangoAConsultar)){
-				reservas.add(reserva);
+				ret.add(reserva);
 			}
 		}
+		return ret;
 	}
 	
 	public void cancelaSiPodes(Reserva unaReserva) {

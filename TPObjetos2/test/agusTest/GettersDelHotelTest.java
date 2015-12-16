@@ -9,7 +9,7 @@ import java.util.List;
 import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
+import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import model.Habitacion;
@@ -21,6 +21,8 @@ import nadaTesteable.Direccion;
 import nadaTesteable.IFormaDePago;
 import nadaTesteable.Pais;
 import nadaTesteable.Servicio;
+import nadaTesteable.TCredito;
+import nadaTesteable.TDebito;
 import nadaTesteable.Telefono;
 import nadaTesteable.UsuarioHotelero;
 
@@ -28,17 +30,23 @@ public class GettersDelHotelTest {
 
 	private Hotel hotel;
 	private DateTime mockCheckIn;
-	private Ciudad mockCiudad;
-	private Categoria mockCategoria;
+	@Mock private Ciudad mockCiudad;
+	@Mock private Categoria mockCategoria;
 	private List<Servicio> mockListServicios;
-	private Pais mockPais;
-	private Direccion mockDireccion;
-	private Telefono mockTelefono;
-	private Correo mockMail;
+	@Mock private Pais mockPais;
+	@Mock private Direccion mockDireccion;
+	@Mock private Telefono mockTelefono;
+	@Mock private Correo mockMail;
 	private DateTime mockCheckOut;
 	private List<Habitacion> mockListHabitaicones;
-	private UsuarioHotelero mockHotelero;
+	@Mock private UsuarioHotelero mockHotelero;
 	private ArrayList<IFormaDePago> mockListFormasDePago;
+	@Mock private Servicio servicio1;
+	@Mock private Servicio servicio2;
+	@Mock private TCredito medio1;
+	@Mock private TDebito medio2;
+	@Mock private Habitacion habitacion1;
+	@Mock private Habitacion habitacion2;
 
 	@Before
 	public void setUp(){
@@ -50,34 +58,18 @@ public class GettersDelHotelTest {
 		mockListFormasDePago = new ArrayList<IFormaDePago>();
 		mockListHabitaicones = new ArrayList<Habitacion>();
 		
-		// variables temporales necesarias
-		Servicio servicio1 = Mockito.any();
-		Servicio servicio2 = Mockito.any();
-		IFormaDePago medio1 = Mockito.any();
-		IFormaDePago medio2 = Mockito.any();
-		Habitacion habitacion1 = Mockito.any();
-		Habitacion habitacion2 = Mockito.any();
-		
-		// variables de instancia
-		mockCheckIn = Mockito.any();
-		mockCiudad = Mockito.any();
-		mockCategoria = Mockito.any();
+		mockCheckIn = new DateTime();
 		mockListServicios.add(servicio1);
 		mockListServicios.add(servicio2);
-		mockPais = Mockito.any();
-		mockDireccion = Mockito.any();
-		mockTelefono = Mockito.any();
-		mockMail = Mockito.any();
-		mockCheckOut = Mockito.any();
+		mockCheckOut = new DateTime();
 		mockListFormasDePago.add(medio1);
 		mockListFormasDePago.add(medio2);
 		mockListHabitaicones.add(habitacion1);
 		mockListHabitaicones.add(habitacion2);
-		mockHotelero = Mockito.any();		
 
 		hotel = new Hotel("HOTELTEST", mockCiudad, mockListHabitaicones, 
 						  mockListServicios, mockCategoria, mockCheckIn, 
-						  mockCheckIn, mockHotelero, mockPais, mockDireccion, 
+						  mockCheckOut, mockHotelero, mockPais, mockDireccion, 
 						  mockTelefono, mockMail, mockListFormasDePago);
 	}
 	@Test

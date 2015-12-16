@@ -127,7 +127,7 @@ public class HabitacionTest {
 	}
 	
 	@Test
-	public void testReservasFuturasDelUsuario(){		
+	public void testReservasFuturasDelUsuario(){
 		assertEquals(habitacion.reservasFuturasDelUsuario(this.mockUsuario).size(), 2);
 	}
 	
@@ -151,8 +151,9 @@ public class HabitacionTest {
 	@Test
 	public void testGetReservasParaFecha(){
 		List<Reserva> reservas = new ArrayList<Reserva>();
-		habitacion.getReservasParaFecha(fecha1, reservas);
+		reservas = habitacion.getReservasParaFecha(fecha1);
 		assertTrue(reservas.contains(mockReserva1));
+		assertEquals(reservas.size(), 4);
 	}
 	
 	@Test

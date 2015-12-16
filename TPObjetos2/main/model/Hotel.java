@@ -60,15 +60,13 @@ public class Hotel {
 	public List<Reserva> reservasDentroDeFecha(DateTime unaFecha){
 		List<Reserva> reservas = new ArrayList<Reserva>();
 		for(Habitacion habitacion: habitaciones){
-			habitacion.getReservasParaFecha(unaFecha, reservas);
+			reservas.addAll(habitacion.getReservasParaFecha(unaFecha));
 		}
 		return reservas;
 	}
 
 	public List<Reserva> reservasConFechaMayorA(DateTime unaFecha) {
-
-		List<Reserva> reservas = new ArrayList<Reserva>();
-		
+		List<Reserva> reservas = new ArrayList<Reserva>();	
 		for(Habitacion h: this.habitaciones){
 				reservas.addAll(h.reservasConFechaMayorA(unaFecha));
 		}
