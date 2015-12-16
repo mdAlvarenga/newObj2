@@ -28,8 +28,6 @@ public class GestorConsulta extends Observable{
 	}
 	
 	public void agregarReserva(Reserva unaReserva, Habitacion unaHabitacion, Hotel unHotel) {
-		//Aca PODRIA ir una excepcion de si no esta el hotel, pero supongamos que esta todo perfecto.
-		//Lo mismo que no me convence el else...
 		if(unaHabitacion.disponibilidadPara(unaReserva.getRangoDeReserva())){
 			for(Hotel h: this.getHoteles()){
 				boolean igual = h.equals(unHotel); 
@@ -174,6 +172,17 @@ public class GestorConsulta extends Observable{
 				reservasInicioEnNDias.addAll(hotel.reservasConFechaMayorA(fechaFutura));
 		}
 		return reservasInicioEnNDias;
+	}
+
+	/**
+	 * PRECONDICION: la reserva debe existir en el sistema
+	 * @param unaReserva
+	 * @param unaHabitacion
+	 */
+	public void cancelarReserva(Reserva unaReserva, Habitacion unaHabitacion) {
+		this.reservas.remove(unaReserva);
+		unaHabitacion.cancelaSiPodes(unaReserva);
+		
 	}
 
 }
