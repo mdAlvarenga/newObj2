@@ -35,8 +35,7 @@ public class Habitacion {
 	public boolean disponibilidadPara(Rango unRango) {
 		boolean ret = true;
 		for (Reserva r : this.getReservas()) {
-			boolean b = r.ocupadaEn(unRango);
-			ret = ret & !b; 
+			ret = ret & !(r.ocupadaEn(unRango)); 
 		}
 		return ret;
 	}
@@ -69,8 +68,7 @@ public class Habitacion {
 	public List<Reserva> reservasConFechaMayorA(DateTime unaFecha) {
 		List<Reserva> ret = new ArrayList<Reserva>();
 		for (Reserva reserva : this.getReservas()) {
-			boolean b = reserva.fechaDeReservaPosteriorA(unaFecha);
-			if (b){
+			if (reserva.fechaDeReservaPosteriorA(unaFecha)){
 				ret.add(reserva);
 			}
 		}

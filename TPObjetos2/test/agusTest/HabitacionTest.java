@@ -123,6 +123,15 @@ public class HabitacionTest {
 		when(mockReserva4.ocupadaEn(rango2)).thenReturn(true);
 		assertFalse(habitacion.disponibilidadPara(rango2));
 	}
+	
+	@Test
+	public void testNoHayDisponibilidadParaUnRango(){		
+		when(mockReserva1.ocupadaEn(rango2)).thenReturn(false);
+		when(mockReserva2.ocupadaEn(rango2)).thenReturn(false);
+		when(mockReserva3.ocupadaEn(rango2)).thenReturn(false);
+		when(mockReserva4.ocupadaEn(rango2)).thenReturn(true);
+		assertFalse(habitacion.disponibilidadPara(rango2));
+	}
 		
 	@Test
 	public void testReservasDelUsuario(){
