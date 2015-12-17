@@ -6,10 +6,6 @@ import java.util.Observable;
 
 import org.joda.time.DateTime;
 
-import nadaTesteable.Ciudad;
-import nadaTesteable.UsuarioHotelero;
-import nadaTesteable.UsuarioPasajero;
-
 public class GestorConsulta extends Observable{
 	protected List<Reserva> reservas;
 	protected List<Hotel> hoteles;

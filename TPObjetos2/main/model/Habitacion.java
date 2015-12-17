@@ -5,9 +5,6 @@ import java.util.List;
 
 import org.joda.time.DateTime;
 
-import nadaTesteable.Servicio;
-import nadaTesteable.Usuario;
-
 public class Habitacion {
 	/*
 	 * CONSIDERACIONES DE LA CLASE: En la lista de precios, los rangos no se solapan.

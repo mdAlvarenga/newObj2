@@ -5,16 +5,6 @@ import java.util.List;
 
 import org.joda.time.DateTime;
 
-import nadaTesteable.Categoria;
-import nadaTesteable.Ciudad;
-import nadaTesteable.Correo;
-import nadaTesteable.Direccion;
-import nadaTesteable.IFormaDePago;
-import nadaTesteable.Pais;
-import nadaTesteable.Servicio;
-import nadaTesteable.Telefono;
-import nadaTesteable.UsuarioHotelero;
-
 public class Hotel {
 	private String nombreHotel;
 	private Ciudad ciudad;

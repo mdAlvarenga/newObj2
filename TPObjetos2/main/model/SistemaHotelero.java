@@ -2,11 +2,6 @@ package model;
 
 import java.util.List;
 
-import nadaTesteable.Ciudad;
-import nadaTesteable.Usuario;
-import nadaTesteable.UsuarioHotelero;
-import nadaTesteable.UsuarioPasajero;
-
 public class SistemaHotelero{
 	private List<Usuario> listaDeUsuarios; 
 	private GestorConsulta gestor;

@@ -3,9 +3,6 @@ package model;
 import java.util.Observable;
 import java.util.Observer;
 
-import nadaTesteable.Correo;
-import nadaTesteable.IServidor;
-
 public class GestorCorreo implements Observer{
 	private IServidor servidor;
 
