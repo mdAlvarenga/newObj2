@@ -24,11 +24,12 @@ import nadaTesteable.UsuarioPasajero;
 public class HabitacionTest {
 	
 	private Habitacion habitacion;
+	private ArrayList<Servicio> listaServicios;
 	@Mock private UsuarioPasajero mockUsuario;
 	private Rango rango2;
 	@Mock private Reserva mockReservaAgregar;
 	private DateTime fecha1;
-	private DateTime fecha2;
+	private DateTime hoy;
 	@Mock private Reserva mockReserva1;
 	@Mock private Reserva mockReserva2;
 	@Mock private Reserva mockReserva3;
@@ -45,11 +46,11 @@ public class HabitacionTest {
 	public void setUp(){
 		MockitoAnnotations.initMocks(this);
 		fecha1 = new DateTime();
-		ArrayList<Servicio> mockListServicios = new ArrayList<Servicio>();
+		listaServicios = new ArrayList<Servicio>();
 		Servicio servicio = Mockito.mock(Servicio.class);
-		mockListServicios.add(servicio);
+		listaServicios.add(servicio);
 		servicio = Mockito.mock(Servicio.class);
-		mockListServicios.add(servicio);
+		listaServicios.add(servicio);
 		
 		List<Reserva> mockListReservas = new ArrayList<Reserva>();
 		mockListReservas.add(mockReserva1);
@@ -66,7 +67,7 @@ public class HabitacionTest {
 		habitacion = new Habitacion("111", 
 									4, 
 									"Simple", 
-									mockListServicios, 
+									listaServicios, 
 									mockListReservas, 
 									mockListPrecios,
 									true);
@@ -81,22 +82,11 @@ public class HabitacionTest {
 		when(mockReserva3.getUsuarioQueReserva()).thenReturn(otroUsuario);
 		when(mockReserva4.getUsuarioQueReserva()).thenReturn(otroUsuario);
 
-		when(mockReserva1.fechaDeReservaPosteriorA(new DateTime())).thenReturn(true);
-		when(mockReserva2.fechaDeReservaPosteriorA(new DateTime())).thenReturn(true);
-		when(mockReserva3.fechaDeReservaPosteriorA(new DateTime())).thenReturn(false);
-		when(mockReserva4.fechaDeReservaPosteriorA(new DateTime())).thenReturn(false);
-
-		when(mockReserva1.fechaDeReservaPosteriorA(fecha2)).thenReturn(true);
-		when(mockReserva2.fechaDeReservaPosteriorA(fecha2)).thenReturn(true);
-		when(mockReserva3.fechaDeReservaPosteriorA(fecha2)).thenReturn(false);
-		when(mockReserva4.fechaDeReservaPosteriorA(fecha2)).thenReturn(false);
-
+		String format = new DateTime().toString("yyyy-MM-dd");
+		hoy = new DateTime(format);
+	
 		rango2 = new Rango(fecha1, fecha1);
-		when(mockReserva1.ocupadaEn(rango2)).thenReturn(true);
-		when(mockReserva2.ocupadaEn(rango2)).thenReturn(false);
-		when(mockReserva3.ocupadaEn(rango2)).thenReturn(false);
-		when(mockReserva4.ocupadaEn(rango2)).thenReturn(false);
-		
+				
 		when(mockPrecio1.calcularMontoPara(mockRango1)).thenReturn(100.00);
 		when(mockPrecio2.calcularMontoPara(mockRango1)).thenReturn(0.00);
 		when(mockPrecio3.calcularMontoPara(mockRango1)).thenReturn(0.00);
@@ -117,10 +107,23 @@ public class HabitacionTest {
 	}
 	
 	@Test
-	public void testDisponibilidadPara(){		
+	public void testDisponibilidadPara(){
+		when(mockReserva1.ocupadaEn(mockRango1)).thenReturn(false);
+		when(mockReserva2.ocupadaEn(mockRango1)).thenReturn(false);
+		when(mockReserva3.ocupadaEn(mockRango1)).thenReturn(false);
+		when(mockReserva4.ocupadaEn(mockRango1)).thenReturn(false);
 		assertTrue(habitacion.disponibilidadPara(mockRango1));
 	}
 	
+	@Test
+	public void testNoHayDisponibilidadPara(){		
+		when(mockReserva1.ocupadaEn(rango2)).thenReturn(true);
+		when(mockReserva2.ocupadaEn(rango2)).thenReturn(true);
+		when(mockReserva3.ocupadaEn(rango2)).thenReturn(true);
+		when(mockReserva4.ocupadaEn(rango2)).thenReturn(true);
+		assertFalse(habitacion.disponibilidadPara(rango2));
+	}
+		
 	@Test
 	public void testReservasDelUsuario(){
 		assertEquals(habitacion.reservasDelUsuario(mockUsuario).size(), 2);
@@ -128,12 +131,20 @@ public class HabitacionTest {
 	
 	@Test
 	public void testReservasFuturasDelUsuario(){
+		when(mockReserva1.fechaDeReservaPosteriorA(hoy)).thenReturn(true);
+		when(mockReserva2.fechaDeReservaPosteriorA(hoy)).thenReturn(true);
+		when(mockReserva3.fechaDeReservaPosteriorA(hoy)).thenReturn(false);
+		when(mockReserva4.fechaDeReservaPosteriorA(hoy)).thenReturn(false);
 		assertEquals(habitacion.reservasFuturasDelUsuario(this.mockUsuario).size(), 2);
 	}
 	
 	@Test
 	public void testReservasConFechaMayorA(){
-		assertEquals(habitacion.reservasConFechaMayorA(fecha2).size(), 2);
+		when(mockReserva1.fechaDeReservaPosteriorA(hoy)).thenReturn(true);
+		when(mockReserva2.fechaDeReservaPosteriorA(hoy)).thenReturn(true);
+		when(mockReserva3.fechaDeReservaPosteriorA(hoy)).thenReturn(false);
+		when(mockReserva4.fechaDeReservaPosteriorA(hoy)).thenReturn(false);
+		assertEquals(habitacion.reservasConFechaMayorA(hoy).size(), 2);
 	}
 	
 	@Test
@@ -149,6 +160,12 @@ public class HabitacionTest {
 	}
 	
 	@Test
+	public void testCancelaSiPodes() {
+		habitacion.cancelaSiPodes(mockReserva2);
+		assertFalse(habitacion.getReservas().contains(mockReserva2));
+	}
+	
+	@Test
 	public void testGetReservasParaFecha(){
 		List<Reserva> reservas = new ArrayList<Reserva>();
 		reservas = habitacion.getReservasParaFecha(fecha1);
@@ -157,8 +174,22 @@ public class HabitacionTest {
 	}
 	
 	@Test
-	public void testCancelaSiPodes() {
-		habitacion.cancelaSiPodes(mockReserva2);
-		assertFalse(habitacion.getReservas().contains(mockReserva2));
+	public void testGetServicios(){
+		assertSame(listaServicios,habitacion.getServicios());
+	}
+	
+	@Test
+	public void testGetNombreONumero(){
+		assertSame("111",habitacion.getNombreONumero());
+	}
+	
+	@Test
+	public void testGetCamaMatrimonial(){
+		assertTrue(habitacion.getCamaMatrimonial());
+	}
+	
+	@Test
+	public void testGetBaseDoble(){
+		assertSame("Simple", habitacion.getBaseDoble());
 	}
 }

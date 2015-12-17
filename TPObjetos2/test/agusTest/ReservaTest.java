@@ -2,6 +2,7 @@ package agusTest;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
 import org.joda.time.DateTime;
@@ -57,6 +58,12 @@ public class ReservaTest {
 	public void testReservaConFechaDeIngresoPosterior(){
 		
 		assertTrue(reserva.fechaDeReservaPosteriorA(fechaTest));
+	}
+	
+	@Test
+	public void testGetUsuarioQueReserva(){
+		
+		assertSame(this.unUsuario, reserva.getUsuarioQueReserva());
 	}
 
 }

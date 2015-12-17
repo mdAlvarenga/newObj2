@@ -31,6 +31,7 @@ public class HotelTest {
 	
 	private DateTime fechaDeHoy;
 	private Hotel hotel;
+	@Mock private Reserva nuevaReserva;
 	@Mock private Habitacion habitacion1;
 	@Mock private Habitacion habitacion2;
 	@Mock private Habitacion habitacion3;
@@ -81,6 +82,8 @@ public class HotelTest {
 						  correo,
 						  mockListFormasDePago);
 		
+		when(ciudad.getNombre()).thenReturn("Rosario");
+		
 		when(habitacion1.getCapacidadMaxima()).thenReturn(1);
 		when(habitacion2.getCapacidadMaxima()).thenReturn(1);
 		when(habitacion3.getCapacidadMaxima()).thenReturn(4);
@@ -127,5 +130,16 @@ public class HotelTest {
 	@Test
 	public void testTieneHabitacionQueCumpleCapacidad() {
 		assertTrue(hotel.tieneHabitacionQueCumpleCapacidad(4));
+	}
+	
+	@Test
+	public void testNombreDeCiudadEsRosario() {
+		assertSame("Rosario", hotel.nombreCiudad());
+	}
+	
+	@Test
+	public void testAgregarReservaEnHabitacion() {
+		hotel.agregarReservaEnHabitacion(habitacion1, nuevaReserva);
+		verify(habitacion1).agregarReserva(nuevaReserva);
 	}
 }

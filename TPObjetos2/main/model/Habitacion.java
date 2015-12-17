@@ -35,7 +35,8 @@ public class Habitacion {
 	public boolean disponibilidadPara(Rango unRango) {
 		boolean ret = true;
 		for (Reserva r : this.getReservas()) {
-			ret = ret & !(r.ocupadaEn(unRango)); 
+			boolean b = r.ocupadaEn(unRango);
+			ret = ret & !b; 
 		}
 		return ret;
 	}
@@ -53,8 +54,10 @@ public class Habitacion {
 	public List<Reserva> reservasFuturasDelUsuario(Usuario unUsuario) {
 		
 		List<Reserva> ret = new ArrayList<Reserva>();
+		String format = new DateTime().toString("yyyy-MM-dd");
+		DateTime hoy = new DateTime(format);
 		for (Reserva reserva : this.getReservas()) {
-			if (reserva.fechaDeReservaPosteriorA(new DateTime())
+			if (reserva.fechaDeReservaPosteriorA(hoy)
 					& reserva.getUsuarioQueReserva().equals(unUsuario)){
 				ret.add(reserva);
 			}
@@ -64,10 +67,10 @@ public class Habitacion {
 	
 	
 	public List<Reserva> reservasConFechaMayorA(DateTime unaFecha) {
-		
 		List<Reserva> ret = new ArrayList<Reserva>();
 		for (Reserva reserva : this.getReservas()) {
-			if (reserva.fechaDeReservaPosteriorA(unaFecha)){
+			boolean b = reserva.fechaDeReservaPosteriorA(unaFecha);
+			if (b){
 				ret.add(reserva);
 			}
 		}
@@ -101,16 +104,6 @@ public class Habitacion {
 	
 	public void cancelaSiPodes(Reserva unaReserva) {
 		this.reservas.remove(unaReserva);
-		
-	}
-	
-	//Getters
-	public String getBaseDobleOSimple() {
-		return this.baseDoble;
-	}
-
-	public List<Servicio> getServicios() {
-		return this.servicios;
 	}
 
 	public List<Reserva> getReservas() {
@@ -129,6 +122,14 @@ public class Habitacion {
 		return nombreONumero;
 	}
 	
+	public String getBaseDoble() {
+		return baseDoble;
+	}
+
+	public List<Servicio> getServicios() {
+		return servicios;
+	}
+
 	public Boolean getCamaMatrimonial(){
 		return camaMatrimonial;
 	}

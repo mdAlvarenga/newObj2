@@ -140,7 +140,12 @@ public class Hotel {
 	}
 
 	public void agregarReservaEnHabitacion(Habitacion unaHabitacion,
-			Reserva unaReserva) {		
+			Reserva unaReserva) {	
+		for(Habitacion h: this.habitaciones){
+			if (h.equals(unaHabitacion)){
+				h.agregarReserva(unaReserva);
+			}
+		}
 	}
 		
 }
